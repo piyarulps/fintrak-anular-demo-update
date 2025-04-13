@@ -1,0 +1,369 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20210217.180342.27988.0.001.json",
+    "dumpEventTime": "2021-02-17T18:03:42Z",
+    "dumpEventTimeStamp": "1613581422543",
+    "processId": 27988,
+    "cwd": "C:\\access\\frontend2\\FintrakBankingFrontEnd",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:/Program Files/nodejs/node_modules/@angular/cli/bin/ng",
+      "serve",
+      "--configuration=en"
+    ],
+    "nodejsVersion": "v12.7.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.7.0",
+      "v8": "7.5.288.22-node.16",
+      "uv": "1.30.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.1",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.7.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.19042",
+    "osVersion": "Windows 10 Enterprise",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-4300M CPU @ 2.60GHz",
+        "speed": 2594,
+        "user": 1421375,
+        "nice": 0,
+        "sys": 1240093,
+        "idle": 4280421,
+        "irq": 56156
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-4300M CPU @ 2.60GHz",
+        "speed": 2594,
+        "user": 1421375,
+        "nice": 0,
+        "sys": 1240093,
+        "idle": 4280421,
+        "irq": 56156
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-4300M CPU @ 2.60GHz",
+        "speed": 2594,
+        "user": 1421375,
+        "nice": 0,
+        "sys": 1240093,
+        "idle": 4280421,
+        "irq": 56156
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-4300M CPU @ 2.60GHz",
+        "speed": 2594,
+        "user": 1421375,
+        "nice": 0,
+        "sys": 1240093,
+        "idle": 4280421,
+        "irq": 56156
+      }
+    ],
+    "host": "DESKTOP-VDQJ9S9"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff61ae66b89",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10841"
+    },
+    {
+      "pc": "0x00007ff61ae6a4fc",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+25548"
+    },
+    {
+      "pc": "0x00007ff61ae694a8",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+21368"
+    },
+    {
+      "pc": "0x00007ff61af533db",
+      "symbol": "v8::base::CPU::has_sse+37691"
+    },
+    {
+      "pc": "0x00007ff61b73a3de",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff61b72272a",
+      "symbol": "v8::SharedArrayBuffer::Externalize+842"
+    },
+    {
+      "pc": "0x00007ff61b5b3e3c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff61b5bbd5f",
+      "symbol": "v8::internal::Heap::OldGenerationSizeOfObjects+4879"
+    },
+    {
+      "pc": "0x00007ff61b5b2003",
+      "symbol": "v8::internal::Heap::CollectGarbage+1235"
+    },
+    {
+      "pc": "0x00007ff61b5b0894",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2292"
+    },
+    {
+      "pc": "0x00007ff61b5cf375",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff61b3856ed",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+3757"
+    },
+    {
+      "pc": "0x00007ff61bb5982d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+614605"
+    },
+    {
+      "pc": "0x000001ffea65f8f5",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2152124416,
+    "totalCommittedMemory": 2152124416,
+    "usedMemory": 2091362272,
+    "availableMemory": 47989664,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31960,
+        "available": 229872
+      },
+      "new_space": {
+        "memorySize": 2621440,
+        "committedMemory": 2621440,
+        "capacity": 1309160,
+        "used": 623184,
+        "available": 685976
+      },
+      "old_space": {
+        "memorySize": 2020225024,
+        "committedMemory": 2020225024,
+        "capacity": 1965705304,
+        "used": 1965631528,
+        "available": 73776
+      },
+      "code_space": {
+        "memorySize": 7241728,
+        "committedMemory": 7241728,
+        "capacity": 6167456,
+        "used": 6167456,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 25432064,
+        "committedMemory": 25432064,
+        "capacity": 22895520,
+        "used": 22895520,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 95719424,
+        "committedMemory": 95719424,
+        "capacity": 95462320,
+        "used": 95462320,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 550304,
+        "used": 550304,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1309160,
+        "used": 0,
+        "available": 1309160
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 265.312,
+    "kernelCpuSeconds": 14.015,
+    "cpuConsumptionPercent": 196.709,
+    "maxRss": 2299187200,
+    "pageFaults": {
+      "IORequired": 1413409,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 9604,
+      "writes": 6
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "ACLOCAL_PATH": "C:\\Program Files\\Git\\mingw64\\share\\aclocal;C:\\Program Files\\Git\\usr\\share\\aclocal",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\FINTRAK\\AppData\\Roaming",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15248_EQGNPKZFWDFYGNID",
+    "COLORTERM": "truecolor",
+    "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-VDQJ9S9",
+    "COMSPEC": "C:\\WINDOWS\\system32\\cmd.exe",
+    "CONFIG_SITE": "C:/Program Files/Git/mingw64/etc/config.site",
+    "C_EM64T_REDIST11": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "DISPLAY": "needs-to-be-defined",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EXEPATH": "C:\\Program Files\\Git\\bin",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "GIT_ASKPASS": "c:\\Users\\FINTRAK\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
+    "HOME": "C:\\Users\\FINTRAK",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\FINTRAK",
+    "HOSTNAME": "DESKTOP-VDQJ9S9",
+    "INFOPATH": "C:\\Program Files\\Git\\usr\\local\\info;C:\\Program Files\\Git\\usr\\share\\info;C:\\Program Files\\Git\\usr\\info;C:\\Program Files\\Git\\share\\info",
+    "LANG": "en_US.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\FINTRAK\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-VDQJ9S9",
+    "MANPATH": "C:\\Program Files\\Git\\mingw64\\local\\man;C:\\Program Files\\Git\\mingw64\\share\\man;C:\\Program Files\\Git\\usr\\local\\man;C:\\Program Files\\Git\\usr\\share\\man;C:\\Program Files\\Git\\usr\\man;C:\\Program Files\\Git\\share\\man",
+    "MINGW_CHOST": "x86_64-w64-mingw32",
+    "MINGW_PACKAGE_PREFIX": "mingw-w64-x86_64",
+    "MINGW_PREFIX": "C:/Program Files/Git/mingw64",
+    "MSYS": "enable_pcon enable_pcon",
+    "MSYSTEM": "MINGW64",
+    "MSYSTEM_CARCH": "x86_64",
+    "MSYSTEM_CHOST": "x86_64-w64-mingw32",
+    "MSYSTEM_PREFIX": "C:/Program Files/Git/mingw64",
+    "NUMBER_OF_PROCESSORS": "4",
+    "NVM_HOME": "C:\\Users\\FINTRAK\\AppData\\Roaming\\nvm",
+    "NVM_SYMLINK": "C:\\Program Files\\nodejs",
+    "ORIGINAL_PATH": "C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\FINTRAK\\bin;C:\\app\\FINTRAK\\product\\12.2.0\\dbhome_1\\bin;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\bin\\Intel64;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\WINDOWS\\System32\\OpenSSH;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn;C:\\Users\\FINTRAK\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Program Files (x86)\\Yarn\\bin;C:\\Gradle\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\140\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\140\\DTS\\Binn;C:\\laragon\\bin\\php\\php-7.2.19-Win32-VC15-x64;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Microsoft\\Web Platform Installer;C:\\Program Files\\Redis;C:\\Program Files\\PuTTY;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\dart-sass;C:\\laragon\\bin;C:\\laragon\\bin\\apache\\httpd-2.4.35-win64-VC15\\bin;C:\\laragon\\bin\\composer;C:\\laragon\\bin\\git\\bin;C:\\laragon\\bin\\git\\cmd;C:\\laragon\\bin\\git\\mingw64\\bin;C:\\laragon\\bin\\git\\usr\\bin;C:\\laragon\\bin\\laragon\\utils;C:\\laragon\\bin\\mysql\\mysql-5.7.24-winx64\\bin;C:\\laragon\\bin\\nginx\\nginx-1.16.0;C:\\laragon\\bin\\ngrok;C:\\laragon\\bin\\nodejs\\node-v12;C:\\laragon\\bin\\notepad++;C:\\laragon\\bin\\php\\php-7.4.7-Win32-vc15-x64;C:\\laragon\\bin\\putty;C:\\laragon\\bin\\redis\\redis-x64-3.2.100;C:\\laragon\\bin\\telnet;C:\\laragon\\usr\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\Yarn\\config\\global\\node_modules\\.bin;C:\\Users\\FINTRAK\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\FINTRAK\\AppData\\Roaming\\npm;C:\\Users\\FINTRAK\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\FINTRAK\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Users\\FINTRAK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\heroku\\bin;C:\\Program Files\\JetBrains\\PhpStorm 2019.3.1\\bin;C:\\Users\\FINTRAK\\Documents\\ngrok;C:\\Users\\FINTRAK\\AppData\\Local\\Microsoft\\WindowsApps;C:\\dart-sass",
+    "ORIGINAL_TEMP": "C:/Users/FINTRAK/AppData/Local/Temp",
+    "ORIGINAL_TMP": "C:/Users/FINTRAK/AppData/Local/Temp",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "undefined",
+    "OS": "Windows_NT",
+    "OneDrive": "C:\\Users\\FINTRAK\\OneDrive",
+    "PATH": "C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\FINTRAK\\bin;C:\\Users\\FINTRAK\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\FINTRAK\\bin;C:\\app\\FINTRAK\\product\\12.2.0\\dbhome_1\\bin;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\bin\\Intel64;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\WINDOWS\\System32\\OpenSSH;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn;C:\\Users\\FINTRAK\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Program Files (x86)\\Yarn\\bin;C:\\Gradle\\bin;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\140\\Tools\\Binn;C:\\Program Files\\Microsoft SQL Server\\140\\DTS\\Binn;C:\\laragon\\bin\\php\\php-7.2.19-Win32-VC15-x64;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Microsoft\\Web Platform Installer;C:\\Program Files\\Redis;C:\\Program Files\\PuTTY;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\dart-sass;C:\\laragon\\bin;C:\\laragon\\bin\\apache\\httpd-2.4.35-win64-VC15\\bin;C:\\laragon\\bin\\composer;C:\\laragon\\bin\\git\\bin;C:\\laragon\\bin\\git\\cmd;C:\\laragon\\bin\\git\\mingw64\\bin;C:\\laragon\\bin\\git\\usr\\bin;C:\\laragon\\bin\\laragon\\utils;C:\\laragon\\bin\\mysql\\mysql-5.7.24-winx64\\bin;C:\\laragon\\bin\\nginx\\nginx-1.16.0;C:\\laragon\\bin\\ngrok;C:\\laragon\\bin\\nodejs\\node-v12;C:\\laragon\\bin\\notepad++;C:\\laragon\\bin\\php\\php-7.4.7-Win32-vc15-x64;C:\\laragon\\bin\\putty;C:\\laragon\\bin\\redis\\redis-x64-3.2.100;C:\\laragon\\bin\\telnet;C:\\laragon\\usr\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\Yarn\\config\\global\\node_modules\\.bin;C:\\Users\\FINTRAK\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\FINTRAK\\AppData\\Roaming\\npm;C:\\Users\\FINTRAK\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\FINTRAK\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Users\\FINTRAK\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\FINTRAK\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\heroku\\bin;C:\\Program Files\\JetBrains\\PhpStorm 2019.3.1\\bin;C:\\Users\\FINTRAK\\Documents\\ngrok;C:\\Users\\FINTRAK\\AppData\\Local\\Microsoft\\WindowsApps;C:\\dart-sass;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+    "PKG_CONFIG_PATH": "C:\\Program Files\\Git\\mingw64\\lib\\pkgconfig;C:\\Program Files\\Git\\mingw64\\share\\pkgconfig",
+    "PLINK_PROTOCOL": "ssh",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 60 Stepping 3, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "3c03",
+    "PROGRAMFILES": "C:\\Program Files",
+    "PSModulePath": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\PowerShell\\Modules\\;C:\\Program Files (x86)\\Microsoft SQL Server\\140\\Tools\\PowerShell\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "PWD": "C:/access/frontend2/FintrakBankingFrontEnd",
+    "PhpStorm": "C:\\Program Files\\JetBrains\\PhpStorm 2019.3.1\\bin;",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "SESSIONNAME": "Console",
+    "SHELL": "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+    "SHLVL": "4",
+    "SSH_AGENT_PID": "1386",
+    "SSH_ASKPASS": "C:/Program Files/Git/mingw64/libexec/git-core/git-gui--askpass",
+    "SSH_AUTH_SOCK": "C:/Users/FINTRAK/AppData/Local/Temp/ssh-3jtrPUfWYKgt/agent.1384",
+    "SYSTEMDRIVE": "C:",
+    "SYSTEMROOT": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\FINTRAK\\AppData\\Local\\Temp",
+    "TERM": "xterm",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.53.1",
+    "TMP": "C:\\Users\\FINTRAK\\AppData\\Local\\Temp",
+    "TMPDIR": "C:\\Users\\FINTRAK\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-VDQJ9S9",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-VDQJ9S9",
+    "USERNAME": "FINTRAK",
+    "USERPROFILE": "C:\\Users\\FINTRAK",
+    "VSCODE_GIT_ASKPASS_MAIN": "c:\\Users\\FINTRAK\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js",
+    "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\FINTRAK\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-ede09c4a2d-sock",
+    "WEBPACK_DEV_SERVER": "true",
+    "WINDIR": "C:\\WINDOWS",
+    "XDEBUG_CONFIG=idekey": "VSCODE",
+    "_": "C:/Users/FINTRAK/AppData/Roaming/nvm/v12.7.0/node"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\Program Files\\AVAST Software\\Avast\\aswhook.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",
+    "C:\\WINDOWS\\SYSTEM32\\UMPDC.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+    "\\\\?\\C:\\access\\frontend2\\FintrakBankingFrontEnd\\node_modules\\node-sass\\vendor\\win32-x64-72\\binding.node",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll"
+  ]
+}

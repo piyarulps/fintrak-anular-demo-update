@@ -1,0 +1,450 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <!-- <span [innerHtml]="test"></span> -->
+        <!--module header-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 i18n class="panel-title pull-left">
+                            Loan Eligibility Requirements
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 25%; position:fixed; right:150px;   top:300px;  z-index:999">
+                <!-- <loan-sticker [loanApplicationId]="applicationId" [loanApp] ="loanCollateralDetails()"> 
+                    </loan-sticker> -->
+                <!--p-panel [header]="title" [toggleable]="true" [collapsed]="false" [style]="{'margin-bottom':'20px'}">
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                            <label class="ui-g-12 ui-md-4 ui-lg-6">Loan Amount</label>
+                            <label class="ui-g-12 ui-md-8 ui-lg-6">{{loanCurrency}} {{loanApplicationAmount}}</label>
+
+                        </div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                            <label class="ui-g-12 ui-md-4 ui-lg-6">Requaired Collateral</label>
+                            <label class="ui-g-12 ui-md-8 ui-lg-6">{{loanCurrency}} {{requairedCollateralValue }}</label>
+
+                        </div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                            <label class="ui-g-12 ui-md-4 ui-lg-6">Security Value</label>
+                            <label class="ui-g-12 ui-md-8 ui-lg-6">{{colCurrencyCode}} {{totalSecurity }}</label>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                            <label class="ui-g-12 ui-md-4 ui-lg-6">Collateral Currency</label>
+                            <div class="ui-g-12 ui-md-8 ui-lg-6">
+                                <select class="form-control " id="currencyId" name="currencyId" (change)="getExchangeRateInvoice2($event.target.value)">
+                                    <option value=""> Select Currency</option>
+                                    <option *ngFor="let curr of currencies" value="{{curr.currencyId}}"> {{curr.currencyCode}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </p-panel-->
+            </div>
+
+            <div class="ui-g" *ngIf="requirementItems">
+                <button pButton type="button" style="margin:5px; width:150.168px" (click)="showRequestForm()" i18n-label label="Initiate Request"
+                    class="cyan-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button>
+
+                <!-- <button *ngIf="requireCollateral" pButton type="button" (click)="gotoCollateralInformation()" style="margin:5px; width:150.168px"
+                    label="Collateral Information" class="ui-button-success">
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button> -->
+
+                <button pButton type="button" style="margin:5px; width:150.168px" i18n-label label="Customer Financial Statement"
+                    [disabled]="isCustomerTypeIndividual"
+                    (click)="viewFinancialStatement()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button>
+
+                <!-- <button pButton type="button" style="margin:5px; width:150.168px" label="Fee/Rate Concession" (click)="viewConcession()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button> -->
+
+                <!-- <button pButton type="button" (click)="showSuggestionForm()" style="margin:5px;  width:150.168px" label="RM Suggestions"
+                    class="ui-button-success ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button> -->
+
+                <button pButton type="button" (click)="displayUploadOtherDocument = true" style="margin:5px;  width:150.168px"
+                    i18n-label label="Uploads" class="deep-orange-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button>
+
+                <app-loan-checklist [operationId]="operationId" [productClassProcessId]="productClassProcessId"
+                    [productId]="productId" [loanApplicationDetailId]="loanApplicationDetailId" [loanApplicationId]="applicationId"
+                    [isCAMchecklist]="false" [isAvailmentChecklist]="false" [onPageLoad]="true" [customerCode]="selectedCustomerCode"
+                    [customerName]="selectedCustomerName" [selectedCustomerDetail]="selectedCustomerDetail" [customerId]="selectedCustomerId"></app-loan-checklist>
+
+                <!-- <button pButton type="button" (click)="loanCollateralDetails()" style="margin:5px; width:150.168px" pButton label="Financials" class="indigo-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+
+                    <span class="ink ripple-animate" style="height: 290.25px;width: 290.25px;top: -130.313px;left: -19.625px;pointer-events: none;"></span>
+                </button> -->
+            </div>
+
+            <!-- <p-dialog [responsive]=true [(visible)]="displayCollateral" id="add-modal" modal="modal" showEffect="fade" width="900">
+            <ler-collateral-template   [(customerId)] = "customerId"> hi </ler-collateral-template>
+            </p-dialog> -->
+
+
+
+            <div class="panel-body">
+                <p-dataTable [paginator]="true" (onRowSelect)="onRowSelect($event)" [(selection)]="loanApplicationDetails"
+                    [rows]="15" [value]="loanApplicationLists" [responsive]=true selectionMode="single">
+                    <p-column i18n-header field="applicationReferenceNumber" header="Reference" sortable="true" [filter]="true"
+                        filterMatchMode="contains"></p-column>
+
+                    <p-column i18n-header field="customerName" header="Obligor" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                    <p-column i18n-header field="proposedProductName" [style]="{'width':'350px'}" header="Product" sortable="true"
+                        [filter]="true" filterMatchMode="contains">
+
+                    </p-column>
+                    <p-column i18n-header field="proposedAmount" header="Amount" sortable="true" [filter]="true" filterMatchMode="contains"
+                        [style]="{'text-align':'right'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.proposedAmount | number : '1.2' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column i18n-header field="approvedInterestRate" header="Rate(%)" sortable="true" [filter]="true"
+                        filterMatchMode="contains" [style]="{'text-align':'right'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.approvedInterestRate | number : '1.2' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column i18n-header field="proposedTenor" header="Tenor (Days)" sortable="true" [filter]="true"
+                        filterMatchMode="contains" [style]="{'text-align':'right'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.proposedTenor }}
+                        </ng-template>
+                    </p-column>
+
+
+                    <!-- <p-column [style]="{'width':'60px'}">
+
+                        <ng-template pTemplate="header">
+                            Edit
+                        </ng-template>
+                        <ng-template let-staff="rowData" let-i="rowIndex" pTemplate="body">
+                            <a (click)="editRequest(i, $event)" style="display: block" href="javascript:void(0)">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </ng-template>
+                    </p-column>  -->
+                </p-dataTable>
+            </div>
+            
+            <div style="padding: 2px 15px 2px 15px" *ngIf="displayCollateral">
+                <collateral-information [loanApplicationId]="loanApplicationId" [applicationCustomerId]="selectedCustomerId"
+                    [applicationCustomerName]="customerName" [autoMapNew]="autoMapNew" (sum)="getSecurityValue($event)" [canEditExternally]="false">
+                </collateral-information>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- [disabled]="groupForm.invalid" -->
+                        <!-- <button type="button" (click)="gotoLoanApplication()" class="btn  btn-primary pull-left">Previous</button> -->
+                        <button i18n type="button" (click)="onSubmitForCAM()" class="btn  btn-success pull-right">Next</button>
+                        <button i18n style="margin-right:5px" type="button" class="btn btn-danger pull-right" (click)="returnToStart()">Back To List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--job request form modal-->
+<p-dialog [responsive]=true [(visible)]="displayRequestForm" id="add-modal" modal="modal" showEffect="fade" width="900">
+    <job-request-template 
+        [requestComment]="requestComment" 
+        [pageHeaderTitle]="requestPageHeaderTitle" 
+        [isReassigned]="isRequestReassigned"
+        [isAcknowledged]="isRequestAcknowledged" 
+        [targetId]="loanApplicationDetailId" 
+        [jobSourceId]= jobSourceId
+        [moduleReferenceNumber]="loanApplicationReferance"
+        [operationsId]="requestOperationsId" 
+        [operationAvailable]=true 
+        [requestStatusId]="requestStatusId" 
+        (notify)="getRequestData($event)"
+        (displayOption)="CallRequestClose()">
+    </job-request-template>
+</p-dialog>
+
+
+<!-- <p-dialog [responsive]=true [(visible)]="allowForEdit" id="add-modal" modal="modal" showEffect="fade" width="900"> -->
+
+<p-dialog header="loan Application Details" [(visible)]="allowForEdit" [responsive]="true" showEffect="fade" [modal]="true"
+    width="500">
+    <div style="margin-bottom:0;" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 i18n class="panel-title">
+                Edit Loan Amount
+            </h2>
+        </div>
+
+        <form [formGroup]="applicationDetail" autocomplete="off">
+            <div class="panel-body">
+                <div class="row"></div>
+                <div class="form-group">
+
+                    <label i18n class="control-label col-md-4" for="customerName">Obligor</label>
+
+                    <div class="col-md-8" style="margin:5px;">
+
+                        <input type="text" [attr.disabled]="true" name="customerName" formControlName="customerName"
+                            class="form-control">
+
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label i18n class="control-label col-md-4" for="proposedProductName">Product</label>
+
+                    <div class="col-md-8" style="margin:5px;">
+                        <input type="text" [attr.disabled]="true" name="proposedProductName" formControlName="proposedProductName"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label i18n class="control-label col-md-4" for="proposedInterestRate">Rate</label>
+
+                    <div class="col-md-8" style="margin:5px;">
+                        <input type="number" [attr.disabled]="true" name="proposedRate" formControlName="proposedRate"
+                            class="form-control">
+
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label i18n class="control-label col-md-4" for="proposedTenor">Tenor</label>
+
+                    <div class="col-md-8" style="margin:5px;">
+                        <!-- <label i18n class="form-control" for="customerName">{{loanApplicationDetails.proposedTenor}}</label> -->
+                        <input type="number" name="proposedTenor" formControlName="proposedTenor" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label i18n class="control-label col-md-4" for="proposedAmount">Loan Amount</label>
+
+                    <div class="col-md-8" style="margin:5px;">
+                        <!-- <input class="form-control" pInputText id="proposedAmount" [(ngModel)]="loanApplicationDetails.proposedAmount" /> -->
+                        <input type="text" name="proposedAmount" formatM formControlName="proposedAmount" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                        <button type="button" class="btn  btn-danger" pButton icon="fa-close" (click)="closeUpdate()"
+                            i18n-label label="Close"></button>
+                        <button type="button" class="btn  btn-success" pButton icon="fa-check" (click)="saveUpdate()"
+                            i18n-label label="Update"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayUploadOtherDocument" id="add-modal" modal="modal" showEffect="fade"
+    width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 i18n class="panel-title">
+                Upload Supporting Documents
+            </h2>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button (click)="showAddNewUpload()" pButton type="button" i18n-label label="Add New Upload" icon="fa-plus"></button>
+                        </div>
+                    </div>
+                </div>
+                <p-dataTable [value]="loanDocumentUploadList" [paginator]="true" [rows]="5">
+                    <p-column i18n-header field="documentTitle" header="Document Title" sortable="true" [filter]="true"
+                        filterMatchMode="contains"></p-column>
+                    <p-column i18n-header field="fileExtension" header="Type" [filter]="true" filterMatchMode="contains" [style]="{'width':'60px'}"></p-column>
+                    <p-column i18n-header field="physicalFileNumber" header="File Number" sortable="true" [filter]="true"
+                        filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+                    <p-column i18n-header field="physicalLocation" header="Physical Location" sortable="true" [filter]="true"
+                        filterMatchMode="contains"></p-column>
+                    <p-column [style]="{'width':'100px'}">
+                        <ng-template pTemplate="header"> </ng-template>
+                        <ng-template pTemplate="body" let-d="rowData" let-i="rowIndex">
+                            <a i18n *ngIf="['jpg','jpeg', 'png'].indexOf(d.fileExtension.toLowerCase()) > -1" (click)="viewDocument(d.documentId)"
+                                href="javascript:void(0)">View</a>
+                            <a i18n *ngIf="['doc','docx', 'pdf','xls', 'xlsx'].indexOf(d.fileExtension.toLowerCase()) > -1"
+                                (click)="DownloadDocument(d.documentId)" href="javascript:void(0)">Download</a>
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <button i18n type="button" (click)="displayUploadOtherDocument=false" style="margin-right:5px" class="btn btn-danger pull-right">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayDocumentUpload" id="add-modal" modal="modal" showEffect="fade" width="700">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 i18n class="panel-title">
+                New Loan Document Upload
+            </h2>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label i18n for="documentTitle" class="control-label col-md-2">Upload Title</label>
+                    <div class="col-md-8">
+                        <input type="text" [(ngModel)]="uploadFileTitle" class="form-control" name="description"
+                             i18n-placeholder placeholder="Document title...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label i18n for="documentTitle" class="control-label col-md-2">File Number</label>
+                    <div class="col-md-8">
+                        <input type="text" [(ngModel)]="physicalFileNumber" class="form-control" name="physicalFileNumber"
+                             i18n-placeholder placeholder="Document File Number...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label i18n for="documentTitle" class="control-label col-md-2">Physical Location</label>
+                    <div class="col-md-8">
+                        <input type="text" [(ngModel)]="physicalLocation" class="form-control" name="physicalLocation"
+                             i18n-placeholder placeholder="Document Physical Location...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label i18n for="document" class="control-label col-md-2">Select Document</label>
+                    <div class="col-md-8">
+                        <input type="file" (change)="onFileChange($event)"  i18n-placeholder placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.xls,.xlsx,.png"
+                            #fileInput name="fileInput" style="padding-top:2px;" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" (click)="uploadFile()" [disabled]="uploadFileTitle==null || file==undefined"
+                        class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-upload"></span>
+                        <ng-container i18n>Upload</ng-container>
+                        
+                    </button>
+                    <button i18n type="button" (click)="displayDocumentUpload=false" style="margin-right:5px" class="btn btn-danger pull-right">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayUpload" modal="modal" showEffect="fade" width="1200">
+    <div *ngIf="displayUpload" style="margin-bottom:0" class="panel panel-default">
+
+        <div class="panel-heading">
+            <h2   class="panel-title">
+               <ng-container i18n>Document Title:</ng-container>
+                <strong>{{ selectedDocument }}</strong>
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="displayUpload=false">&times;</a>
+            </div>
+        </div>
+
+        <div class="panel-body" style="overflow:auto;height:500px">
+            <div style="margin: auto; width: 50%">
+                <img *ngIf="binaryFile" style="max-width: 100%; display: block 2px black;" [src]="'data:image/jpg;base64,'+binaryFile"
+                    alt="" class="img-thumbnail">
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+
+<p-dialog header="Fee Concession" [(visible)]="allowFeeConcessionForEdit" [responsive]="true" showEffect="fade" [modal]="true"
+    width="500">
+    <fee-concession [loanDetailId]="loanDetailId" (closeTab)="closeFeeConcession($event)"> </fee-concession>
+</p-dialog>
+
+<p-dialog header="Fee Concession" [(visible)]="allowFinancialShow" [responsive]="true" showEffect="fade" [modal]="true"
+    width="500">
+    <financial-statement [customerId]="applicationCustomerId"></financial-statement>
+</p-dialog>
+
+<app-customer-financial-statement [customerId]="selectedCustomerId" [viewCustomerFinancialStatement]="false"
+    [canDoFinancialStatementEntry]="true">
+</app-customer-financial-statement>
+
+<!-- <p-dialog [responsive]=true [(visible)]="displayRMSuggestions" id="add-modal" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                Loan Initiator Suggestions
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="loanInitiatorSuggestionForm">
+
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="documentTitle" class="control-label col-md-2">Condition Precedents</label>
+                        <div class="col-md-10">
+                            <textarea type="text" rows=5 formControlName="conditionPrecedent" class="form-control" name="conditionPrecedent"
+                                id="conditionPrecedent" [ngClass]="!loanInitiatorSuggestionForm.controls['conditionPrecedent'].valid ? 'required-input' : 'valid-input'"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="documentTitle" class="control-label col-md-2">Condition Subsequent</label>
+                        <div class="col-md-10">
+                            <textarea type="text" rows=5 formControlName="conditionSubsequent" class="form-control"
+                                name="conditionSubsequent" id="conditionSubsequent" [ngClass]="!loanInitiatorSuggestionForm.controls['conditionSubsequent'].valid ? 'required-input' : 'valid-input'"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="documentTitle" class="control-label col-md-2">Transaction Dynamics</label>
+                        <div class="col-md-10">
+                            <textarea type="text" rows=5 name="transactionDynamics" formControlName="transactionDynamics"
+                                id="transactionDynamics" class="form-control" [ngClass]="!loanInitiatorSuggestionForm.controls['transactionDynamics'].valid ? 'required-input' : 'valid-input'"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" (click)="submitSuggestionForm(loanInitiatorSuggestionForm)" [disabled]="loanInitiatorSuggestionForm.invalid"
+                            class="btn btn-success pull-right">Save</button>
+                        <button type="button" (click)="displayRMSuggestions=false" style="margin-right:5px" class="btn btn-danger pull-right">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog> -->

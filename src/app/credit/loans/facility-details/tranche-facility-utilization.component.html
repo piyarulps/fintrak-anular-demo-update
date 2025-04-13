@@ -1,0 +1,842 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 i18n class="panel-title pull-left">
+                                Facility Line Information
+                            </h2>
+                            <div class="pull-right">
+                                <button (click)="showSearchForm()" pButton type="button" i18n-label label="Search" icon="fa-search"></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <p-tabView [activeIndex]="activeSearchTabindex" (onChange)="onSearchTabChange($event)">
+                  <p-tabPanel i18n-header  header="Loan Search">
+                    <div class="panel-body">
+                      <div class="card no-padding">
+                          <div class="card no-padding">
+                              <p-dataTable [paginator]="true" resizableColumns="true" [responsive]="true" [value]="loans" [rows]="10" selectionMode="single" >
+                                  <!-- <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column> -->
+                                  <p-column i18n-header field="systemArrivalDate" header="Availed On" [filter]="true" filterMatchMode="contains">
+                                      <ng-template let-i="rowIndex" let-row="rowData" pTemplate type="body">
+                                          <span *ngIf="row.availmentDate != null">{{ row.availmentDate | date}}</span>
+                                          <span i18n *ngIf="row.availmentDate == null"> N/A </span>
+                                      </ng-template>
+                                  </p-column>
+                                  <p-column i18n-header field="loanTypeName" header="Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                  <p-column i18n-header [style]="{'width':'150px'}" field="productTypeName" header="Facility Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                  <p-column i18n-header field="applicationReferenceNumber" header="Ref No" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                  <p-column i18n-header [style]="{'width':'150px'}" field="customerName" header="Obligor Name" sortable="true" [filter]="true" filterMatchMode="contains">
+                                      <ng-template  pTemplate="body" let-item="rowData" >
+                                          <span *ngIf="item.loanTypeId == 3">{{item.applicantName}}</span>
+                                          <span *ngIf="item.loanTypeId != 3">{{item.customerName}}</span>
+                                      </ng-template>
+                                  </p-column>
+                                  <p-column i18n-header [style]="{'text-align':'right','width':'115px'}" field="approvedAmount" header="Approved Amount" sortable="true" [filter]="true" filterMatchMode="contains">
+                                      <ng-template pTemplate="body" let-item="rowData">
+                                          {{item.approvedAmount | currency:item.currencyCode:true: '1.2-2'}}
+                                      </ng-template>
+                                  </p-column> 
+                                  <p-column i18n-header [style]ader [style]="{'text-align':'right','width':'115px'}" field="amountDisbursed" header="Disbursed Amount" sortable="true" [filter]="true" filterMatchMode="contains">
+                                      <ng-template pTemplate="body" let-item="rowData">
+                                          {{item.amountDisbursed | currency:item.currencyCode:true: '1.2-2'}}
+                                      </ng-template>
+                                  </p-column>
+                                  <p-column i18n-header [style]="{'text-align':'right','width':'115px'}"  header="Outstanding Amount" sortable="true" [filter]="true" filterMatchMode="contains">
+                                      <ng-template pTemplate="body" let-item="rowData">
+                                          {{+(item.approvedAmount) - +(item.amountDisbursed) | currency:item.currencyCode:true: '1.2-2'}}
+                                      </ng-template>
+                                  </p-column>
+                                  <p-column i18n-header [style]="{'width':'50px'}" field="interestRate" header="Interest" [filter]="true" filterMatchMode="contains"></p-column>
+                                  <p-column i18n-header [style]="{'width':'80px'}" field="approvedTenor" header="Tenor" sortable="true" [filter]="true" filterMatchMode="contains">
+                                      <ng-template pTemplate="body" let-item="rowData">
+                                          {{item.approvedTenorString}}
+                                      </ng-template>
+                                  </p-column>
+                                  <p-column [style]="{'width':'110px'}">
+                                    <ng-template pTemplate="header">
+                                        <div style="text-align:center">
+                                            <!-- <button (click)="showModalForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button> -->
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                        <div style="text-align:center">
+                                            <a i18n (click)= "viewTranch(d)"  href="javascript:void(0)">View</a>
+                                        </div>
+                                    </ng-template>
+                                </p-column>
+                              </p-dataTable>
+                          </div>
+                      </div>
+                  </div>  
+                  </p-tabPanel >
+                  <p-tabPanel i18n-header  header="Facility Tranches">
+                    <div class="panel-body">
+                      <div class="card no-padding">
+                          <div class="card no-padding">
+                            <p-dataTable [value]="selectedLoan" [paginator]="true" [rows]="5" dataKey="loanId"
+                            >
+                            <p-column i18n-header field="loanReferenceNumber" header="Loan Reference Number" sortable="true" [filter]="true"
+                              filterMatchMode="contains"></p-column>
+                            <p-column i18n-header field="effectiveDate" header="Effective Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                              <ng-template pTemplate="body" let-item="rowData">
+                                {{item.effectiveDate | date}}
+                            </ng-template>
+                            </p-column>
+                            <p-column i18n-header field="maturityDate" header="Maturity Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                              <ng-template pTemplate="body" let-item="rowData">
+                                {{item.maturityDate | date}}
+                            </ng-template>
+                            </p-column>
+                            <p-column i18n-header field="principalAmount" header="Principal Amount" sortable="true" [filter]="true" filterMatchMode="contains">
+                              <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.principalAmount | number : '1.2' }}
+                              </ng-template>
+                            </p-column>
+                            <p-column i18n-header field="outstandingPrincipal" header="Outstanding Principal" sortable="true" [filter]="true"
+                              filterMatchMode="contains">
+                              <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.outstandingPrincipal | number : '1.2' }}
+                              </ng-template>
+                            </p-column>
+                            <p-column i18n-header field="outstandingInterest" header="Outstanding Interest" sortable="true" [filter]="true"
+                              filterMatchMode="contains">
+                              <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.outstandingInterest | number : '1.2' }}
+                              </ng-template>
+                            </p-column>
+                            <p-column i18n-header field="interestOnPastDuePrincipal" header="Interest On Past Due Principal" sortable="true" [filter]="true"
+                          filterMatchMode="contains">
+                          <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.interestOnPastDuePrincipal | number : '1.2' }}
+                          </ng-template>
+                        </p-column>
+                            <p-column i18n-header field="interesrtOnPastDueInterest" header="Interest On Past Due Interest" sortable="true" [filter]="true"
+                            filterMatchMode="contains">
+                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                              {{ d.interesrtOnPastDueInterest | number : '1.2' }}
+                            </ng-template>
+                          </p-column>
+                          
+                          </p-dataTable>
+                
+                          </div>
+                      </div>
+                  </div>
+  
+                  </p-tabPanel >
+                </p-tabView>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+
+        <!--end of card1-->
+    </div>
+</div>
+
+<!--form modal-->
+<p-dialog [responsive]=true [(visible)]="displaySearchForm" id="add-modal" modal="modal" showEffect="fade" width="450">
+        <div style="margin-bottom:0" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 i18n class="panel-title">
+                    Search Application
+                </h2>
+
+            </div>
+    
+            <form novalidate [formGroup]="searchForm" autocomplete="off">
+    
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label i18n for="searchString" class="control-label col-md-12">Loan Application Reference Number/customer Name</label>
+                            <div class="col-md-12">
+                                <input type="text" name="searchString" formControlName="searchString" id="searchString" class="form-control" [ngClass]="!searchForm.controls['searchString'].valid ? 'required-input' : 'valid-input'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="panel-footer"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button i18n type="button" (click)="getLoanApplicationsForTrancheFacilityUilization()" [disabled]="searchForm.invalid" class="btn btn-success pull-right">Search</button>
+                            <button i18n type="button" (click)="displaySearchForm=false"  style="margin-right:5px"class="btn btn-danger pull-right">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+    </p-dialog>
+    <!--end of form modal-->
+
+
+    <p-dialog [responsive]=true [(visible)]="showDetail" id="add-modal" modal="modal" showEffect="fade" width="1200">
+      <div *ngIf="loanSelection != null">
+          <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n class="panel-title">
+                  Facility Details
+                  <!-- {{ loanSelection }} -->
+                </h2>
+                <button i18n type="button" (click)="showDetail=false"  style="margin-right:5px"class="btn btn-danger pull-right">Cancel</button>
+
+              </div>
+              <div class="panel-body">
+                <table *ngIf="loanSelection != null" class="table table-customer-information">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong i18n>Facility Reference No:</strong>
+                      </td>
+                      <td>{{ loanSelection.loanReferenceNumber ? loanSelection.loanReferenceNumber : 'N/A'}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong i18n>Application Reference No:</strong>
+                          </td>
+                          <td>{{ loanSelection.applicationReferenceNumber ?
+                            loanSelection.applicationReferenceNumber : 'N/A'}}</td>
+                      <td>
+                        <strong i18n>CASA Account Number 2 :</strong>
+                      </td>
+                      <td>{{ loanSelection.casaAccountNumber2 ? loanSelection.casaAccountNumber2 : 'N/A'}}</td>
+                      
+                      <td>
+                        <strong i18n> CASA Account Number</strong>
+                      </td>
+                      <td>{{ loanSelection.casaAccountNumber }}<div style="text-align:right">
+                          <!-- <button *ngIf="loanIdParam > 0" (click)="back()" pButton type="button" i18n-label label="Go Back"></button>
+                          <button (click)="showBalance()" pButton type="button" i18n-label label="Get Balance"></button> -->
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Customer Code</strong>
+                      </td>
+                      <td>{{ loanSelection.customerCode }}</td>
+                      <td>
+                        <strong i18n>Customer Name</strong>
+                      </td>
+                      <td>{{ loanSelection.customerName ? loanSelection.customerName : 'N/A'}}</td>
+                      <td>
+                        <strong i18n> Product Account Name</strong>
+                      </td>
+                      <td>{{ loanSelection.productAccountName }}</td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Last Operation</strong>
+                      </td>
+                      <td>{{ loanSelection.operationName }}</td>
+                      <td>
+                        <strong i18n>Product Type</strong>
+                      </td>
+                      <td>{{ loanSelection.productTypeName }}</td>
+                      <td>
+                        <strong i18n> product Name</strong>
+                      </td>
+                      <td>{{ loanSelection.productName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Branch Name</strong>
+                      </td>
+                      <td>{{ loanSelection.branchName }}</td>
+                      <td>
+                        <strong i18n>loan Type</strong>
+                      </td>
+                      <td>{{ loanSelection.loanTypeName }}</td>
+                      <td>
+                        <strong i18n> Sector Name</strong>
+                      </td>
+                      <td>{{ loanSelection.sectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Initiating Officer</strong>
+                      </td>
+                      <td>{{ loanSelection.relationshipOfficerName ? loanSelection.relationshipOfficerName :
+                        'N/A' }}</td>
+                      <!-- <td>
+                        <strong i18n>Business Manager</strong>
+                      </td>
+                      <td>{{ loanSelection.relationshipManagerName }}</td> -->
+                      <td>
+                        <strong i18n> Sub-Sector Name</strong>
+                      </td>
+                      <td>{{ loanSelection.subSectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Booking Date</strong>
+                      </td>
+                      <td>{{ loanSelection.bookingDate | date }}</td>
+                      <td>
+                        <strong i18n>Effective Date</strong>
+                      </td>
+                      <td>{{ loanSelection.effectiveDate | date }}</td>
+                      <td>
+                        <strong i18n> Maturity Date</strong>
+                      </td>
+                      <td>{{ loanSelection.maturityDate | date }}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n>. </strong>
+                      </td>
+                      <td></td>
+                      <td>
+                        <strong></strong>
+                      </td>
+                      <td></td>
+                      <td>
+                        <strong> </strong>
+                      </td>
+                      <td></td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Principal Amount</strong>
+                      </td>
+                      <td>{{ loanSelection.principalAmount | number:'1.2' }}</td>
+                      <td>
+                        <strong i18n> Outstanding Principal</strong>
+                      </td>
+                      <td>{{ loanSelection.outstandingPrincipal | number:'1.2' }}</td>
+                      <td>
+                        <strong i18n> Interest Rate</strong>
+                      </td>
+                      <td>{{ loanSelection.interestRate | number:'1.2'}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Product Index</strong>
+                      </td>
+                      <td>{{loanSelection.productPriceIndex}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Tenor (Days)</strong>
+                      </td>
+                      <td>{{ loanSelection.tenor }}</td>
+                      <td>
+                        <strong i18n> Exchange Rate</strong>
+                      </td>
+                      <td>{{ loanSelection.exchangeRate }}</td>
+                      <td>
+                        <strong i18n> Currency</strong>
+                      </td>
+                      <td>{{ loanSelection.currency}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Past Due Interest</strong>
+                      </td>
+                      <td>{{ loanSelection.pastDueInterest }}</td>
+                      <td>
+                        <strong i18n> Past Due Principal</strong>
+                      </td>
+                      <td>{{ loanSelection.pastDuePrincipal }}</td>
+                      <td>
+                        <strong i18n> Product Price Index Rate</strong>
+                      </td>
+                      <td>{{ loanSelection.productPriceIndexRate }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Outstanding Interest</strong>
+                      </td>
+                      <td>{{ loanSelection.outstandingInterest | number:'1.2' }}</td>
+                      <td>
+                        <strong i18n> Interest On Past Due Interest</strong>
+                      </td>
+                      <td>{{ loanSelection.interesrtOnPastDueInterest }}</td>
+                      <td>
+                        <strong i18n> Interest On Past Due Principal</strong>
+                      </td>
+                      <td>{{ loanSelection.interestOnPastDuePrincipal }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>. </strong>
+                      </td>
+                      <td></td>
+                      <td>
+                        <strong></strong>
+                      </td>
+                      <td></td>
+                      <td>
+                        <strong> </strong>
+                      </td>
+                      <td></td>
+                    </tr>
+
+
+                    <tr>
+                      <td>
+                        <strong i18n> System Prudential Guideline Status</strong>
+                      </td>
+                      <td>{{ loanSelection.externalPrudentialGuidelineStatus }}</td>
+
+                      <td>
+                        <strong i18n> User Prudential Guideline Status</strong>
+                      </td>
+                      <td>{{ loanSelection.userPrudentialGuidelineStatus }}</td>
+                      <td>
+                        <strong i18n> Date Approved</strong>
+                      </td>
+                      <td>{{ loanSelection.dateApproved | date }}</td>
+                    </tr>
+
+
+                    <tr>
+                      <td>
+                        <strong i18n> Date Disbursed</strong>
+                      </td>
+                      <td>{{ loanSelection.disburseDate | date }}</td>
+                      <td>
+                        <strong i18n> Is Disbursed</strong>
+                      </td>
+                      <td>{{ loanSelection.isDisbursedState }}</td>
+                      <td>
+                        <strong i18n> Disburser Comment</strong>
+                      </td>
+                      <td>{{ loanSelection.disburserComment }}</td>
+                    </tr>
+                    <tr>
+                      <!-- <td>
+                        <strong i18n> First Principal Payment Date</strong>
+                      </td>
+                      <td>{{ loanSelection.firstPrincipalPaymentDate ? loanSelection.firstPrincipalPaymentDate | date : 'null'}}</td>
+                      <td>
+                        <strong i18n> First Interest Payment Date</strong>
+                      </td>
+                      <td>{{ loanSelection.firstInterestPaymentDate ? loanSelection.firstInterestPaymentDate | date : 'null' }}</td>
+                      <td> 
+                        <strong i18n> Loan Status</strong>
+                      </td>
+                      <td>{{ loanSelection.loanStatus }}</td> 
+                       <td>
+                            <strong i18n> Application Reference Number</strong>
+                          </td>
+                          <td>{{ loanSelection.applicationReferenceNumber }}</td> -->
+                    </tr>
+
+                  </tbody>
+                </table>
+                <hr>
+                <table *ngIf="loanSelection != null" class="table table-customer-information">
+                  <tbody>
+                    <tr *ngIf="loanSelection.nostroAccountId!=null">
+                      <td>
+                        <strong i18n> Nostro Account Id</strong>
+                      </td>
+                      <td>{{ loanSelection.nostroAccountId }}</td>
+
+                      <td>
+                        <strong i18n> Nostro Rate Code</strong>
+                      </td>
+                      <td>{{ loanSelection.nostroRateCode }}</td>
+                      <td>
+                        <strong i18n> Nostro Rate Amount</strong>
+                      </td>
+                      <td>{{ loanSelection.nostroRateAmount }}</td>
+                    </tr>
+
+
+                    <tr *ngIf="loanSelection.nostroAccountId!=null">
+                      <td>
+                        <strong i18n> Notstro Currency</strong>
+                      </td>
+                      <td>{{ loanSelection.notstroCurrency }}</td>
+
+                    </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+      </div>
+      <div *ngIf="OverdraftLoanSelection != null">
+          <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n class="panel-title">
+                  Overdraft Facility Details
+                  <!-- {{ loanSelection }} -->
+                </h2>
+                <button i18n type="button" (click)="showDetail=false"  style="margin-right:5px"class="btn btn-danger pull-right">Cancel</button>
+
+              </div>
+              <div class="panel-body">
+                <table *ngIf="OverdraftLoanSelection != null" class="table table-customer-information">
+                  <tbody>
+
+                    <tr>
+                      <td>
+                        <strong i18n>Facility Reference No:</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.loanReferenceNumber ?
+                        OverdraftLoanSelection.loanReferenceNumber : 'N/A'}}</td>
+                      <td>
+                        <strong i18n>Application Reference No:</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.applicationReferenceNumber ?
+                        OverdraftLoanSelection.applicationReferenceNumber : 'N/A'}}</td>
+                      <td>
+                        <strong i18n> CASA Account Number</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.casaAccountNumber }}<div style="text-align:right">
+                          <button (click)="showBalance()" pButton type="button" i18n-label label="Get Balance"></button>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Customer Code</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.customerCode }}</td>
+                      <td>
+                        <strong i18n>Customer Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.customerName ? OverdraftLoanSelection.customerName :
+                        'N/A'}}</td>
+                      <td>
+                        <strong i18n> Product Account Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.productAccountName }}</td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Last Operation</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.operationName }}</td>
+                      <td>
+                        <strong i18n>Product Type</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.productTypeName }}</td>
+                      <td>
+                        <strong i18n> Product Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.productName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Branch Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.branchName }}</td>
+                      <td>
+                        <strong i18n>Customer Type</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.loanTypeName }}</td>
+                      <td>
+                        <strong i18n> Sector Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.sectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Initiating Officer</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.relationshipOfficerName ?
+                        OverdraftLoanSelection.relationshipOfficerName : 'N/A' }}</td>
+                      <!-- <td>
+                        <strong i18n>Business Manager</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.relationshipManagerName }}</td> -->
+                      <td>
+                        <strong i18n> Sub-Sector Name</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.subSectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Booking Date</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.bookingDate | date }}</td>
+                      <td>
+                        <strong i18n>Effective Date</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.effectiveDate | date }}</td>
+                      <td>
+                        <strong i18n> Maturity Date</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.maturityDate | date }}</td>
+                    </tr>
+
+
+
+                    <tr>
+                      <td>
+                        <strong i18n> Overdraft Limit</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.principalAmount | number:'1.2' }}</td>
+                      <td>
+                        <strong i18n> Interest Rate</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.interestRate | number:'1.2'}}</td>
+                      <td>
+                        <strong i18n> Tenor (Days)</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.tenor }}</td>
+
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Past Due Interest</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.pastDueInterest }}</td>
+                      <td>
+                        <strong i18n> Past Due Principal</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.pastDuePrincipal }}</td>
+                      <td>
+                        <strong i18n> Currency</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.currency}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Principal Frequency</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.pricipalFrequencyTypeName }}</td>
+                      <td>
+                        <strong i18n> Interest Frequencyuency</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.interestFrequencyTypeName }}</td>
+                      <td>
+                        <strong i18n> Exchange Rate</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.exchangeRate }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Interest On Past Due Interest</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.interesrtOnPastDueInterest }}</td>
+                      <td>
+                        <strong i18n> Interest On Past Due Principal</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.interestOnPastDuePrincipal }}</td>
+                      <td>
+                        <strong i18n> Loan Status</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.loanStatus }}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Is Disbursed</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.isDisbursedState }}</td>
+                      <td>
+                        <strong i18n> System Prudential Guideline Status</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.externalPrudentialGuidelineStatus }}</td>
+
+                      <td>
+                        <strong i18n> User Prudential Guideline Status</strong>
+                      </td>
+                      <td>{{ OverdraftLoanSelection.userPrudentialGuidelineStatus }}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+      </div>
+      <div *ngIf="contingentLoanSelection != null">
+          <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">
+                  Contingent Liability Details
+                  <!-- {{ loanSelection }} -->
+                </h2>
+                <button i18n type="button" (click)="showDetail=false"  style="margin-right:5px"class="btn btn-danger pull-right">Cancel</button>
+
+              </div>
+              <div class="panel-body">
+                <table *ngIf="contingentLoanSelection != null" class="table table-customer-information">
+                  <tbody>
+
+                    <tr>
+                      <td>
+                        <strong i18n>Facility Reference No:</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.loanReferenceNumber ?
+                        contingentLoanSelection.loanReferenceNumber : 'N/A'}}</td>
+                      <td>
+                        <strong i18n>Application Reference No:</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.applicationReferenceNumber ?
+                        contingentLoanSelection.applicationReferenceNumber : 'N/A'}}</td>
+                      <td>
+                        <strong i18n> CASA Account Number</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.casaAccountNumber }}<div style="text-align:right">
+                          <button (click)="showBalance()" pButton type="button" i18n-label label="Get Balance"></button>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Customer Code</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.customerCode }}</td>
+                      <td>
+                        <strong i18n>Customer Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.customerName ? contingentLoanSelection.customerName :
+                        'N/A'}}</td>
+                      <td>
+                        <strong i18n> Product Account Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.productAccountName }}</td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Last Operation</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.operationName }}</td>
+                      <td>
+                        <strong i18n>Product Type</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.productTypeName }}</td>
+                      <td>
+                        <strong i18n> product Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.productName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Branch Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.branchName }}</td>
+                      <td>
+                        <strong i18n>Customer Type</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.loanTypeName }}</td>
+                      <td>
+                        <strong i18n> Sector Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.sectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Initiating Officer</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.relationshipOfficerName ?
+                        contingentLoanSelection.relationshipOfficerName : 'N/A' }}</td>
+                      <!-- <td>
+                        <strong i18n>Business Manager</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.relationshipManagerName }}</td> -->
+                      <td>
+                        <strong i18n> Sub-Sector Name</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.subSectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Booking Date</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.bookingDate | date }}</td>
+                      <td>
+                        <strong i18n>Effective Date</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.effectiveDate | date }}</td>
+                      <td>
+                        <strong i18n> Maturity Date</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.maturityDate | date }}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Contingent Amount</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.principalAmount | number:'1.2' }}</td>
+
+                      <td>
+                        <strong i18n>Is Tenored</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.istenored }}</td>
+                      <td>
+                        <strong i18n> Currency</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.currency}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Is Bank Format</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.isbankFormat }}</td>
+                      <td>
+                        <strong i18n> Exchange Rate</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.exchangeRate }}</td>
+                      <td>
+                        <strong i18n> Loan Status</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.loanStatus }}</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong i18n> Is Disbursed</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.isDisbursedState }}</td>
+                      <td>
+                        <strong i18n> Approval Status</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.ApprovalStatus }}</td>
+                      <td>
+                        <strong i18n> Date Approved</strong>
+                      </td>
+                      <td>{{ contingentLoanSelection.dateApproved | date }}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+      </div>
+      <!-- <div class="panel-footer"> 
+          <div class="row">
+              <div class="col-md-12">
+                  <button type="button" (click)="showDetail=false"  style="margin-right:5px"class="btn btn-danger pull-right">Cancel</button>
+              </div>
+          </div>
+      </div> -->
+    </p-dialog>
+    
+ 

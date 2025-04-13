@@ -1,0 +1,173 @@
+<div class="panel-heading">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 i18n class="panel-title pull-left">
+                Completed Loans 
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="ui-g ui-fluid">
+  
+        <div class="form-group" style="margin-right:30px">
+            <label for="searchItem" class="control-label col=md-3">
+                Search
+            </label>
+  
+            <div class="col=md-9">
+                <input type="text" name="searchValue" [(ngModel)]="searchValue"
+                class="form-control">
+            </div>
+        </div>
+        <div class="form-group" style="margin-right:30px">
+            <label for="searchItem" class="control-label col=md-3">
+              .
+            </label>
+            <div class="col=md-9">
+                <button i18n type="button" (click)="getCompletedLoan()" style="margin-right:5px" class="btn btn-default">Search</button>
+
+                </div>
+        </div>
+    </div>
+
+    </div>  
+
+    <p-dataTable [value]="loanDetails" [paginator]="true" [rows]="10" >
+        <p-column i18n-header field="customerName" header="Customer Name" sortable="true" [filter]="true" filterMatchMode="contains"> </p-column>
+        <p-column i18n-header field="branchName" header="Branch Name" sortable="true" [filter]="true" filterMatchMode="contains"> </p-column>
+        <p-column i18n-header field="loanReferenceNumber" header="Loan Reference Number" sortable="true" [filter]="true" filterMatchMode="contains"> </p-column>
+        <p-column i18n-header field="effectiveDate" header="EffectiveDate" sortable="true" [filter]="true" filterMatchMode="contains"> 
+          <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+            {{ d.effectiveDate | date }}
+          </ng-template>
+        </p-column>
+        <p-column i18n-header field="maturityDate" header="Maturity Date" sortable="true" [filter]="true" filterMatchMode="contains">
+          <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+            {{ d.maturityDate | date }}
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'70px', 'text-align': 'center'}">
+            <ng-template pTemplate="header"></ng-template>
+            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+              <a i18n (click)="viewLoan(d, $event)" href="javascript:void(0)">
+                View
+              </a>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+
+
+<p-dialog [responsive]=true [(visible)]="showLoan" id="add-modal" modal="modal" showEffect="fade" width="1100">
+    <div style="margin-bottom:0" class="panel panel-default">
+      <div class="panel-heading">
+        <h2 i18n class="panel-title">
+          Loan Preview
+        </h2>
+
+      </div>
+      <div class="panel-body">
+        <table *ngIf="showLoan==true" class="table table-customer-information">
+          <tbody>
+  
+            <tr>
+              <td>
+                <strong i18n>Customer Name:</strong>
+              </td>
+              <td>{{ selectedLoan.customerName}}</td>
+              <td>
+                <strong i18n>Branch Name:</strong>
+              </td>
+              <td>{{ selectedLoan.branchName}}</td>
+              <td>
+                <strong i18n> Loan Reference Number</strong>
+              </td>
+              <td>{{ selectedLoan.loanReferenceNumber }}</td>
+              <td>
+                <strong i18n>Application Reference Number</strong>
+              </td>
+              <td>{{ selectedLoan.applicationReferenceNumber }}</td>
+            </tr>
+            <tr>
+  
+              <td>
+                <strong i18n>Product Name</strong>
+              </td>
+              <td>{{ selectedLoan.productName}}</td>
+              <td>
+                <strong i18n> Product Type Name</strong>
+              </td>
+              <td>{{ selectedLoan.productTypeName }}</td>
+              <td>
+                <strong i18n>Relationship Officer Name</strong>
+              </td>
+              <td>{{ selectedLoan.relationshipOfficerName }}</td>
+              <td>
+                <strong i18n>Relationship Manager Name</strong>
+              </td>
+              <td>{{ selectedLoan.relationshipManagerName }}</td>
+            </tr>
+            <tr>
+  
+              <td>
+                <strong i18n> Effective Date</strong>
+              </td>
+              <td>{{ selectedLoan.effectiveDate | date }}</td>
+              <td>
+                <strong i18n>Maturity Date</strong>
+              </td>
+              <td>{{ selectedLoan.maturityDate | date }}</td>
+              <td>
+                <strong i18n>Outstanding Principal</strong>
+              </td>
+              <td>{{ selectedLoan.outstandingPrincipal | number:'1.2'  }}</td>
+              <td>
+                <strong i18n> OutstandingInterest</strong>
+              </td>
+              <td>{{ selectedLoan.outstandingInterest | number:'1.2'  }}</td>
+            </tr>
+  
+            <tr>
+              <td>
+                <strong i18n> Interest On Past Due Interest</strong>
+              </td>
+              <td>{{ selectedLoan.interesrtOnPastDueInterest | number:'1.2' }}</td>
+              <td>
+                <strong i18n>Interest On Past Due Principal</strong>
+              </td>
+              <td>{{ selectedLoan.interestOnPastDuePrincipal | number:'1.2'  }}</td>
+              <td>
+                <strong i18n> Past Due Interest</strong>
+              </td>
+              <td>{{ selectedLoan.pastDueInterest | number:'1.2' }}</td>
+              <td>
+                <strong i18n> Past Due Principal</strong>
+              </td>
+              <td>{{ selectedLoan.pastDuePrincipal | number:'1.2'  }}</td>
+            </tr>
+            <tr>
+                <td>
+                  <strong i18n> Loan Status</strong>
+                </td>
+                <td>{{ selectedLoan.loanStatus}}</td>
+                
+              </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+    <div class="panel-body">
+        <div class="row">
+                <div class="col-md-6">
+                    </div>
+        <div class="col-md-6">
+                <div class="btn-group pull-right">
+                        <button i18n type="button" (click)="showLoan=false" style="margin-right:5px" class="btn btn-danger" style="margin-right:5px">Back to List</button>
+                        <button i18n type="button" (click)="ChangeLoanStatus()" class="btn btn-success">
+                                Mark Loan As Completed</button>
+                    </div>
+        </div>
+    </div>
+    </div>
+  </p-dialog> 

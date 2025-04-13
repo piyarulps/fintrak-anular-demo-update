@@ -1,0 +1,1431 @@
+<p-accordion [activeIndex]="accordionIndex" [selected]="editSecurityRelease == true">
+    <p-accordionTab header="Cash Security Release">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="panel-title pull-left" i18n>
+                            Cash Security Release
+                        </h2>
+                        <div class="pull-right" [hidden]="editSecurityRelease == true">
+                            <button (click)="displayCusotmerSearchModal()" pButton type="button" i18n-label
+                                label="Search For Collateral" icon="fa-plus"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------------------------- Tab List------------------------------------>
+        <div class="panel-body coll-list">
+            <p-tabView [activeIndex]="activeTabindex" (onChange)="onTabChange($event)">
+                <p-tabPanel i18n-header header="Registered Collaterals" [disabled]="editSecurityRelease == true">
+                    <p-dataTable [value]="collateralList" [paginator]="true" [rows]="5">
+                        <p-column i18n-header field="collateralCode" header="Collateral Code" sortable="true" [filter]="true"
+                            filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="collateralTypeName" header="Collateral Type" sortable="true" [filter]="true"
+                            filterMatchMode="contains">
+                        </p-column>
+
+                        <p-column i18n-header field="collateralValue" header="Collateral Value" sortable="true" [filter]="true"
+                            filterMatchMode="contains" [style]="{'text-align':'right'}">
+                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.collateralValue | number : '1.2' }}
+                            </ng-template>
+                        </p-column>
+
+                        <p-column i18n-header field="haircut" header="Hair Cut" sortable="true" [filter]="true"
+                            filterMatchMode="contains" [style]="{'width':'100px'}">
+                        </p-column>
+                        <p-column i18n-header field="collateralReleaseStatusName" header="Status" sortable="true" [filter]="true"
+                            filterMatchMode="contains" [style]="{'width':'100px'}">
+                        </p-column>
+                        <p-column i18n-header field="collateralUsageStatus" header="Usage Status" sortable="true" [filter]="true"
+                            filterMatchMode="contains" [style]="{'width':'100px'}">
+                        </p-column>
+                        <p-column i18n-header [style]="{'width':'120px'}">
+                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                <div style="text-align:center">
+                                    <a *ngIf="loanApplicationId == null && (d.collateralReleaseStatusId == 1 || d.collateralReleaseStatusId == null)"
+                                        (click)="viewValuationDetail(d)" href="javascript:void(0)" i18n>View Detail</a>
+
+                                </div>
+                            </ng-template>
+                        </p-column>
+
+                    </p-dataTable>
+                </p-tabPanel>
+                <p-tabPanel i18n-header header="Collateral Detail">
+                    <div class="panel-body">
+                        <div *ngIf="mainCollateralDetail != null" class="row" style="padding:0 15px 0 15px;">
+                            <h6 *ngIf="collateralProperty"><strong i18n>Collateral Information Registered for: </strong></h6>
+                            <table *ngIf="mainCollateralDetail" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Customer Name:</strong>
+                                        </td>
+                                        <td colspan="1" style="text-align:left">{{customerName}}</td>
+                                        <td>
+                                            <strong i18n>Customer Code:</strong>
+                                        </td>
+                                        <td>{{customerCode}}</td>
+                                        <td>
+                                            <strong i18n>Date Created:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.dateTimeCreated | date:"dd-MM-yyyy" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Reference Number:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.collateralCode }}</td>
+                                        <td>
+                                            <strong i18n>Collateral Type:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.collateralTypeName }}</td>
+                                        <td>
+                                            <strong i18n>Collateral Sub Type:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.collateralSubTypeName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Collateral Value:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.collateralValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Currency:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.currency }}</td>
+                                        <td>
+                                            <strong i18n>Haircut:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.haircut }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Valuation Cycle:</strong>
+                                        </td>
+                                        <td>{{ mainCollateralDetail.valuationCycle }}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td> </td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row" style="padding:0 15px 0 15px;">
+                            <h6 *ngIf="mainCollateralView">Details:</h6>
+                            <table *ngIf="collateralPromissory" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Effective Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.promissoryEffectiveDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Maturity Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.promissoryMaturityDate | date:"dd-MM-yyyy"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Promissory Note Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.promissoryNoteRefferenceNumber }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralProperty" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.propertyName }}</td>
+                                        <td>
+                                            <strong i18n>Country:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.countryName}}</td>
+
+                                        <td>
+                                            <strong i18n>Construction Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.constructionDate | date:"dd-MM-yyyy" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>State:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.stateName }}</td>
+
+                                        <td>
+                                            <strong i18n>Local Government</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.localGovtName}}</td>
+                                        <td>
+                                            <strong i18n>City/Location:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.cityName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Property Address</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.propertyAddress}}</td>
+                                        <td>
+                                            <strong i18n>Date Of Acquisition</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.dateOfAcquisition | date:"dd-MM-yyyy"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Last Valuation Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.lastValuationDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Valuer</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.collateralValuer}}</td>
+                                        <td>
+                                            <strong i18n>Valuation Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.valuationAmount | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Property Base Type:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.propertyBaseType }}</td>
+                                        <td>
+                                            <strong i18n>Open Market Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.openMarketValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Forced Sale Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.forcedSaleValue | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Stamp To Cover:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.stampToCover }}</td>
+                                        <td>
+                                            <strong i18n>Security Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.securityValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Perfection Status</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.perfectionStatusName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Reason for Non Perfection:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.perfectionStatusReason }}</td>
+                                        <td>
+                                            <strong i18n>Is Owner Occupied?:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.isOwnerOccupied }}</td>
+                                        <td>
+                                            <strong i18n>Is Property Residential?:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.isResidential }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Is Asset Pledged By a Third Party ?:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.isAssetPledgedByThirdParty ? 'Yes' : 'No' }}</td>
+                                        <td>
+                                            <strong i18n>Third Party Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.thirdPartyName }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Is Asset Managed By a Trustee ?:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.isAssetManagedByTrustee ? 'Yes' : 'No' }}</td>
+                                        <td>
+                                            <strong i18n>Trustee Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.trusteeName }}</td>
+                                        <td>
+                                            <strong i18n>Bank Share Of Collateral:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.bankShareOfCollateral | number:'1.2' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark }}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralMarketableSecurity" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Effective Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.effectiveDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Maturity Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.maturityDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Deal Amount:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.dealAmount | number:'1.2' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.securityValue | number:'1.2' }}</td>
+                                        <td>
+                                            <strong i18n>Lien Usable Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.lienUsableAmount | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Issuer Name</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.issuerName}}</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <strong i18n>Unit Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.unitValue | number:'1.2' }}</td>
+                                        <td>
+                                            <strong i18n>Number Of Units</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.numberOfUnits}}</td>
+                                        <td>
+                                            <strong i18n>Rating</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.rating}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Interest Payment Frequency:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.unitValue | date:"dd-MM-yyyy"}}</td>
+                                        <td>
+                                            <strong i18n>Fund/Scheme</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.fundName}}</td>
+                                        <td>
+                                            <strong i18n>Bank</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.bank}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark }}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralGaurantee" class="table table-casa-information">
+                                <tbody>
+                                    <!-- *ngIf="personal" -->
+                                    <tr>
+
+                                        <td>
+                                            <strong i18n>First Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.firstName }}</td>
+                                        <td>
+                                            <strong i18n>Middle Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.middleName}}</td>
+                                        <td>
+                                            <strong i18n>Last Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.lastName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <!-- *ngIf="corporate" -->
+                                        <td>
+                                            <strong i18n>BVN:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.bvn }}</td>
+                                        <td>
+                                            <strong i18n>Name</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.institutionName}}</td>
+                                        <td>
+                                            <strong i18n>{{rcName}}</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.rcNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Phone Number 1:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.phoneNumber1 }}</td>
+                                        <td>
+                                            <strong i18n>Phone Number 2</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.phoneNumber2}}</td>
+                                        <td>
+                                            <strong i18n>Address</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.guarantorAddress}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Tax Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.taxNumber }}</td>
+                                        <td>
+                                            <strong i18n>Relationship</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.relationship}}</td>
+                                        <td>
+                                            <strong i18n>Relationship Duration</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.relationshipDuration}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Email Address:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.emailAddress }}</td>
+                                        <td>
+                                            <strong i18n>Security Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.guaranteeValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Start Date</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.cStartDate | date:"dd-MM-yyyy"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>End Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.endDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralEquipment" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.description }}</td>
+                                        <td>
+                                            <strong i18n>Machine Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.machineNumber}}</td>
+                                        <td>
+                                            <strong i18n>Manufacturer Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.manufacturerName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Year Of Manufacture:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.yearOfManufacture }}</td>
+                                        <td>
+                                            <strong i18n>Year Of Purchase</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.yearOfPurchase}}</td>
+                                        <td>
+                                            <strong i18n>Value Base Type</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.valueBaseTypeName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Machine Condition:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.machineCondition }}</td>
+                                        <td>
+                                            <strong i18n>Machine Location</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.machineryLocation }}</td>
+                                        <td>
+                                            <strong i18n>Replacement Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.replacementValue | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <strong i18n>Equipment Size:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.equipmentSize }}</td>
+                                        <td>
+                                            <strong i18n>Intended Use</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.intendedUse }}</td>
+                                        <td>
+                                            <strong i18n>Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralItemPolicy" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Insurance Type:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.policyinsuranceType }}</td>
+                                        <td>
+                                            <strong i18n>Insurer Address:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.insurerAddress}}</td>
+                                        <td>
+                                            <strong i18n>Policy Start Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.policyStartDate | date:"dd-MM-yyyy" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Assign Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.assignDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Policy Renewal Date</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.policyRenewalDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Policy Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.policyAmount | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Premium Amount:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.premiumAmount | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Renewal Frequency</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.renewalFrequencyTypeName}}</td>
+                                        <td>
+                                            <strong i18n>Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralVehicle" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Vehicle Status:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.vehicleStatus }}</td>
+                                        <td>
+                                            <strong i18n>Vehicle Make:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.vehicleMake}}</td>
+                                        <td>
+                                            <strong i18n>Model Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.modelName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Manufactured Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.manufacturedDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Registration Number</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.registrationNumber}}</td>
+                                        <td>
+                                            <strong i18n>Serial Number</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.serialNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Chasis Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.chasisNumber }}</td>
+                                        <td>
+                                            <strong i18n>Engine Number</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.engineNumber}}</td>
+                                        <td>
+                                            <strong i18n>Name Of Owner:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.nameOfOwner }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Registration Company</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.registrationCompany}}</td>
+                                        <td>
+                                            <strong i18n>Resale Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.resaleValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Valuation Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.valuationDate | date:"dd-MM-yyyy" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Last Valuation Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.lastValuationAmount | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Invoice Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.invoiceValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralPreciousMetal" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Precious Metal Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.preciousMetalName }}</td>
+                                        <td>
+                                            <strong i18n>Weight In Grammes:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.weightInGrammes}}</td>
+                                        <td>
+                                            <strong i18n>Valuation Amount:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.metalValuationAmount | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Unit Rate:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.metalUnitRate }}</td>
+                                        <td>
+                                            <strong i18n>Precious Metal Form</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.preciousMetalFrm}}</td>
+                                        <td>
+                                            <strong i18n>Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table *ngIf="collateralDeposit" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Account Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Effective Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.effectiveDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Maturity Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.maturityDate | date:"dd-MM-yyyy" }}</td>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.securityValue | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Current Liened Amount:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.lienAmount | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Available Balance</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.availableBalance | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Bank</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.bank}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark }}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralCasa" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Account Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountNumber }}</td>
+                                        <td>
+                                            <strong i18n>Account Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountName}}</td>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.securityValue | number:'1.2'}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Current Liened Amount:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.lienAmount | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Available Balance:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.availableBalance | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralStock" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Share Quantity:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.shareQuantity }}</td>
+                                        <td>
+                                            <strong i18n>Market Price:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.marketPrice}}</td>
+                                        <td>
+                                            <strong i18n>Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.amount | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.sharesSecurityValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Total Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.shareValueAmountToUse}}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralStock" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Share Quantity:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.shareQuantity }}</td>
+                                        <td>
+                                            <strong i18n>Market Price:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.marketPrice}}</td>
+                                        <td>
+                                            <strong i18n>Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.amount | number:'1.2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.sharesSecurityValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Total Value</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.shareValueAmountToUse}}</td>
+                                        <td>
+                                            <strong></strong>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="collateralIspo" class="table table-casa-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.description }}</td>
+                                        <td>
+                                            <strong i18n>Account Name To Debit:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountNameToDebit }}</td>
+                                        <td>
+                                            <strong i18n>Account Number To Debit:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountNumberToDebit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Bank Name / Payer:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.payer }}</td>
+                                        <td>
+                                            <strong i18n> Regular Payment Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.regularPaymentAmount | number :'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Interval</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.interval}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="domiciliationSalary" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.description }}</td>
+                                        <td>
+                                            <strong i18n>Employer:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.contractEmployer}}</td>
+                                        <td>
+                                            <strong i18n>Monthly Salary:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.monthlySalary | number :'1.2' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Other Annual Allowances:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.annualAllowances | number :'1.2' }}</td>
+                                        <td>
+                                            <strong i18n> Total Annual Emolument</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.annualEmolument | number :'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Account Number (Salary Domiciled)</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.accountNumber }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Annual Salary:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.annualSalary | number :'1.2' }}</td>
+                                        <td>
+                                            <strong i18n> Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="domiciliationContract" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.description }}</td>
+                                        <td>
+                                            <strong i18n>Contract Detail:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.contractDetail}}</td>
+                                        <td>
+                                            <strong i18n>Contract Employer:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.contractEmployer }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Total Contract Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.contractValue | number :'1.2' }}</td>
+                                        <td>
+                                            <strong i18n> Outstanding Invoice Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.outstandingInvoiceAmount | number :'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>Account Name To Debit</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.accountNameToDebit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Account Number To Debit:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.accountNumberToDebit }}</td>
+                                        <td>
+                                            <strong i18n> Bank Name / Payer</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.payer}}</td>
+                                        <td>
+                                            <strong i18n>Regular Payment Amount</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.regularPaymentAmount | number:'1.2' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Interval:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.interval }}</td>
+                                        <td>
+                                            <strong i18n> Remark</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.remark}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table *ngIf="indemnity" class="table table-casa-information">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Description:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.description }}</td>
+                                        <td>
+                                            <strong i18n>Security Value:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.securityValue | number:'1.2'}}</td>
+                                        <td>
+                                            <strong i18n>First Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.firstName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Middle Name:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.middleName }}</td>
+                                        <td>
+                                            <strong i18n> Last Name</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.lastName}}</td>
+                                        <td>
+                                            <strong i18n>BVN</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.bvn }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Phone Number 1:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.phoneNumber1 }}</td>
+                                        <td>
+                                            <strong i18n>Phone Number 2:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.phoneNumber2 }}</td>
+                                        <td>
+                                            <strong i18n>Address</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Tax Number:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.taxNumber }}</td>
+                                        <td>
+                                            <strong i18n> Relationship</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.relationship}}</td>
+                                        <td>
+                                            <strong i18n>Relationship Duration:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.relationshipDuration }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong i18n> Email</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.emailAddress}}</td>
+                                        <td>
+                                            <strong i18n>Start Date:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.cStartDate | date:"dd-MM-yyyy"}}</td>
+
+                                        <td>
+                                            <strong i18n> End Date</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.endDate | date:"dd-MM-yyyy"}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <strong i18n>Remark:</strong>
+                                        </td>
+                                        <td>{{ customerCollateral?.remark }}</td>
+                                        <td>
+                                            <strong i18n> End Date</strong>
+                                        </td>
+                                        <td>{{customerCollateral?.endDate | date:"dd-MM-yyyy"}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" (click)="activeTabindex=2;"
+                                            class="btn btn-success pull-right" i18n>Next</button>
+                                        <button type="button" (click)="activeTabindex=0;" style="margin-right:5px"
+                                            class="btn btn-danger pull-right"i18n>Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </p-tabPanel>
+                <p-tabPanel i18n-header header="Collateral Applications">
+                    <div style="margin-bottom:0" class="panel panel-default">
+                        <div class="panel-heading">
+                            <p-dataTable [value]="collateralListApplications" [(selection)] ="selectionLoan" [paginator]="true" [rows]="10"
+                                [rowsPerPageOptions]="[10,20,30]">
+                                <p-column i18n-header [style]="{'width':'10%'}" field="applicationReferenceNumber"
+                                    header="Reference" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header [style]="{'width':'10%'}" field="loanTypeName" header="Type" [filter]="true"
+                                    filterMatchMode="contains"></p-column>
+                                <p-column i18n-header [style]="{'width':'20%'}" field="facility" header="Facility" [filter]="true"
+                                    filterMatchMode="contains"></p-column>
+                                <p-column i18n-header header="Customer Name/Group" [filter]="true" filterMatchMode="contains"
+                                    [style]="{'width':'16%'}">
+                                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                        {{ d.customerName }}
+                                    </ng-template>
+                                </p-column>
+                                <!-- {{ d.customerGroupName }} -->
+                                <p-column i18n-header field="loanAmount" header="Amount" [filter]="false" filterMatchMode="contains"
+                                    [style]="{'width':'12%','text-align':'right'}">
+                                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                        {{ d.loanAmount | number : '1.2' }}
+                                    </ng-template>
+                                </p-column>
+                                <p-column i18n-header field="lienAmount" header="Lien Amount" [filter]="false"
+                                    filterMatchMode="contains" [style]="{'width':'10%','text-align':'right'}">
+                                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                        {{ d.lienAmount | number : '1.2' }}
+                                    </ng-template>
+                                </p-column>
+                                <p-column i18n-header>
+                                    <ng-template pTemplate="header"></ng-template>
+                                    <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                                        <a (click)="viewDocuments(row)" href="javascript:void(0)"><i
+                                                class="glyphicon glyphicon-eye"></i><ng-container i18n>View Documents</ng-container></a>
+                                    </ng-template>
+                                </p-column>
+                            </p-dataTable>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" (click)="activeTabindex=0;" style="margin-right:5px"
+                                    class="btn btn-danger pull-right" i18n>
+                                    Back to List
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+
+                <p-tabPanel i18n-header header="Supporting Documents">
+                    <div class="panel panel-default">
+                       
+                        <document-upload [reloadDocsOnly]="reloadDocsOnly" [operationId]="OPERATION_ID"
+                            [customerId]="CUSTOMER_ID" [targetId]="TARGET_ID" [deleteLink]="true"
+                            [showUploadForm]="true" [targetReferenceNumber]="00">
+                        </document-upload>
+                        <form novalidate [formGroup]="initiationGuaranteeForm" autocomplete="off">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <div class="checkbox-container ">
+                                            <input formControlName="isGuarantee" id="isGuarantee" type="checkbox"
+                                                (change)="changed($event)">
+                                        </div><label class="checkbox" i18n>Is Guarantee?</label>
+                                    </div>
+                                    <label for="comment" class="control-label col-md-2" i18n>Comment</label>
+                                        <div class="col-md-6">
+                                            <textarea [ngClass]="!initiationGuaranteeForm.controls['comment'].valid ? 'required-input' : 'valid-input'"
+                                            class="form-control" [(ngModel)]="comment" name="comment" cols="15" formControlName="comment"
+                                            rows="3"></textarea>
+                                        </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="panel-footer ">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <button type="button" (click)="SubmitForApproval()"
+                                        class="btn btn-success pull-right" [disabled]="documentUploadList <= 0 || initiationGuaranteeForm.invalid" i18n>
+                                        Go For Approval
+                                    </button>
+                                    <button type="button" (click)="activeTabindex=0;" style="margin-right:5px"
+                                        class="btn btn-danger pull-right" i18n>Back to List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+
+            </p-tabView>
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="Cash Security Release List">
+        <div class="panel-body">
+            <p-dataTable [value]="approvalReleases" [responsive]="true"  [style]="{'width':'auto'}" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,30]" >
+                <p-column i18n-header [style]="{'width':'8%'}" field="applicationReferenceNumber" header="Reference"
+                    [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column i18n-header [style]="{'width':'10%'}" field="loanTypeName" header="Type" [filter]="true"
+                    filterMatchMode="contains"></p-column>
+                <p-column i18n-header [style]="{'width':'13%'}" field="facility" header="Facility" [filter]="true"
+                    filterMatchMode="contains"></p-column>
+                <p-column i18n-header header="Customer Name/Group" [filter]="true" filterMatchMode="contains"
+                    [style]="{'width':'13%'}">
+                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                        {{ d.customerName }}
+                    </ng-template>
+                </p-column>
+                <!-- {{ d.customerGroupName }} -->
+                <p-column i18n-header field="loanAmount" header="Amount" [filter]="true" filterMatchMode="contains"
+                    [style]="{'width':'9%','text-align':'right'}">
+                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                        {{ d.loanAmount | number : '1.2' }}
+                    </ng-template>
+                </p-column>
+                <p-column i18n-header field="lienAmount" header="Lien Amount" [filter]="true" filterMatchMode="contains"
+                    [style]="{'width':'9%','text-align':'right'}">
+                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                        {{ d.lienAmount | number : '1.2' }}
+                    </ng-template>
+                </p-column>
+                <p-column i18n-header field="collateralTypeName" header="Collateral Type" sortable="true" [filter]="true"
+                    filterMatchMode="contains" [style]="{'width':'9px'}">
+                </p-column>
+                <p-column i18n-header field="collateralCode" header="Collateral Code"  [filter]="true"
+                    filterMatchMode="contains" [style]="{'width':'9px'}">
+                </p-column>
+
+                <p-column i18n-header field="collateralValue" header="Collateral Value" [filter]="true"
+                    filterMatchMode="contains" [style]="{'text-align':'right','width':'10px'}">
+                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                        {{ d.collateralValue | number : '1.2' }}
+                    </ng-template>
+                </p-column>
+                <p-column i18n-header field="approvalStatus" header="Status" [filter]="true"
+                    filterMatchMode="contains" [style]="{'width':'13px'}">
+                </p-column>
+                <p-column i18n-header [style]="{'width':'35px'}" header="View Documents">
+                    <ng-template pTemplate="header"></ng-template>
+                    <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                        <div style="text-align:center">
+                            <a *ngIf="row.approvalStatusId==5" (click)="edit(row)" href="javascript:void(0)"><i
+                                    class="glyphicon glyphicon-eye"></i>Edit</a>
+                                    <span *ngIf="row.approvalStatusId==5" style="padding:3px;">|</span>
+                            <a *ngIf="approvalReleases.length >= 0" (click)="viewComments(row)"
+                                href="javascript:void(0)" i18n>Comments</a>
+                            <span style="padding:3px;">|</span>
+                            <a *ngIf="approvalReleases.length >= 0" (click)="uploadedDocuments(row)"
+                                href="javascript:void(0)" i18n>Documents</a>
+                        </div>
+                    </ng-template>
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </p-accordionTab>
+</p-accordion>
+
+<!-------------------------------------------------- Modal List------------------------------------>
+
+<p-dialog [responsive]=true [(visible)]="showCusotmerSearch" id="ct-modal" modal="modal" showEffect="fade" width="900">
+    <customer-search (customer)="getCustomerDetail($event)" [showPhoneNumberSearch]="false">
+    </customer-search>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" (click)="showCusotmerSearch=false;" style="margin-right:5px"
+                    class="btn btn-danger pull-right" i18n>Back</button>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayOriginalDocumentApprovalForm" id="add-modal" modal="modal"
+    showEffect="fade" width="450">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Search Application
+            </h2>
+        </div>
+
+        <form autocomplete="off">
+
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label i18n-label for="searchString" class="control-label col-md-12">
+                            Loan Application Reference Number /Customer Name
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" name="parameter" [(ngModel)]="parameter" id="parameter"
+                                class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" (click)="search()" [disabled]="parameter==null"
+                            class="btn btn-success pull-right" i18n>
+                            Search
+                        </button>
+                        <button type="button" (click)="displayOriginalDocumentApprovalForm=false"
+                            style="margin-right:5px" class="btn btn-danger pull-right" i18n>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="showUploadeddocument" id="add-modal" modal="modal" showEffect="fade"
+    width="800">
+    <div class="panel-heading">
+        <h2 class="panel-title" i18n>Uploaded Documents</h2>
+    </div>
+    <div class="panel-body">
+        <p-dataTable [value]="documentUploads" [responsive]="true" [paginator]="true" [rows]="5"
+            [(selection)]="selectedRows">
+            <p-column i18n-header selectionMode="multiple"></p-column>
+            <p-column i18n-header header="File Name">
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                    <span *ngIf="d.fileExtension == 'doc'" class="icon-file-word"></span>
+                    <span *ngIf="d.fileExtension == 'docx'" class="icon-file-word"></span>
+                    <span *ngIf="d.fileExtension == 'pdf'" class="icon-file-pdf"></span>
+                    <span *ngIf="d.fileExtension == 'jpg'" class="icon-file-picture"></span>
+                    <span *ngIf="d.fileExtension == 'jpeg'" class="icon-file-picture"></span>
+                    <span *ngIf="d.fileExtension == 'png'" class="icon-file-picture"></span>
+                    <span *ngIf="d.fileExtension == 'txt'" class="icon-file-text"></span>
+                    <span *ngIf="d.fileExtension == 'xls'" class="icon-file-excel"></span>
+                    <span *ngIf="d.fileExtension == 'xlsx'" class="icon-file-excel"></span> {{d.fileName}}
+                </ng-template>
+            </p-column>
+            <p-column i18n-header field="fileSizeString" header="File Size" sortable="true" filterMatchMode="contains"
+                [style]="{'width':'100px'}"></p-column>
+            <p-column i18n-header field="documentTypeName" header="Document Type" sortable="true" filterMatchMode="contains">
+            </p-column>
+            <p-column i18n-header field="documentCategoryName" header="Document Category" sortable="true"
+                filterMatchMode="contains">
+            </p-column>
+            <p-column i18n-header [style]="{'width':'120px'}">
+                <ng-template pTemplate="header"> </ng-template>
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                    <div style="text-align:center">
+                        <a *ngIf="['jpg','jpeg', 'png'].indexOf(d.fileExtension.toLowerCase()) > -1"
+                            (click)="downloadDocument(d,true)" href="javascript:void(0)" i18n>View</a>
+                        <a *ngIf="['doc','docx', 'pdf','xls', 'xlsx'].indexOf(d.fileExtension.toLowerCase()) > -1"
+                            (click)="downloadDocument(d)" href="javascript:void(0)" i18n>Download</a>
+                    </div>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" (click)="addToReleaseList()" class="btn btn-success pull-right"
+                    [disabled]="documentUploads <= 0" i18n>
+                    Add To Release List</button>
+                <button type="button" (click)="closeUploadedDocument()" style="margin-right:5px"
+                    class="btn btn-danger pull-right" i18n>close</button>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayDocument" modal="modal" showEffect="fade" width="1200">
+    <div *ngIf="displayDocument" style="margin-bottom:0" class="panel panel-default">
+
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <ng-container i18n>Document Title:</ng-container>
+                <strong>{{ selectedDocument }}</strong>
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="displayDocument=false">&times;</a>
+            </div>
+        </div>
+
+        <div class="panel-body" style="overflow:auto;height:500px">
+            <div style="margin: auto; width: 50%">
+                <img *ngIf="binaryFile" style="max-width: 100%; display: block 2px black;"
+                    [src]="'data:image/jpg;base64,'+binaryFile" alt="" class="img-thumbnail">
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]="true" [(visible)]="showComments" id="ct-modal" modal="modal" showEffect="fade" width="1000">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+             <h3 i18n>Approval Comments</h3>
+            </div>
+            <div class="panel-body">
+            <p-dataTable [responsive]="true"  [value]="trail23" [paginator]="true" [rows]="5">
+              <p-column i18n-header [style]="{'width':'100px'}" field="systemArrivalDateTime" header="Date Initiated" sortable="true" [filter]="true" filterMatchMode="contains">
+                  <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                      {{ d.systemArrivalDateTime | date: 'short' }}
+                  </ng-template>
+              </p-column>
+              <p-column i18n-header  field="fromStaffName" header="Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header [style]="{'width':'150px'}" field="comment" header="Comment" sortable="true" [filter]="true" filterMatchMode="contains"></p-column> 
+              <p-column i18n-header  field="fromApprovalLevelName" header="Approval Level" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header  field="approvalStatus" header="Status" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header  field="approvalState" header="State" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+          </p-dataTable>
+         </div>
+          </div>
+
+        <div class="panel-footer">
+            <div class="row ">
+              <div class="col-md-12">
+                <button type="button" (click)="showComments = false;" style="margin-right:5px"
+                  class="btn btn-danger pull-right" i18n>Close</button>
+              </div>
+            </div>
+          </div>
+</p-dialog>
+
+<p-dialog [responsive]="true" [(visible)]="showAllUploadedDocument" id="ct-modal" modal="modal" showEffect="fade"
+    width="1000">
+    <div class="panel-body">
+        <document-upload [showUploadForm]="false" [reloadDocsOnly]="reloadDocsOnly" [operationId]="OPERATION_ID" [customerId]="CUSTOMER_ID"
+            [targetId]="TARGET_ID" [deleteLink]="false" [showUploadForm]="true" [targetReferenceNumber]="00">
+        </document-upload>
+    </div>
+    <div class="panel-footer">
+        <div class="row ">
+          <div class="col-md-12">
+            <button type="button" (click)="showAllUploadedDocument = false;" style="margin-right:5px"
+              class="btn btn-danger pull-right" i18n>Close</button>
+          </div>
+        </div>
+      </div>
+</p-dialog>
+
+<fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass"
+    (closeEvent)="hideMessage($event)"></fintrakbanking-message>

@@ -1,0 +1,912 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                Staff List
+                            </h2>
+                            <div class="pull-right">
+                                <button (click)="showDialog()" pButton type="button" label="Add New" icon="fa-plus" i18n></button>
+                                <button *ngIf="collapseForm==false" (click)="collapseSearchForm(true)" pButton type="button" label="Collapse upload" icon="fa-arrow-up" i18n></button>
+                                <button *ngIf="collapseForm==true" (click)="collapseSearchForm(false)" pButton type="button" label="Bulk upload" icon="fa-search"i18n></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="collapseForm==false" class="panel-body">
+                    <div class="form-group col-md-12">
+                        <div class="col-md-12">
+                            <input type="file" (change)="onFileChange($event)" placeholder="Upload file" [accept]="'.xslx, .xls, .xltx'" #fileInput name="fileInput" style="padding-top:2px;" class="form-control" i18n-placeholder>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="col-md-6">
+                            <button class="btn btn-sm btn-primary pull-left" (click)="requestPasswordBulk()" [disabled]="file==undefined ">
+                                <span class="glyphicon glyphicon-upload"></span><ng-container i18n>Upload Staff </ng-container></button>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <button class="btn btn-sm btn-primary pull-right" (click)="DownloadDocument()">
+                                    <span class="glyphicon glyphicon-download"></span> Download Sample </button> -->
+                            <a href="./../../../../assets/files/StaffSampleDocument.xlsx" target="_blank" class="btn btn-sm btn-primary pull-right">
+                                <span class="glyphicon glyphicon-download" ></span><ng-container i18n>Upload Bulk Staff</ng-container></a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="collapseForm==false" class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <button type="button" (click)="submitCustomerSearchForm(customerSearchForm)" [disabled]="customerSearchForm.invalid" class="btn btn-success pull-right"><span class="glyphicon glyphicon-search"></span> Search</button>
+                                        <button type="button" (click)="clearCustomerSearchForm()"  style="margin-right:5px" class="btn btn-default pull-right">Clear</button> -->
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="collapseForm==false && (uploadedData != null && uploadedData.length > 0)" class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="uploadedData" [responsive]=true selectionMode="single">
+                        <p-column i18n-header [style]="{'width':'110px'}" field="staffCode" header="Staff Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffFullName" header="Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchCode" header="Branch Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchName" header="Branch Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchName" header="Branch Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="JobTitleName" header="Job Title" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleCode" header="Role Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleName" header="Role" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column>
+                            <ng-template pTemplate="header">
+                            </ng-template>
+                            <ng-template let-staff="rowData" let-i="rowIndex" pTemplate="body">
+                                <span style="color: green">{{staff.message}}</span>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+                <div *ngIf="collapseForm==false && (failedUpload != null && failedUpload.length > 0)" class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="failedUpload" [responsive]=true selectionMode="single">
+                        <p-column i18n-header [style]="{'width':'110px'}" field="staffCode" header="Staff Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffFullName" header="Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchCode" header="Branch Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchName" header="Branch Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="branchName" header="Branch Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="JobTitleName" header="Job Title" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleCode" header="Role Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleName" header="Role" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column>
+                            <ng-template pTemplate="header">
+                            </ng-template>
+                            <ng-template let-staff="rowData" let-i="rowIndex" pTemplate="body">
+                                <span style="color: red">{{staff.message}}</span>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+                <div *ngIf="!collapseForm==false" class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="staffDataset" [responsive]=true #dt selectionMode="single">
+                        <p-header>
+                            <div class="ui-helper-clearfix">
+                                <button type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                            </div>
+                        </p-header>
+                        <p-column i18n-header [style]="{'width':'110px'}" field="staffCode" header="Staff Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffFullName" header="Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleName" header="User Role" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="departmentName" header="Department" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="misCode" header="Mis Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="businessUnitName" header="Unit" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="email" header="Email" sortable="true" [filter]="true" filterMatchMode="contains" class="text-wrap"></p-column>
+                        <p-column [style]="{'width':'60px'}">
+                            <ng-template pTemplate="header">
+                            </ng-template>
+                            <ng-template let-staff="rowData" let-i="rowIndex" pTemplate="body">
+                                <a (click)="editStaff(staff)" i18n>
+                                    Edit
+                                </a> |
+                                <a (click)="confirmDelete(staff)" i18n>
+                                    Delete
+                                </a>
+                            </ng-template>
+                        </p-column>
+
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--real time search form-->
+<p-dialog [responsive]=true [(visible)]="displaySearchModal" modal="modal" id="searchModal" showEffect="fade" width="650" [contentStyle]="{'overflow':'auto','max-height':'700px'}" [blockScroll]="true">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <div style="margin-left:0" class="row">
+                <h2 class="panel-title pull-left" i18n>
+                    Search Staff
+                </h2>
+                <div class="pull-right">
+                    <a class="close" style="margin: -10px 8px;" (click)="displaySearchModal=false">&times;</a>
+                </div>
+            </div>
+        </div>
+        <div style="padding:3px" class="panel-body">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" id="search" (keyup)="searchDB($event.target.value)" class="form-control" placeholder="Type in your search parameter" i18n-placeholder>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <p>
+                        <!--{{mfacilityType}}-->
+                    </p>
+                    <table *ngIf="searchResults" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th i18n>Staff Code</th>
+                                <th i18n>First Name</th>
+                                <th i18n>Middle Name</th>
+                                <th i18n>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr (click)="pickSearchedData(res)" style="cursor: pointer" *ngFor="let res of searchResults; let i = index">
+                                <td>{{res.staffCode}}</td>
+                                <td>{{res.firstName}}</td>
+                                <td>{{res.middleName}}</td>
+                                <td>{{res.lastName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayOtherInformation" id="add-modal" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Edit Other Information
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="otherInformationForm" autocomplete="off">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="field1" class="control-label col-md-2" i18n> FIELD 1</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field1" [ngClass]="!otherInformationForm.controls['field1'].valid ? 'required-input' : 'valid-input'" name="field1" class="form-control">
+                        </div>
+                        <label for="field2" class="control-label col-md-2" i18n> FIELD 2</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field2" [ngClass]="!otherInformationForm.controls['field2'].valid ? 'required-input' : 'valid-input'" name="field2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field3" class="control-label col-md-2" i18n> FIELD 3</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field3" [ngClass]="!otherInformationForm.controls['field3'].valid ? 'required-input' : 'valid-input'" name="field3" class="form-control">
+                        </div>
+                        <label for="field4" class="control-label col-md-2" i18n> FIELD 4</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field4" [ngClass]="!otherInformationForm.controls['field4'].valid ? 'required-input' : 'valid-input'" name="field4" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field5" class="control-label col-md-2" i18n> FIELD 5</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field5" [ngClass]="!otherInformationForm.controls['field5'].valid ? 'required-input' : 'valid-input'" name="field5" class="form-control">
+                        </div>
+                        <label for="field6" class="control-label col-md-2" i18n> FIELD 6</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field6" [ngClass]="!otherInformationForm.controls['field6'].valid ? 'required-input' : 'valid-input'" name="field6" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field7" class="control-label col-md-2" i18n> FIELD 7</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field7" [ngClass]="!otherInformationForm.controls['field7'].valid ? 'required-input' : 'valid-input'" name="field7" class="form-control">
+                        </div>
+                        <label for="field8" class="control-label col-md-2" i18n> FIELD 8</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field8" [ngClass]="!otherInformationForm.controls['field8'].valid ? 'required-input' : 'valid-input'" name="field8" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field9" class="control-label col-md-2" i18n> FIELD 9</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field9" [ngClass]="!otherInformationForm.controls['field9'].valid ? 'required-input' : 'valid-input'" name="field9" class="form-control">
+                        </div>
+                        <label for="field10" class="control-label col-md-2" i18n> FIELD 10</label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="field10" [ngClass]="!otherInformationForm.controls['field10'].valid ? 'required-input' : 'valid-input'" name="field10" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--buttons-->
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]="otherInformationForm.invalid" (click)="submitcustomerOtherInformation()" class="btn btn-success pull-right" i18n>Save </button>
+                        <button type="button" (click)="displayOtherInformation=false" style="margin-right:5px" class="btn btn-danger pull-right" i18n>Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</p-dialog>
+
+
+<p-dialog [responsive]=true [(visible)]="display" modal="modal" showEffect="fade" width="1100" [contentStyle]="{'overflow':'auto','max-height':'500px'}">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Add New Staff
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="staffFormGroup" novalidate autocomplete="off">
+            <div class="panel-body">
+                <p-tabView [activeIndex]="activeIndex" (onChange)="handleChange($event)">
+                    <p-tabPanel i18n-header header="Staff Info">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Branch</label>
+                                <div class="col-md-4">
+                                    <select (change)="onBranchChanged()" [ngClass]="!staffFormGroup.controls['BranchId'].valid ? 'required-input' : 'valid-input'" formControlName="BranchId" name="branch" id="branch" class="form-control">
+                                        <option value="" i18n>Select Branch</option>
+                                        <option *ngFor="let branch of branches" value="{{branch.branchId}}">
+                                            {{branch.branchName}}</option>
+                                    </select>
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Staff Code</label>
+                                <div *ngIf="!adActive">
+                                    <div class="col-md-4">
+                                        <input type="text" [ngClass]="!staffFormGroup.controls['StaffCode'].valid ? 'required-input' : 'valid-input'" formControlName="StaffCode" (input)=onStaffCodeChange() class="form-control" name="staffcode">
+                                    </div>
+                                </div>
+                                <div *ngIf="adActive">
+                                    <div class="col-md-2">
+                                        <input type="text" [ngClass]="!staffFormGroup.controls['StaffCode'].valid ? 'required-input' : 'valid-input'" formControlName="StaffCode" (input)=onStaffCodeChange() class="form-control" name="staffcode">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" (click)="requestPasswordSingle()" class="btn btn-success pull-right" i18n>Get  Details </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="adActive">
+                                <label for="" class="control-label col-md-2" i18n>First Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" [(ngModel)]="firstName" [ngClass]="!staffFormGroup.controls['FirstName'].valid ? 'required-input' : 'valid-input'" class="form-control" (input)=onStaffNameChange() formControlName="FirstName" name="firstName">
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Middle Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" [(ngModel)]="middleName" class="form-control" name="middleName" [ngClass]="!staffFormGroup.controls['MiddleName'].valid ? 'required-input' : 'valid-input'" (input)=onStaffNameChange() formControlName="MiddleName">
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="!adActive">
+                                <label for="" class="control-label col-md-2" i18n>First Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" [ngClass]="!staffFormGroup.controls['FirstName'].valid ? 'required-input' : 'valid-input'" class="form-control" (input)=onStaffNameChange() formControlName="FirstName" name="firstName">
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Middle Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="middleName" [ngClass]="!staffFormGroup.controls['MiddleName'].valid ? 'required-input' : 'valid-input'" (input)=onStaffNameChange() formControlName="MiddleName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Last Name</label>
+                                <div *ngIf="adActive" class="col-md-4">
+                                    <input type="text" class="form-control" [(ngModel)]="lastName" [ngClass]="!staffFormGroup.controls['LastName'].valid ? 'required-input' : 'valid-input'" (input)=onStaffNameChange() name="lastName" formControlName="LastName">
+                                </div>
+                                <div *ngIf="!adActive" class="col-md-4">
+                                    <input type="text" class="form-control" [ngClass]="!staffFormGroup.controls['LastName'].valid ? 'required-input' : 'valid-input'" (input)=onStaffNameChange() name="lastName" formControlName="LastName">
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>MIS Code</label>
+                                <div class="col-md-4">
+                                    <!-- <select name="misCode" formControlName="MisinfoId"
+                                        [ngClass]="!staffFormGroup.controls['MisinfoId'].valid ? 'required-input' : 'valid-input'"
+                                        id="misCode" class="form-control">
+                                        <option value="">Select MIS</option>
+                                        <option *ngFor="let mis of misInfo" value="{{mis.misinfoId}}">{{mis.misname}}
+                                        </option>
+                                    </select> -->
+                                    <input type="text" class="form-control" [ngClass]="!staffFormGroup.controls['MisCode'].valid ? 'required-input' : 'valid-input'" (input)=onStaffNameChange() name="MisCode" formControlName="MisCode">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>
+                                    Business Unit
+                                </label>
+                                <div class="col-md-4">
+                                    <select name="businessUnitId" formControlName="businessUnitId" [ngClass]="!staffFormGroup.controls['businessUnitId'].valid ? 'required-input' : 'valid-input'" id="businessUnitId" class="form-control">
+                                        <option value="" i18n>--- Select Business Unit ---</option>
+                                        <option *ngFor="let sbu of businessUnit" value="{{sbu.businessUnitId}}">
+                                            {{sbu.businessUnitName}}
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2" i18n>Gender</label>
+                                <div class="col-md-4">
+                                    <select name="gender" formControlName="Gender" [ngClass]="!staffFormGroup.controls['Gender'].valid ? 'required-input' : 'valid-input'" id="gender" class="form-control">
+                                        <option value="" i18n>Select Gender</option>
+                                        <option value="m" i18n>Male</option>
+                                        <option value="f" i18n>Female</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2" i18n>Date Of Birth</label>
+                                <div class="col-md-4">
+                                    <p-calendar id="dateOfBirth" formControlName="DateOfBirth" [maxDate]='currentDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2050" [showIcon]="true" [inputStyle]="staffFormGroup.controls['DateOfBirth'].valid ? {'width': '100%','border-left':'3px solid #3cd225'} : {'width': '100%','border-left':'3px solid #ff0000'}"
+                                        [style]="{'width': '100%', 'overflow': 'visible'}"></p-calendar>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="form-group">
+                                                <label for="" class="control-label col-md-2">Department unit</label>
+                                                <div class="col-md-4">
+                                                    <select name="departmentUnit" formControlName="departmentUnitId" [ngClass]="!staffFormGroup.controls['departmentUnitId'].valid ? 'required-input' : 'valid-input'"
+                                                        id="departmentUnit" class="form-control">
+                                                        <option value="">Select Unit</option>
+                                                        <option *ngFor="let unit of units" value="{{unit.unitId}}">
+                                                            {{unit.unitName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <label for="" class="control-label col-md-2">Job Title</label>
+                                                <div class="col-md-4">
+                                                    <select name="jobtitle" formControlName="JobTitleId" [ngClass]="!staffFormGroup.controls['JobTitleId'].valid ? 'required-input' : 'valid-input'"
+                                                        id="jobtitle" class="form-control">
+                                                        <option value="">Select Job Title</option>
+                                                        <option *ngFor="let job of jobTitles" value="{{job.jobTitleId}}">{{job.jobTitle}}</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Staff Role </label>
+                                <div class="col-md-4">
+                                    <select name="staffRole" *ngIf="!staffRolExist" [(ngModel)]="staffRole" formControlName="StaffRoleId" [ngClass]="!staffFormGroup.controls['StaffRoleId'].valid ? 'required-input' : 'valid-input'" id="staffRole" class="form-control">
+                                        <option value="" i18n>Select Staff Role</option>
+                                        <option *ngFor="let role of staffRoles" value="{{role.staffRoleId}}">
+                                            {{role.staffRoleName}}</option>
+                                    </select>
+                                    <select name="staffRole" disabled *ngIf="staffRolExist" [(ngModel)]="staffRole" formControlName="StaffRoleId" [ngClass]="!staffFormGroup.controls['StaffRoleId'].valid ? 'required-input' : 'valid-input'" id="staffRole" class="form-control">
+                                        <option value="" i18n>Select Staff Role</option>
+                                        <option *ngFor="let role of staffRoles" value="{{role.staffRoleId}}">
+                                            {{role.staffRoleName}}</option>
+                                    </select>
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Sensitivity Level</label>
+                                <div class="col-md-4">
+                                    <select name="customerSensitivityLevelId" formControlName="customerSensitivityLevelId" [ngClass]="!staffFormGroup.controls['customerSensitivityLevelId'].valid ? 'required-input' : 'valid-input'" id="sensitivityLevel" class="form-control">
+                                        <option value="" i18n>Select Level</option>
+                                        <option *ngFor="let sensitivity of sensitivities" value="{{sensitivity.level}}">
+                                            {{sensitivity.description}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2">State</label>
+                                <div class="col-md-4">
+                                    <select name="state" (click)="onStateChanged()" formControlName="StateId" [ngClass]="!staffFormGroup.controls['StateId'].valid ? 'required-input' : 'valid-input'" id="state" class="form-control">
+                                        <option value="" i18n>Select State</option>
+                                        <option *ngFor="let st of state" value="{{st.stateId}}">
+                                            {{st.stateName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>City</label>
+                                <div class="col-md-4">
+                                    <select name="CityId" id="CityId" [ngClass]="!staffFormGroup.controls['CityId'].valid ? 'required-input' : 'valid-input'" class="form-control" formControlName="CityId">
+                                        <option value="" i18n>--Select City--</option>
+                                        <option *ngFor="let city of cities" value="{{ city.cityId}}">
+                                            {{city.cityName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Phone </label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="Phone" [ngClass]="!staffFormGroup.controls['Phone'].valid ? 'required-input' : 'valid-input'" class="form-control" name="phone">
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Address</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="Address" [ngClass]="!staffFormGroup.controls['Address'].valid ? 'required-input' : 'valid-input'" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Email</label>
+                                <div class="col-md-4">
+                                    <input type="email" [ngClass]="!staffFormGroup.controls['Email'].valid ? 'required-input' : 'valid-input'" formControlName="Email" class="form-control" name="email">
+                                </div>
+                                <label for="loanLimit" class="control-label col-md-2" i18n>Credit Limit</label>
+                                <div class="col-md-4">
+                                    <input type="text" formatM [ngClass]="!staffFormGroup.controls['loanLimit'].valid ? 'required-input' : 'valid-input'" formControlName="loanLimit" class="form-control" name="loanLimit">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-2" i18n>Resume Work(24hrs)</label>
+                                <div class="col-md-4">
+                                    <input type="workStartDuration" [ngClass]="!staffFormGroup.controls['workStartDuration'].valid ? 'required-input' : 'valid-input'" formControlName="workStartDuration" class="form-control" name="workStartDuration">
+                                </div>
+                                <label for="loanLimit" class="control-label col-md-2" i18n>Close Work (24hrs)</label>
+                                <div class="col-md-4">
+                                    <input type="text" [ngClass]="!staffFormGroup.controls['workEndDuration'].valid ? 'required-input' : 'valid-input'" formControlName="workEndDuration" class="form-control" name="workEndDuration">
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="Next of Kin">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <!-- <label for="" class="control-label col-md-2" i18n>Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="NameOfNok" name="nokName" id="nokName" class="form-control">
+                                </div> -->
+                                <label for="" class="control-label col-md-2" i18n>Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="NameOfNok" [ngClass]="!staffFormGroup.controls['NameOfNok'].valid ? 'required-input' : 'valid-input'" class="form-control" name="nokName">
+                                </div>
+                                <!-- <label for="" class="control-label col-md-2" i18n>Phone</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="PhoneOfNok" name="nokTelephone" id="nokTelephone" class="form-control">
+                                </div> -->
+                                <label for="" class="control-label col-md-2" i18n>Phone</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="PhoneOfNok" [ngClass]="!staffFormGroup.controls['PhoneOfNok'].valid ? 'required-input' : 'valid-input'" class="form-control" name="nokTelephone">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!-- <label for="" class="control-label col-md-2" i18n>Email</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="EmailOfNok" name="nokEmail" id="nokEmail" class="form-control">
+                                </div> -->
+                                <label for="" class="control-label col-md-2" i18n>Email</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="EmailOfNok" [ngClass]="!staffFormGroup.controls['EmailOfNok'].valid ? 'required-input' : 'valid-input'" class="form-control" name="nokEmail">
+                                </div>
+                                <!-- <label for="" class="control-label col-md-2" i18n>Address</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="AddressOfNok" name="nokAddress" id="nokAddress" class="form-control">
+                                </div> -->
+                                <label for="" class="control-label col-md-2" i18n>Address</label>
+                                <div class="col-md-4">
+                                    <input type="text" formControlName="AddressOfNok" [ngClass]="!staffFormGroup.controls['AddressOfNok'].valid ? 'required-input' : 'valid-input'" class="form-control" name="nokAddress">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="" class="control-label col-md-2" i18n>Gender</label>
+                                <div class="col-md-4">
+                                    <select formControlName="GenderOfNok" name="nokGender" id="nokGender" class="form-control">
+                                        <option value="" i18n>Select Gender</option>
+                                        <option value="m" i18n>Male</option>
+                                        <option value="f" i18n>Female</option>
+                                    </select>
+                                </div> -->
+                                <label for="" class="control-label col-md-2" i18n>Gender</label>
+                                <div class="col-md-4">
+                                    <select name="nokGender" formControlName="GenderOfNok" [ngClass]="!staffFormGroup.controls['GenderOfNok'].valid ? 'required-input' : 'valid-input'" id="nokGender" class="form-control">
+                                        <option value="" i18n>Select Gender</option>
+                                        <option value="m" i18n>Male</option>
+                                        <option value="f" i18n>Female</option>
+                                    </select>
+                                </div>
+                                <label for="" class="control-label col-md-2" i18n>Relationship</label>
+                                <div class="col-md-4">
+                                    <select formControlName="NokrelationShip" [ngClass]="!staffFormGroup.controls['NokrelationShip'].valid ? 'required-input' : 'valid-input'" name="nokRelationship" id="nokRelationship" class="form-control">
+                                        <option value="" i18n>Select Relationship</option>
+                                        <option value="Son" i18n>Son</option>
+                                        <option value="Daughter" i18n>Daughter</option>
+                                        <option value="Husband" i18n>Husband</option>
+                                        <option value="Wife" i18n>Wife</option>
+                                        <option value="Father" i18n>Father</option>
+                                        <option value="Mother" i18n>Mother</option>
+                                        <option value="Brother" i18n>Brother</option>
+                                        <option value="Sister" i18n>Sister</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="Staff Supervisor">
+
+                        <div *ngIf="selectedStaff.reliefStaffId != null" class="row">
+                            <div class="col-md-12">
+                                <h4>
+                                    <strong i18n>SUPERVISOR'S NAME: </strong>{{ selectedStaff.supervisorStaffName }}</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form novalidate [formGroup]="staffSearchForm" autocomplete="off">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <input (focus)="openSearchBox()" type="text" [ngClass]="!staffSearchForm.controls['searchedName'].valid ? 'required-input' : 'valid-input'" class="form-control" formControlName="searchedName" placeholder="Search staff" name="searchedName" i18n-placeholder>
+                                                <div class="input-group-btn">
+                                                    <button (click)="openSearchBox()" style="padding-top:8px;padding-bottom:0px" class="btn btn-default" type="button">
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div *ngIf="errorMessage.length > 0" class="alert alert-danger col-md-12" role="alert" style="padding:15;">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only" i18n>Error: </span>{{ errorMessage }}
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="showAssignSupervisorButton">
+                            <div class="col-md-12">
+                                <button [disabled]="selectedSupervisorId == null" type="button" (click)="assignSupervisor(1)" class="btn btn-success" i18n>Assign Supervisor</button>
+                                <button [disabled]="selectedSupervisorId == null && selectedStaff.supervisorStaffId != null" type="button" (click)="assignSupervisor(2)" class="btn btn-warning" i18n>Change  Supervisor</button>
+                                <button [disabled]="selectedStaff.supervisorStaffId == null" type="button" (click)="assignSupervisor(3)" class="btn btn-danger" i18n>Unassign Supervisor</button>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="User Profile">
+                        <div class="form-horizontal" formGroupName="user">
+                            <div class="form-group">
+                                <label for="username" class="control-label col-md-2" i18n>
+                                    Staff Name
+                                </label>
+                                <div [ngClass]="'no-data-div'" class="col-md-4">
+                                    <input [ngClass]="!staffFormGroup.get('user').get('staffName').valid ? 'required-input' : 'valid-input'" type="text" name="staffName" formControlName="staffName" id="staffName" class="form-control" [disabled]="true">
+                                </div>
+                                <label for="username" class="control-label col-md-2" i18n>
+                                    Username
+                                </label>
+                                <div [ngClass]="'no-data-div'" class="col-md-4">
+                                    <input [ngClass]="!staffFormGroup.get('user').get('username').valid ? 'required-input' : 'valid-input'" type="text" name="username" formControlName="username" id="username" class="form-control" [disabled]="true">
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="showchangePassword">
+                                <label for="password" class="control-label col-md-2" i18n>
+                                    Change Password?
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="checkbox" formControlName="changePassword" (change)="togglePassword($event.target.checked)" [(ngModel)]="changePassword" name="changePassword" id="changePassword">
+
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="changePassword">
+                                <label for="password" class="control-label col-md-2" i18n>
+                                    Password
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="password" (focusout)="getMinChar()" [ngClass]="!staffFormGroup.get('user').get('password').valid ? 'required-input' : 'valid-input'" name="password" formControlName="password" id="password" class="form-control">
+                                </div>
+                                <label for="confirmPass" class="control-label col-md-2" i18n>
+                                    Confirm Password
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="password" name="confirmPassword" [ngClass]="!staffFormGroup.get('user').get('confirmPassword').valid ? 'required-input' : 'valid-input'" formControlName="confirmPassword" id="confirmPassword" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="requiresQuestionAndAnswer && showchangeSecurityQuestion">
+                                <label for="password" class="control-label col-md-2" i18n>
+                                    Change Security Question?
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="checkbox" formControlName="changeSecurityQuestion" (change)="toggleChangePassword($event.target.checked)" [(ngModel)]="changeSecurityQuestion" name="changeSecurityQuestion" id="changeSecurityQuestion">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group" *ngIf="requiresQuestionAndAnswer && changeSecurityQuestion">
+                                <label for="secquest" class="control-label col-md-2" i18n>
+                                    Secret Question
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="text" name="securityQuestion" formControlName="securityQuestion" id="securityQuestion" [ngClass]="!staffFormGroup.get('user').get('securityQuestion').valid ? 'required-input' : 'valid-input'" class="form-control">
+                                </div>
+                                <label for="secAnswer" class="control-label col-md-2" i18n>
+                                    Secret Answer
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="text" name="securityAnswer" formControlName="securityAnswer" [ngClass]="!staffFormGroup.get('user').get('securityAnswer').valid ? 'required-input' : 'valid-input'" id="securityAnswer" class="form-control">
+                                </div>
+
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="Additional User Group">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div *ngFor="let group of groups; let i = index" class="col-md-3">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" formControlName="group" asList name="groupname"
+                                                id="group-{{i}}" value="{{group.groupId}}">{{group.groupName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="Additional Activities">
+                        <p-dataTable [paginator]="true" [rows]="15" [value]="allActivities" [responsive]=true>
+                            <p-column i18n-header [style]="{'width':'110px'}" field="activityParentName" header="Activity Name">
+                            </p-column>
+                            <p-column i18n-header [style]="{'width':'30px'}">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                                <ng-template let-data="rowData" let-i="rowIndex" pTemplate="body">
+                                    <a (click)="getActivities(data)" i18n>
+                                        Edit Activities
+                                    </a>
+                                </ng-template>
+                            </p-column>
+                            <!-- <p-column *ngIf="isUpdate" [style]="{'width':'30px'}">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                                <ng-template let-data="rowData" let-i="rowIndex" pTemplate="body">
+                                    <a (click)="viewActivities(data)" i18n>
+                                        View Active Activities
+                                    </a>
+                                </ng-template>
+                            </p-column> -->
+                        </p-dataTable>
+
+
+                        <!-- <p-accordion>
+                            <p-accordionTab *ngFor="let actP of allActivities; let idx = index" [selected]="idx==0"
+                                header="{{actP.activityParentName}}">
+                                <div class="row">
+                                    <div *ngFor="let activity of actP.activities; let i = index" class="col-md-4">
+                                        <label class="checkbox-inline actCheckBox">
+                                            <input type="checkbox" formControlName="activities" asList name="activityName"
+                                                id="activity-{{i}}" value="{{activity.activityId}}">{{activity.activityName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion> -->
+                    </p-tabPanel>
+                    <p-tabPanel i18n-header header="Staff Reporting Line">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 class="panel-title pull-left" i18n>Staff MIS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form novalidate autocomplete="off">
+                                    <div class="panel-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <h3 class="panel-title pull-left">
+
+                                                            <label for="code">
+                                                                <span i18n>Username : </span>
+                                                                {{username}}
+                                                            </label> |
+                                                            <label for="name">
+                                                                <span i18n>Team Unit : </span>
+                                                                {{teamUnit}}
+                                                            </label> |
+                                                            <label for="branch">
+                                                                <span i18n>Cost Cent : </span>
+                                                                {{costCent}}
+                                                            </label> |
+                                                            <label for="email">
+                                                                <span i18n>Department : </span>
+                                                                {{dept}}
+                                                            </label> |
+                                                            <label for="name">
+                                                                <span i18n>Region : </span>
+                                                                {{region}}
+                                                            </label> |
+                                                            <label for="branch">
+                                                                <span i18n>Group : </span>
+                                                                {{group}}
+                                                            </label> |
+                                                            <label for="email">
+                                                                <span i18n>Directorate : </span>
+                                                                {{directorate}}
+                                                            </label>
+                                                        </h3>
+                                                        <div class="pull-right">
+                                                            <!-- <button (click)="showModalForm()" pButton type="button" label="Add New" icon="fa-plus"></button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 class="panel-title pull-left" i18n>Staff Supervisor</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form novalidate autocomplete="off">
+                                    <div class="panel-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <h3 class="panel-title pull-left">
+
+                                                            <label for="code">
+                                                                <span i18n>Staff Code : </span>
+                                                                {{supervisorCode}}
+                                                            </label> |
+                                                            <label for="name">
+                                                                <span i18n>Staff Name : </span>
+                                                                {{supervisorName}}
+                                                            </label> |
+                                                            <label for="branch">
+                                                                <span i18n>Staff Branch : </span>
+                                                                {{supervisorBranch}}
+                                                            </label> |
+                                                            <label for="email">
+                                                                <span i18n>Staff Email : </span>
+                                                                {{supervisorEmail}}
+                                                            </label>
+                                                        </h3>
+                                                        <div class="pull-right">
+                                                            <!-- <button (click)="showModalForm()" pButton type="button" label="Add New" icon="fa-plus"></button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button style="margin-left:5px" type="button" *ngIf="activeIndex > 0" class="btn btn-primary pull-left" (click)="prevButton()" i18n>Previous</button>
+                        <button style="margin-left:5px" type="button" *ngIf="activeIndex < 5" (click)="nextButton()" class="btn btn-primary pull-left" i18n>Next</button>
+
+                        <button type="button" *ngIf="activeIndex >= 3" [disabled]="staffFormGroup.invalid" (click)="onSubmit(staffFormGroup)" class="btn btn-success pull-right" i18n>Save</button>
+                        <button style="margin-right:5px" type="button" class="btn btn-danger pull-right" (click)="hideModal()" i18n>Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>
+
+
+
+<p-dialog [responsive]=true [(visible)]="displayADAuth" id="auth-ad" modal="modal" showEffect="fade" width="450">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Active Directory User Authentication
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="displayADAuth=false">&times;</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <!-- <div class="form-group">
+                        <label for="adAuthStaffCode" class="control-label col-md-12">Staff Code</label>
+                        <div class="col-md-12">
+                            <input type="text" name="adAuthStaffCode" [(ngModel)]="adAuthStaffCode" id="adAuthStaffCode" class="form-control">
+                        </div>
+                    </div> -->
+
+                <div class="form-group">
+                    <label for="adAuthPassCode" class="control-label col-md-12" i18n>Active Directory Password</label>
+                    <div class="col-md-12">
+                        <input type="password" name="adAuthPassCode" [(ngModel)]="adAuthPassCode" id="adAuthPassCode" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-footer ">
+            <div class="row ">
+                <div class="col-md-12 ">
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <button type="button" [disabled]="!adAuthPassCode" (click)="performAction()" style="margin-right:5px " class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light">{{buttonText}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+
+<p-dialog [responsive]=true [(visible)]="activitiesModal" id="activityM" modal="modal" showEffect="fade" width="800" [contentStyle]="{'overflow':'auto','max-height':'500px'}">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Activities
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="activitiesModal=false">&times;</a>
+            </div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <p-dataTable [value]="activities" [responsive]=true [(selection)]="multipleActivities" dataKey="activityId">
+                        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+                        <p-column i18n-header [style]="{'width':'90px'}" field="activityName" header="Activity Name"></p-column>
+                        <p-column i18n-header [style]="{'width':'150px'}" header="Expiry Date">
+                            <ng-template let-activity="rowData" let-i="rowIndex" pTemplate="body">
+                                <p-calendar [(ngModel)]="activity.expireOn" dateFormat="dd/MM/yy" [showIcon]="true" [responsive]="true" [inputStyle]="{'width': '100%' }" [style]="{'width': '100%', 'overflow': 'visible'  }" [monthNavigator]="true" [yearNavigator]="true" yearRange="1955:2030"></p-calendar>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </div>
+            </div>
+        </div>
+
+        <p-dialog [responsive]=true [(visible)]="activeActivitiesModal" id="activeActivityM" modal="modal" showEffect="fade" width="800" [contentStyle]="{'overflow':'auto','max-height':'500px'}">
+            <div style="margin-bottom:0" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title" i18n>
+                        Activities
+                    </h2>
+                    <div class="pull-right">
+                        <a class="close" (click)="activeActivitiesModal=false">&times;</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <p-dataTable [value]="activeActivities" [responsive]=true>
+                            <p-column i18n-header [style]="{'width':'110px'}" field="activityName" header="Activity Name"></p-column>
+                            <p-column i18n-header [style]="{'width':'110px'}" field="expireOn" header="Expiring On"></p-column>
+                        </p-dataTable>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <p-dataTable [value]="activeActivities" [responsive]=true>
+                        <p-column i18n-header [style]="{'width':'110px'}" field="activityName" header="Activity Name"></p-column>
+                    </p-dataTable>
+
+                </div>
+            </div>
+
+        </p-dialog>
+    </div>
+</p-dialog>

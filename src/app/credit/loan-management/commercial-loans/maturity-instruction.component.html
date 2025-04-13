@@ -1,0 +1,302 @@
+<div *ngIf="displaySearch" class="ui-g">
+        <div class="ui-g-12 no-padding">
+          <div class="card no-padding">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 i18n class="panel-title pull-left">
+                      Commercial Loans Maturity Instruction
+                    </h2>
+                    <!-- <div  class="pull-right">
+                        <button (click)="showPreviousInstructionsOrAddNew()" pButton type="button" label="{{maturityCommandText}}" icon="fa-plus"></button>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div >
+                <div class="form-horizontal">
+                    <p-tabView>
+                        <p-tabPanel i18n-headr header="Operation" >
+                    <div class="panel-body" style="overflow:auto; height:350px">
+                      <div class="form-group">
+                        
+                        <label i18n class="col-md-2">Take Fee?</label>
+    
+                        <div class="col-md-4">
+                                <select name="takeFeeStatus" [(ngModel)]="takeFeeStatus" class="form-control"
+                                    [ngClass]="!takeFeeStatus ? 'required-input' : 'valid-input'">
+                                    <option i18n value="">--- Select Status ---</option>
+                                    <option i18n value="1"> Take Fee </option>
+                                    <option i18n value="2"> Do Not Take Fee </option>
+    
+                                </select>
+                            </div>
+                    </div>
+
+
+                            <form *ngIf="!displayPreviousInstructions && displayTranche == true" [formGroup]="autoRolloverForm" autocomplete="off">
+                                    <div>
+                                        <table *ngIf="loanViewSelection != null" class="table table-customer-information">
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n>Reference Number:</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.loanReferenceNumber ? loanViewSelection.loanReferenceNumber : 'N/A'}}</td>
+                                                    <td>
+                                                      <strong i18n>Application Reference No:</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.applicationReferenceNumber ? loanViewSelection.applicationReferenceNumber : 'N/A'}}</td>
+                                                    <td>
+                                                      <strong i18n> CASA Account Number</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.casaAccountNumber }}</td>
+                                          
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n>Customer Code</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.customerCode }}</td>
+                                                    <td>
+                                                      <strong i18n>Customer Name</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.customerName ? loanViewSelection.customerName : 'N/A'}}</td>
+                                                    <td>
+                                                      <strong i18n> Product Account Name</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.productAccountName }}</td>
+                                  
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n>Last Operation</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.operationName }}</td>
+                                                    <td>
+                                                      <strong i18n>Product Type</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.productTypeName }}</td>
+                                                    <td>
+                                                      <strong i18n> Effective Date</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.effectiveDate | date }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n>Branch Name</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.branchName }}</td>
+                                                    <td>
+                                                      <strong i18n>Customer Type</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.loanTypeName }}</td>
+                                                    <td>
+                                                      <strong i18n> Sector Name</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.sectorName }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n>Initiating Officer</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.relationshipOfficerName ? loanViewSelection.relationshipOfficerName : 'N/A' }}</td>
+                                                    <!-- <td>
+                                                      <strong i18n>Business Manager</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.relationshipManagerName }}</td> -->
+                                                    <td>
+                                                      <strong i18n> Maturity Date</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.maturityDate | date }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n> Amount</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.principalAmount }}</td>
+                                                    <td>
+                                                      <strong i18n> Interest Rate</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.interestRate }}</td>
+                                                    <td>
+                                                      <strong i18n> Sub-Sector Name</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.subSectorName }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong i18n> Outstanding Principal</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.outstandingPrincipal }}</td>
+                                                    <td>
+                                                      <strong i18n> Outstanding Interest</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.outstandingInterest }}</td>
+                                                    <td>
+                                                      <strong i18n> Currency</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.currency}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                        <strong i18n> Tenor</strong>
+                                                      </td>
+                                                      <td>{{ loanViewSelection.tenor }}</td>
+                                                      <td>
+                                                        <strong i18n> Booking Date</strong>
+                                                      </td>
+                                                      <td>{{ loanViewSelection.bookingDate | date }}</td>
+                                                    <td>
+                                                      <strong i18n> Exchange Rate</strong>
+                                                    </td>
+                                                    <td>{{ loanViewSelection.exchangeRate }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>
+                                                          <strong i18n> Accruled Amount</strong>
+                                                        </td>
+                                                        <td>{{ loanViewSelection.accrualedAmount }}</td>
+                                                       
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                      </div>
+                                  <fieldset style="padding-left:14px">
+                                    <legend i18n>
+                                      New Loan Instruction
+                                    </legend>
+                                    <div class="form-group">
+                                        <label i18n for="newTenor" class="control-label col-md-2">Tenor (Days)</label>
+                                        <div class="col-md-4 ">
+                                          <input type="number" min="1" max="365" (blur)="restrictNumber($event)" name="newTenor" formControlName="newTenor" id="newTenor" class="form-control" placeholder="0 - 365"
+                                            [ngClass]="!autoRolloverForm.controls['newTenor'].valid ? 'required-input' : 'valid-input'">
+                                        </div>
+                                        <label i18n for="instructionType" class="control-label col-md-2">Instruction Type</label>
+                                      <div class="col-md-4 ">
+                                          <select name="instructionType" id="instructionType" formControlName="instructionType"  class="form-control" [ngClass]="!autoRolloverForm.controls['instructionType'].valid ? 'required-input' : 'valid-input'">
+                                              <option i18n value=""></option>
+                                              <option *ngFor="let b of maturedLoansInstructionType" value="{{b.instructionTypeId}}">
+                                                  {{b.instructionTypeName}}
+                                              </option>
+                                          </select>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label i18n for="document" class="control-label col-md-2">Instruction Document</label>
+                                      <div class="col-md-4">
+                                        <input type="file" (change)="onFileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg" #fileInput name="fileInput" formControlName="fileInput" style="padding-top:2px;" class="form-control">
+                                      </div>
+                                      <label i18n for="submit" class="control-label col-md-2"></label>
+                                      <div class="col-md-4">
+                                            <button type="button" (click)="saveMaturityInstruction(autoRolloverForm)" [disabled]="autoRolloverForm.invalid || !takeFeeStatus " class="btn btn-success pull-left" i18n>Submit</button>
+                                          <!-- <button (click)="saveMaturityInstruction(autoRolloverForm)" class="btn btn-sm btn-primary" [disabled]="autoRolloverForm.invalid"><span class="glyphicon glyphicon-upload"></span> Add Instruction</button> -->
+                                          <!-- <button (click)="saveMaturityInstruction(autoRolloverForm)" class="btn btn-sm btn-primary" ><span class="glyphicon glyphicon-upload"></span> Add Instruction</button> -->
+                                      </div>
+                                    </div>
+                                    </fieldset>
+                                  <hr>
+                              </form>
+                                <div *ngIf="displayPreviousInstructions" class="card no-padding">
+                                    <p-dataTable [paginator]="true" [value]="maturedLoanInstruction" [rows]="15" >
+                                        <p-header>List of Existing Loan Maturity Instructions </p-header>
+                                        <!-- <p-column i18n-headr [style]="{'width':'38px'}" selectionMode="single"></p-column> -->
+                                        <p-column i18n-headr field="customerName" header="Customer" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="instructionTypeName" header="Instruction Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr  field="newTenor" header="Tenor At Maturity" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="loanReferenceNumber" header="Reference No" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="interestRate" header="Interest Rate" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="outstandingInterest" header="Interest Till Date" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="outstandingPrincipal" header="Principal" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-headr field="oldTenor" header="Existing Tenor" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                    </p-dataTable>
+                                </div>
+                    </div>
+                        </p-tabPanel>
+                        <p-tabPanel i18n-headr header="Take Fee">
+                          <take-fee-shared [amount]="loanViewSelection?.outstandingPrincipal" [loanSystemTypeId]="loanSystemTypeId" [selectedLoanId]="LoadLoanDetails" [customerId]="customerId" [currencyId]="currencyId" (takeFees)="takeFees($event)"></take-fee-shared>
+                      </p-tabPanel>
+                        <p-tabPanel i18n-headr *ngIf="displayRefered"  header="Comments">
+                            <div class="panel-body">
+                                <p-dataTable [value]="approvalWorkflowData" [paginator]="true" [rows]="5" [responsive]="true">
+                                    <p-column i18n-headr field="requestStaffName" header="Intiated By"></p-column>
+                                    <p-column i18n-headr field="requestApproval Level" header="Initiator Approval Level"></p-column>
+                                    <!-- <p-column i18n-headr field="responseStaffName" header="Directed To"></p-column> -->
+                                    <p-column i18n-headr field="responseApproval Level" header="Response Approval Level"></p-column>
+                                    <p-column i18n-headr field="approvalStatus" header="Approval Status"></p-column>
+                                    <p-column i18n-headr field="comment" header="Comment"></p-column>
+                                    <p-column i18n-headr field="systemArrivalDate" header="Date of Arrival">
+                                        <ng-template let-col let-apr="rowData" pTemplate="body">
+                                            {{apr[col.field] | date: 'medium'}}
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column i18n-headr field="systemResponseDate" header="Date of Response">
+                                        <ng-template let-col let-apr="rowData" pTemplate="body">
+                                            {{apr[col.field] | date: 'medium' }}
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+                            </div>
+                        </p-tabPanel>                          
+                    </p-tabView>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+<!--       
+      <p-dialog [responsive]=true [(visible)]="displaySearchModal" modal="modal" id="searchModal" showEffect="fade" width="650">
+        <div style="margin-bottom:0" class="panel panel-default">
+            <div class="panel-heading">
+                <div style="margin-left:0" class="row">
+                    <h2 i18n class="panel-title pull-left">
+                        Search For Loan
+                    </h2>
+                    <a href="" (click)="displaySearchModal=false" class="pull-right remove-btn">
+                        <i class="glyphicon glyphicon-remove-sign">
+                    </i>
+                    </a>
+                    
+                </div>
+            </div>
+            <div style="padding:3px" class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="text" id="search" (keyup)="searchDB($event.target.value)" class="form-control" placeholder="Type in your search parameter">
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <p>
+                        </p>
+                        <table *ngIf="searchResults" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Loan Reference No</th>
+                                    <th>Customer Name</th>
+                                    <th>Loan Principal Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr (click)="pickSearchedData(res)" style="cursor: pointer" *ngFor="let res of searchResults; let i = index">
+                                    <td>
+                                        {{res.loanReferenceNumber}}
+                                    </td>
+                                    <td>
+                                        {{res.customerName}}
+                                    </td>
+                                    <td>
+                                        {{res.principalAmount}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+       -->
+     <fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>

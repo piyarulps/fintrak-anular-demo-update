@@ -1,0 +1,18 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <p-tabView>
+                <p-tabPanel i18n-header  header="Loan Origination">
+                    <initiate-booking></initiate-booking>
+                </p-tabPanel >
+                <p-tabPanel i18n-header  header="Loan Management">
+                    <button  type="button" class="btn btn-primary" (click)="showLoanReviewDrawdown()" style="margin-right:5px">
+                        <i class="glyphicon glyphicon-info"></i><span i18n>Show Loan Review Drawdown</span></button>
+                    <div *ngIf="displayDrawdownList == true">
+                        <loan-review-drawdown></loan-review-drawdown>
+                    </div>
+                </p-tabPanel >
+            </p-tabView>
+        </div>
+    </div>
+</div>

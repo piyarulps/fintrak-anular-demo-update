@@ -1,0 +1,388 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                Companies
+                            </h2>
+                            <div class="pull-right">
+                                <button (click)="showDialog()" *ngIf="disableDirectorTab" pButton type="button"  label="Add New Company" icon="fa-plus"></button>
+                                <button (click)="showDirectorDialog()" *ngIf="disableDirectorTab" pButton type="button" i18n-label label="Add New Director" icon="fa-plus"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <p-tabView [activeIndex]="activeTabindex" (onChange)="onTabChange($event)">
+                        <p-tabPanel header="Company List">
+                            <p-dataTable [rows]="20" [paginator]="true" [value]="companies" [responsive]=true selectionMode="single" [(selection)]="selectedCompanyInfomation"
+                                dataKey="companyId" (onRowSelect)="onSelectedCompanyChange()">
+                                <p-column i18n-header field="companyName" header="Company Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header field="country" header="Country" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header field="telephone" header="Telephone" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header field="email" header="Email" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header field="website" header="Website" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column [style]="{'width':'60px'}">
+                                    <ng-template pTemplate="header">
+                                    </ng-template>
+                                    <ng-template let-company="rowData" let-i="rowIndex" pTemplate="body">
+                                        <a (click)="editCompany(company)" i18n>
+                                            Edit
+                                        </a>
+                                    </ng-template>
+                                </p-column>
+                            </p-dataTable>
+                        </p-tabPanel>
+                        <p-tabPanel header="Company Directors" (onChange)="onTabChange($event)">
+                            <p-dataTable [rows]="20" [paginator]="true" [value]="companiesDirectors" [responsive]=true selectionMode="single">
+                                <p-column i18n-header field="" header="Director Name" sortable="true" [filter]="true" filterMatchMode="contains">
+                                    <ng-template let-dir="rowData" let-i="rowIndex" pTemplate="body">
+                                        {{dir.title}} {{dir.firstName}} {{dir.middleName}} {{dir.lastName}}
+                                    </ng-template>
+                                </p-column>
+                                <!-- <p-column i18n-header field="bvn" header="BVN" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column> -->
+                                <p-column i18n-header field="gender" header="Gender" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'70px'}"></p-column>
+                                <p-column i18n-header field="address" header="Address" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                                <p-column i18n-header field="shareHoldingPercentage" header="Shareholding %" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+                                <p-column i18n-header field="phoneNumber" header="Phone Number" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+                                <p-column i18n-header field="email" header="Email" sortable="true" [filter]="true" filterMatchMode="contains" ></p-column>
+                                <p-column [style]="{'width':'100px', 'text-align': 'center'}">
+                                    <ng-template pTemplate="header">
+                                    </ng-template>
+                                    <ng-template let-dir="rowData" let-i="rowIndex" pTemplate="body">
+                                        <a (click)="deleteDirector(dir.companyDirectorId)" href="javascript:void(0)" title="Remove Group">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                        <span style="padding:10px;">|</span>
+                                        <a (click)="editCompanyDirector(dir)" href="javascript:void(0)" i18n-title title="Edit Group" i18n>
+                                            Edit
+                                        </a>
+                                    </ng-template>
+                                </p-column>
+                            </p-dataTable>
+                        </p-tabPanel>
+                    </p-tabView>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--end of panel-->
+
+
+<fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>
+
+
+<p-dialog [responsive]=true [(visible)]="display" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                {{entityName}}
+            </h2>
+        </div>
+        <form novalidate [formGroup]="companyForm" autocomplete="off">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4 hide">
+                            <input type="text" formControlName="companyId" name="companyId" [ngClass]="!companyForm.controls['companyId'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+
+                        <label for="groupName" class="control-label col-md-2" i18n>
+                            Company Name
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="companyName" name="companyName" [ngClass]="!companyForm.controls['companyName'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                        <label for="parentId" class="control-label col-md-2" i18n>
+                            Parent Company
+                        </label>
+                        <div class="col-md-4">
+                            <select name="parentId" id="parentId" formControlName="parentId" class="form-control" [ngClass]="!companyForm.controls['parentId'].valid ? 'required-input' : 'valid-input'">
+                                <option value="" i18n>Select Company</option>
+                                <option *ngFor="let coy of companies" value="{{coy.companyId}}">
+                                    {{coy.companyName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currency" class="control-label col-md-2" i18n>
+                            Currency
+                        </label>
+                        <div class="col-md-4">
+                            <select name="currencyId" id="currencyId" formControlName="currencyId" class="form-control" [ngClass]="!companyForm.controls['currencyId'].valid ? 'required-input' : 'valid-input'">
+                                <option value="" i18n>Select Currency</option>
+                                <option *ngFor="let coy of currencies" value="{{coy.currencyId}}">
+                                    {{coy.currencyName}}
+                                </option>
+                            </select>
+                        </div>
+                        <label for="natureOfBusinessId" class="control-label col-md-2" i18n>
+                            Nature of Business
+                        </label>
+                        <div class="col-md-4">
+                            <select name="natureOfBusinessId" id="natureOfBusinessId" formControlName="natureOfBusinessId" class="form-control" [ngClass]="'valid-input'">
+                                <option value="" i18n>Select Business Type</option>
+                                <option *ngFor="let nat of natureOfBusinesses" value="{{nat.natureOfBusinessId}}">
+                                    {{nat.natureOfBusiness}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country" class="control-label col-md-2" i18n>
+                            Country
+                        </label>
+                        <div class="col-md-4">
+                            <select name="countryId" id="currencyId" formControlName="countryId" class="form-control" [ngClass]="!companyForm.controls['countryId'].valid ? 'required-input' : 'valid-input'">
+                                <option value="" i18n>Select Country</option>
+                                <option *ngFor="let coy of countries" value="{{coy.countryId}}">
+                                    {{coy.countryName}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <label for="Telephone" class="control-label col-md-2" i18n>
+                            Address
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="address" name="address" [ngClass]="!companyForm.controls['address'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country" class="control-label col-md-2" i18n>
+                            Language
+                        </label>
+                        <div class="col-md-4">
+                            <select name="languageId" id="languageId" formControlName="languageId" class="form-control" [ngClass]="!companyForm.controls['languageId'].valid ? 'required-input' : 'valid-input'">
+                                <option value="" i18n>Select Language</option>
+                                <option *ngFor="let lan of languages" value="{{lan.languageId}}">
+                                    {{lan.languageWithCode}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <label for="Telephone" class="control-label col-md-2" i18n>
+                            Telephone
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="telephone" name="telephone" [ngClass]="!companyForm.controls['telephone'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email" class="control-label col-md-2" i18n>
+                            Email
+                        </label>
+                        <div class="col-md-4">
+                            <input type="email" formControlName="email" name="email" [ngClass]="!companyForm.controls['email'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                        <label for="nameOfScheme" class="control-label col-md-2" i18n>
+                            Scheme Name
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="nameOfScheme" name="nameOfScheme" [ngClass]="!companyForm.controls['nameOfScheme'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateofBirth" class="control-label col-md-2" i18n>
+                            Date of Inc
+                        </label>
+                        <div class="col-md-4">
+                            <p-calendar id="dateOfIncorporation" [maxDate]='currentDate' formControlName="dateOfIncorporation" dateFormat="dd/mm/yy" [inputStyle]="{'width': '259px'}"
+                                [style]="{'position': 'fixed', 'overflow': 'visible', 'z-index': '999'}" [monthNavigator]="true"
+                                [yearNavigator]="true" yearRange="1955:2030" [showIcon]="true"></p-calendar>
+                        </div>
+                        <label for="Website" class="control-label col-md-2" i18n>
+                            Website
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" i18n-placeholder placeholder="Website" formControlName="website" name="website" [ngClass]="!companyForm.controls['website'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group" *ngIf="selectedCompanyId == 0">
+                        <label for="dateofBirth" class="control-label col-md-2" i18n>
+                            Company Logo
+                        </label>
+                        <div class="col-md-4">
+                            <input type="file" (change)="onFileChange($event)" formControlName="fileData"
+                              [ngClass]="!companyForm.controls['fileData'].valid ? 'required-input' : 'valid-input'"
+                              i18n-placeholder placeholder="Upload file" accept=".jpg,.jpeg,.png" #fileInput
+                              name="fileInput" style="padding-top:2px;" class="form-control">
+                          </div>
+                        <label for="Website" class="control-label col-md-2" i18n>
+                            Image Path
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" i18n-placeholder placeholder="Image path" formControlName="imagePath" name="imagePath" [ngClass]="!companyForm.controls['imagePath'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" [disabled]="companyForm.invalid" (click)="onSubmit(companyForm)" class="btn btn-success pull-right"  i18n>Save</button>
+                        <button style="margin-right:5px" type="button" class="btn btn-danger pull-right" (click)="display=false">Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayDirector" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                {{entityDirectorName}}
+            </h2>
+        </div>
+        <form novalidate [formGroup]="companyDirectorForm" autocomplete="off">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-2" i18n>
+                            Title
+                        </label>
+                        <div class="col-md-4">
+                            <select name="title" formControlName="title" [ngClass]="!companyDirectorForm.controls['title'].valid ? 'required-input' : 'valid-input'"
+                                id="title" class="form-control">
+                                <option value="" i18n>--- Select Title ---</option>
+                                <option *ngFor="let title of titleList" value="{{title.TitleName}}">
+                                    {{title.TitleName}}
+                                </option>
+                            </select>
+                        </div>
+                        <label for="firstName" class="control-label col-md-2" i18n>
+                            First Name
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="firstName" name="firstName" [ngClass]="!companyDirectorForm.controls['firstName'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="middleName" class="control-label col-md-2" i18n>
+                            Middle Name
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="middleName" name="middleName" [ngClass]="!companyDirectorForm.controls['middleName'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                        <label for="groupName" class="control-label col-md-2" i18n>
+                            Last Name
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="lastName" name="lastName" [ngClass]="!companyDirectorForm.controls['lastName'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-2" i18n>
+                            Gender
+                        </label>
+                        <div class="col-md-4">
+                            <select name="gender" formControlName="gender" [ngClass]="!companyDirectorForm.controls['gender'].valid ? 'required-input' : 'valid-input'"
+                                id="gender" class="form-control">
+                                <option value="" i18n>--- Select Gender ---</option>
+                                <option *ngFor="let gender of genderList" value="{{gender.GenderName}}">
+                                    {{gender.GenderName}}
+                                </option>
+                            </select>
+                        </div>
+                        <label for="bvn" class="control-label col-md-2" i18n>
+                            BVN
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="bvn" name="bvn" [ngClass]="!companyDirectorForm.controls['bvn'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="middleName" class="control-label col-md-2" i18n>
+                            Address
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="address" name="address" [ngClass]="!companyDirectorForm.controls['address'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                        <label for="email" class="control-label col-md-2" i18n>
+                            Email
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="email" name="email" [ngClass]="!companyDirectorForm.controls['email'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber" class="control-label col-md-2" i18n>
+                            Phone Number
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" formControlName="phoneNumber" name="phoneNumber" [ngClass]="!companyDirectorForm.controls['phoneNumber'].valid ? 'required-input' : 'valid-input'"
+                                class="form-control">
+                        </div>
+                        <label for="isActive" class="control-label col-md-2" i18n>
+                            Is Active ?
+                        </label>
+                        <div class="col-md-4">
+                            <input type="checkbox" formControlName="isActive" name="isActive" [ngClass]="!companyDirectorForm.controls['isActive'].valid ? 'required-input' : 'valid-input'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label for="shareHoldingPercentage" class="control-label col-md-2" i18n>
+                            Shareholding %
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" formControlName="shareHoldingPercentage" name="shareHoldingPercentage" [ngClass]="!companyDirectorForm.controls['shareHoldingPercentage'].valid ? 'required-input' : 'valid-input'"
+                                    class="form-control">
+                            </div>
+                           
+                           
+                            <div class="col-md-4">
+                               
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" [disabled]="companyDirectorForm.invalid" (click)="onCompanyDirectorSubmit(companyDirectorForm)" class="btn btn-success pull-right"  i18n>Save</button>
+                        <button style="margin-right:5px" type="button" class="btn btn-danger pull-right" (click)="displayDirector=false" i18n>Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>

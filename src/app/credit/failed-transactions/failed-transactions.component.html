@@ -1,0 +1,38 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                Failed Transactions
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="failedTransactions" [responsive]=true selectionMode="single">
+                        <p-column i18n-header [style]="{'width':'110px'}" field="transactionDate" header="Transaction Date" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="referenceNumber" header="Reference Number" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="loanTypeName" header="Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="facility" header="Facility" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="customerName" header="Customer Name/Group" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="applicationAmount" header="Amount" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="approvalLevel" header="Approval Level" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="staffRoleName" header="Role" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column [style]="{'width':'60px'}">
+                            <ng-template pTemplate="header">
+                            </ng-template>
+                            <ng-template let-trans="rowData" let-i="rowIndex" pTemplate="body">
+                                <a (click)="retry(trans)" i18n>
+                                    Retry
+                                </a> |
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

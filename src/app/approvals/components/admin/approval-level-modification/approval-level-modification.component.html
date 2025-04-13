@@ -1,0 +1,232 @@
+<div class="panel panel-default">
+    <div class="panel-heading" >
+        <h2 class="panel-title" i18n>Approval Workflow Level</h2>
+    </div>
+    <div class="panel-body">
+  
+  <div  class="row">
+    <p-dataTable [value]="approvalLevelList" [paginator]="true" [rows]="5">
+  
+        <p-column i18n-header field="levelName" header="Level Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+        <p-column i18n-header field="position" header="Position" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+  
+  
+        <p-column i18n-header field="tenor" header="Tenor" sortable="true" [filter]="true" filterMatchMode="contains">
+  
+        </p-column>
+  
+        <p-column i18n-header field="maximumAmount" header="Maximum Amount" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'text-align':'right'}">
+            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                {{ d.maximumAmount | number : '1.2' }}
+            </ng-template>
+        </p-column>
+  
+        <p-column i18n-header field="numberOfUsers" header="Number Of Users" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+        <p-column i18n-header field="numberOfApprovals" header="Number Of Approvals" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+       
+        <p-column [style]="{'width':'110px'}">
+            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                <div style="text-align:center">
+                    <a *ngIf="loanApplicationId == null" (click)= "getApprovalWorkflowLevel(d)"  href="javascript:void(0)" i18n>View</a>
+                </div>
+            </ng-template>
+        </p-column>
+  
+    </p-dataTable>
+  </div>
+  </div>
+<!--   
+  <p-tabView [activeIndex]="0"  *ngIf="groupLevelList">
+  <p-tabPanel header="Approval Workflow Level">
+
+  </p-tabPanel> 
+
+  </p-tabView>
+   -->
+  
+
+  
+  </div>
+  
+  
+  <p-dialog [responsive]=true [(visible)]="displayModal" modal="modal" showEffect="fade" width="1200">
+      <div >
+          <div style="margin-bottom:0" class="panel panel-default" *ngIf="groupLevelList">
+              <div class="panel-heading">
+                <h2 class="panel-title" i18n>
+                    Approval Workflow Level
+                </h2>
+      
+              </div>
+              <div class="panel-body" *ngIf="groupLevelList">
+                  <table class="table table-casa-information">
+                      <tbody>
+                        <tr>
+                            <td>
+                                <strong><h5>{{operationLevel}}</h5></strong>
+                            </td>
+                        </tr>
+                          <tr>
+                              <td>
+                                  <strong i18n>Level Name:</strong>
+                              </td>
+                              <td>{{ groupLevelList.levelName }}</td>
+                              <td>
+                                  <strong i18n>Position:</strong>
+                              </td>
+                              <td>{{ groupLevelList.position }}</td>
+                              <td>
+                                  <strong i18n>Group Name:</strong>
+                              </td>
+                              <td>{{ groupLevelList.groupName  }}</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <strong i18n>Tenor:</strong>
+                              </td>
+                              <td>{{ groupLevelList.tenor }}</td>
+                              <td>
+                                  <strong i18n>Maximum Amount:</strong>
+                              </td>
+                              <td>{{ groupLevelList.maximumAmount | number:'1.2' }}</td>
+                              <td>
+                                  <strong i18n>Investment Grade Amount:</strong>
+                              </td>
+                              <td>{{ groupLevelList.investmentGradeAmount | number:'1.2' }}</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <strong i18n>Fee Rate:</strong>
+                              </td>
+                              <td>{{ groupLevelList.feeRate }}</td>
+                              <td>
+                                  <strong i18n>Interest Rate:</strong>
+                              </td>
+                              <td>{{ groupLevelList.interestRate }}</td>
+                              <td>
+                                  <strong i18n>Number Of Users:</strong>
+                              </td>
+                              <td>{{ groupLevelList.numberOfUsers }}</td>
+                          </tr>                     
+                          <tr>
+                              <td>
+                                  <strong i18n>Number Of Approvals:</strong>
+                              </td>
+                              <td>{{ groupLevelList.numberOfApprovals }}</td>
+                              <td>
+                                  <strong i18n>SLA Interval:</strong>
+                              </td>
+                              <td>{{ groupLevelList.slaInterval }}</td>
+                              <td>
+                                  <strong i18n>is Politically Exposed:</strong>
+                              </td>
+                              <td>{{ groupLevelList.isPoliticallyExposedValue }}</td>
+                          </tr>  
+                          <tr>
+                              <td>
+                                  <strong i18n>Can Escalate:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canEscalateValue }}</td>
+                              <td>
+                                  <strong i18n>Can Approve Untenored:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canApproveUntenoredValue }}</td>
+                              <td>
+                                  <strong i18n>Can Resolve Dispute:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canResolveDisputeValue }}</td>
+                          </tr>  
+                          <tr>
+                              <td>
+                                  <strong i18n>Is Active:</strong>
+                              </td>
+                              <td>{{ groupLevelList.isActiveValue }}</td>
+                              <td>
+                                  <strong i18n>SLA Notification Interval:</strong>
+                              </td>
+                              <td>{{ groupLevelList.slaNotificationInterval }}</td>
+                              <td>
+                                  <strong i18n>Can View Document Value:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canViewDocumentValue }}</td>
+                          </tr>  
+                          <tr>
+                              <td>
+                                  <strong i18n>Can Edit Value:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canEditValue }}</td>
+                              <td>
+                                  <strong i18n>Can View Uploaded File:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canViewUploadedFileValue }}</td>
+                              <td>
+                                  <strong i18n>Can Upload File:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canUploadFileValue }}</td>
+                          </tr>  
+                          <tr>
+                              <td>
+                                  <strong i18n>Can View Approval:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canViewApprovalValue }}</td>
+                              <td>
+                                  <strong i18n>Can Approve Value:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canApproveValue }}</td>
+                              <td>
+                                  <strong i18n>Can Recieve Email:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canRecieveEmailValue }}</td>
+                          </tr>  
+                          <tr>
+                              <td>
+                                  <strong i18n>Can Recieve SMS:</strong>
+                              </td>
+                              <td>{{ groupLevelList.canRecieveSmsValue }}</td>
+                              <td>
+                                  <strong i18n>Route Via Staff Organogram:</strong>
+                              </td>
+                              <td>{{ groupLevelList.routeViaStaffOrganogram }}</td>
+                              <!-- <td>
+                                  <strong i18n>Number Of Users:</strong>
+                              </td>
+                              <td>{{ mainCollateralDetail.numberOfUsers }}</td> -->
+                          </tr>  
+  
+                      </tbody>
+                  </table>
+
+              </div>
+            </div>
+
+      </div>
+      <div class="well" >
+          <hr />
+      <div class="row">
+              <div class="col-md-9">
+              <input type="text" class="form-control" i18n-placeholder placeholder="Comment" [(ngModel)]="comment" [ngClass]="comment == null || comment == '' ? 'required-input' : 'valid-input'">
+          </div>
+          <div class="col-md-3">
+              <select class="form-control" [(ngModel)]="approvalStatusId" [ngClass]="approvalStatusId < 0 ? 'required-input' : 'valid-input'">
+                  <option value="0" i18n>--- Select Approval ---</option>
+                  <option value="2" i18n> Approve </option>
+                  <option value="3" i18n> Decline </option>
+              </select>
+          </div>
+      </div>
+    </div>
+    <div  class="panel-body">
+          <div class="row">
+                  <div class="col-md-6">
+                      </div>
+          <div class="col-md-6">
+                  <div class="btn-group pull-right">
+                          <button type="button" (click)="closeModal()" style="margin-right:5px" class="btn btn-danger" style="margin-right:5px" i18n>Close</button>
+                          <button type="button" (click)="forwardLevelApproval()" [disabled]="comment == null || comment == '' || approvalStatusId < 1" class="btn btn-success" i18n>
+                                  Submit</button>
+                      </div>
+          </div>
+      </div>
+      </div>
+  </p-dialog>
+  

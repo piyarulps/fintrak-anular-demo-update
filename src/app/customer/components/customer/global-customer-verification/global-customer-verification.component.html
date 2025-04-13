@@ -1,0 +1,125 @@
+<h5 class="jumbotron"><strong>INTERNATIONAL CUSTOMER VERIFICATION</strong></h5>
+        <div class="ui-g">
+            <div class="ui-g-12 no-padding">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="panel-title pull-left">
+                                    Search Global Customer
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                <p-accordion>
+                    <p-accordionTab header="Search By Personal Details" [selected]="true">
+                        <div  style="margin-top:8px;margin-left:15px;">
+                                 <div class="row">
+                                    <div class="col-md-4">
+                                        <input  type="search" [(ngModel)]="firstNameSearch" id="firstNameSearch" name="firstNameSearch" placeholder="search by first name"
+                                            aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input  type="search" [(ngModel)]="lastNameSearch" id="lastNameSearch" name="lastNameSearch" placeholder="search by last name"
+                                            aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input  type="search" [(ngModel)]="phoneSearch" id="phoneSearch" name="phoneSearch" placeholder="search by phone"
+                                            aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="row">
+                                    <div class="col-md-4">
+                                        <input  type="search" [(ngModel)]="emailSearch" id="emailSearch" name="emailSearch" placeholder="search by email"
+                                            aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p-calendar
+                                        [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+                                        [(ngModel)]="birthDateSearch" [showIcon]="true" placeholder="search by date of birth"></p-calendar> <span style="margin-left:35px"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input  type="search" [(ngModel)]="birthPlaceSearch" id="birthPlaceSearch" name="birthPlaceSearch" placeholder="search by place of birth"
+                                            aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="row">
+                                     <div class="col-md-2 pull-left">
+                                        <button (click)="getCustomerSearchResults($event)" [disabled]="!birthDateSearch || !firstNameSearch || !lastNameSearch" class="btn btn-sm btn-primary">
+                                            Search
+                                        </button>
+                                     </div>
+                                 </div>
+                                 <br>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Search By Biometric">
+                        <div  style="margin-top:8px;margin-left:15px;">
+                            <div class="row">
+                               <div class="col-md-4">
+                                   <input  type="search" [(ngModel)]="nameSearch" id="nameSearch" name="nameSearch" placeholder="search by customer name"
+                                       aria-label="Search" size="40" minlength="5" maxlength="80" class="form-control">
+                               </div>
+                               <div class="col-md-4">
+                                   <ng-template let-d = "data">
+                                <a (click)="searchBiometric(d.image)" href="javascript:void(0)" title="search biometric">
+                                    <i class="fa fa-lg fa-5x fa-fingerprint"></i></a>
+                                </ng-template>
+                               </div>
+                               </div>
+                               </div>
+                    </p-accordionTab>
+                </p-accordion>
+                </div>
+                <div class="panel-body" style="overflow-x: scroll; ">
+                    <p-dataTable [responsive]="true" [value]="customerSearchResult" [paginator]="true" [rows]="10"  selection="true" selectionMode="multiple"
+                    [rowsPerPageOptions]="[10,20,30]" [lazy]="false" [totalRecords]="searchTotal" [loading]="showLoadIcon">
+                    <p-column [style]="{'width':'38px'}" [selection]=true selectionMode="multiple" (onRowSelect)="pushSelectedLoans($event)"
+                    (onRowUnselect)="popSelectedLoans($event)"></p-column>
+                        <p-column field="customerCode" [style]="{'width':'73px'}" header="Customer No." [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column field="firstName" [style]="{'width':'100px'}" header="First Name" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column field="lastName" [style]="{'width':'100px'}" header="Last Name" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column field="phone" header="Phone Number" [style]="{'width':'125px'}" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column [style]="{'width':'100px'}" field="emailAddress" header="Email" [filter]="true" filterMatchMode="contains"></p-column>
+                        <!-- <p-column [style]="{'width':'100px'}" field="exposure" header="Exposure" [filter]="true" filterMatchMode="contains"></p-column> -->
+                        <p-column [style]="{'width':'80px'}" field="country" header="Country" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column [style]="{'width':'80px'}" field="customerBVN" header="BVN" [filter]="true" filterMatchMode="contains"></p-column>
+                        <!-- <p-column [style]="{'width':'80px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex"
+                            pTemplate="body">
+                            <a *ngIf="['jpg','jpeg', 'png'].indexOf(d.fileExtension.toLowerCase()) > -1" (click)="viewImage(d.image)" href="javascript:void(0)" title="View Customer Image">
+                                <i class="glyphicon glyphicon-eye-open"></i></a>
+                        </ng-template>
+                        </p-column> -->
+                    </p-dataTable>  
+                    </div>    
+            </div>
+        </div>          
+        <p-dialog [responsive]=true [(visible)]="displayUpload" modal="modal" showEffect="fade" width="1200" [style]="{'z-index':'25000'}">
+            <div *ngIf="displayUpload" style="margin-bottom:0" class="panel panel-default">
+        
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        Customer Name:
+                        <strong>{{ selectedDocument }}</strong>
+                    </h2>
+                    <div class="pull-right">
+                        <a class="close" (click)="displayUpload=false">&times;</a>
+                    </div>
+                </div>
+        
+                <div class="panel-body" style="overflow:auto;height:500px">
+                    <div style="margin: auto; width: 50%">
+                        <img *ngIf="binaryFile" style="max-width: 100%; display: block 2px black;" [src]="'data:image/jpg;base64,'+binaryFile"
+                            alt="" class="img-thumbnail">
+                    </div>
+                </div>
+        
+            </div>
+        </p-dialog>
+        
+

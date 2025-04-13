@@ -1,0 +1,176 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+      <div class="card no-padding">
+  
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="panel-title pull-left" i18n>
+                  LIST OF TERM LOAN PRODUCTS
+                </h2>
+  
+                <div *ngIf="isAddNew" class="pull-right">
+                  <button (click)="showModalForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p-tabView [activeIndex]="activeTabindex" (onChange)="onTabChange($event)">
+            <p-tabPanel i18n-header header="Product Records">
+                <div class="panel-body">
+  
+                    <p-dataTable [value]="productData" [paginator]="true" [rows]="20" [responsive]="true">
+                      <p-column i18n-header field="productName" header="Product" sortable="true" [filter]="true"
+                        filterMatchMode="contains"></p-column>
+                      <p-column i18n-header field="productCode" header="Product Code" sortable="true" [filter]="true"
+                        filterMatchMode="contains"></p-column>
+
+                      <p-column [style]="{'width':'100px'}">
+                        <ng-template pTemplate="header"> </ng-template>
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                          <a (click)="viewProductUde(d)" href="javascript:void(0)" i18n>
+                            View
+                          </a>
+                        </ng-template>
+                      </p-column>
+                    </p-dataTable>
+                  </div>
+            </p-tabPanel>
+            
+            <p-tabPanel i18n-header header="UDE IDS" [disabled]="disableUdeInfoTab">
+                <p-dataTable [value]="productData" [paginator]="true" [rows]="20" [responsive]="true">
+                    <p-column i18n-header field="udeName" header="UDE ID" sortable="true" [filter]="true"
+                      filterMatchMode="contains"></p-column>
+                    <p-column i18n-header field="udeValue" header="UDE Value" sortable="true" [filter]="true"
+                      filterMatchMode="contains"></p-column>
+                      <p-column i18n-header field="resolvedValue" header="Resolved Value" sortable="true" [filter]="true"
+                      filterMatchMode="contains"></p-column>
+
+                    <p-column [style]="{'width':'100px'}">
+                      <ng-template pTemplate="header"> </ng-template>
+                      <ng-template let-pGrp="rowData" let-i="rowIndex" pTemplate="body">
+                        <a (click)="editProductUde(pGrp, $event)" href="javascript:void(0)" i18n>
+                          Edit
+                        </a>
+                      </ng-template>
+                    </p-column>
+                    <p-column [style]="{'width':'100px'}">
+                        <ng-template pTemplate="header"> </ng-template>
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                          <a (click)="deleteProductUde(d)" href="javascript:void(0)" i18n>
+                            Delete
+                          </a>
+                        </ng-template>
+                      </p-column>
+                  </p-dataTable>
+            </p-tabPanel> 
+        </p-tabView>
+  
+  
+        </div>
+        <!--end of panel-->
+      </div>
+    </div>
+  </div>
+  
+  
+  <!--add modal-->
+  <p-dialog [responsive]="true" [(visible)]="displayAddUpdateModal" id="add-modal" modal="modal" showEffect="fade"
+    width="560">
+    <div style="margin-bottom:0" class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          {{panelHeader}}
+        </h2>
+      </div>
+
+      <form novalidate [formGroup]="productUdeForm" autocomplete="off">
+  
+        <div class="panel-body">
+          <div class="form-horizontal">
+            
+            <div class="form-group">
+              <label for="udeId" class="control-label col-md-4" i18n-label>
+                UDE ID
+              </label>
+              <div class="col-md-8">
+                <select name="udeId" id="udeId" formControlName="udeId" class="form-control"
+                  [ngClass]="!productUdeForm.controls['udeId'].valid ? 'required-input' : 'valid-input'">
+                  <option value="" i18n>--Select UDE ID--</option>
+                  <option *ngFor="let nat of udeTypes" value="{{nat.id}}">
+                    {{nat.udeName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="udeValue" class="control-label col-md-4" i18n-label>
+                UDE Value
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="udeValue" formControlName="udeValue" id="udeValue"
+                  class="form-control"
+                  [ngClass]="!productUdeForm.controls['udeValue'].valid ? 'required-input' : 'valid-input'">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resolvedValue" class="control-label col-md-4" i18n-label>
+                Resolved Value
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="resolvedValue" formControlName="resolvedValue" id="resolvedValue"
+                  class="form-control"
+                  [ngClass]="!productUdeForm.controls['resolvedValue'].valid ? 'required-input' : 'valid-input'">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="productId" class="control-label col-md-4" i18n-label>
+                Product
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="productId" formControlName="productId" id="productId"
+                  class="form-control" readonly
+                  [ngClass]="!productUdeForm.controls['productId'].valid ? 'required-input' : 'valid-input'">
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="productId" class="control-label col-md-4" i18n-label>
+                Product
+              </label>
+              <div class="col-md-8">
+                <select name="productId"
+                    class="form-control" readonly formControlName="productId"
+                    [ngClass]="!productUdeForm.controls['productId'].valid ? 'required-input' : 'valid-input'"
+                    id="productId">
+                    <option *ngFor="let pc of productData" value="{{pc.productId}}">
+                        {{currentProductName}}
+                    </option>
+                </select>
+              </div>
+            </div> -->
+            
+
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" (click)="submitForm(productUdeForm)" [disabled]="productUdeForm.invalid"
+                    class="btn btn-success pull-right"  i18n>Save</button>
+                  <button type="button" (click)="displayAddUpdateModal=false" style="margin-right:5px"
+                    class="btn btn-danger pull-right" i18n>Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </form>  
+    </div>
+  </p-dialog>
+
+  <!--end of add modal-->

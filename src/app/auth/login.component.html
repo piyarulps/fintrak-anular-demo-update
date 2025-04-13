@@ -1,0 +1,153 @@
+<section id="wrapper" class="login-register">
+    <div class="login-box login-sidebar">
+        <div class="white-box">
+
+            <form (ngSubmit)="signIn()" class="form-horizontal form-material" id="loginform" action="index.html" autocomplete="off">
+            <!-- <form (ngSubmit)="firstcheck()" class="form-horizontal form-material" id="loginform" action="index.html" autocomplete="off"> -->
+                <a href="javascript:void(0)" class="text-center db m-t-100">
+                    <img src="assets/layout/images/logo2x.png" alt="Home" />
+                </a>
+
+                <div class="form-group m-t-60">
+                    <div class="col-xs-12">
+                        <input name="username" class="form-control" type="text" [(ngModel)]="data.username" placeholder = "Username" i18n-placeholder="Username placeholder">
+                    </div>
+                </div>
+                <div class="form-group m-t-40">
+                    <div class="col-xs-12">
+                        <div style="display: none">
+                            <input type="password" />
+                        </div>
+                        <input name="pasword" class="form-control" type="password" [(ngModel)]="data.password"placeholder = "Password" i18n-placeholder autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group text-center m-t-40">
+                    <div class="col-xs-12">
+                        <button [disabled]="!data.username || !data.password" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"  >Log In</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>
+
+<!-- <app-two-factor-auth (emitLogout)="logOut()" [staffCode]="username" [display]="displayTwoFactorAuth" [redirect]="returnUrl"></app-two-factor-auth> -->
+<app-two-factor-auth (emitLogout)="logOut()" [staffCode]="username" [password]="password" [display]="displayTwoFactorAuth" [redirect]="returnUrl"></app-two-factor-auth>
+
+<p-dialog header="Password Change" [(visible)]="displayPasswordchange" [responsive]="true" showEffect="fade" [modal]="true"
+    width="800">
+    <div class="ui-g">
+
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left"  >
+                                Password Change
+                            </h2>
+                            <!-- <button type="button" class="btn btn-primary pull-right" (click)="startLoanAppHome()">Cancel PEN</button> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <form novalidate [formGroup]="passwordForm" autocomplete="off">
+                            <div class="ui-g">
+                                <div class="ui-g-12">
+                                    <div class="alert alert-danger"> {{passwordInfo}} </div>
+                                </div>
+
+                                <div class="ui-g-12">
+                                    <label class="col-md-2" for=""  >Username</label>
+                                    <div [ngClass]="'no-data-div'" class="col-md-6">
+                                        <input class="form-control" [attr.disabled]="true" formControlName="username" id="username" type="text" [ngClass]="!passwordForm.controls['username'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+
+                                </div>
+
+                                <div class="ui-g-12">
+                                    <label class="col-md-2" for=""  >Current Password</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" formControlName="currentPassword" id="currentPassword" type="password" autocomplete="off" [ngClass]="!passwordForm.controls['currentPassword'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+
+                                </div>
+                                <div class="ui-g-12">
+                                    <label class="col-md-2" for=""  >New Password</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" autocomplete="off" formControlName="newPassword" id="newPassword" type="password" [ngClass]="!passwordForm.controls['newPassword'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+                                </div>
+
+                                <div class="ui-g-12">
+                                    <label class="col-md-2" for="" >Confirm Password</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" autocomplete="off" formControlName="confirmPassword" id="confirmPassword" type="password" [ngClass]="!passwordForm.controls['confirmPassword'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-8">
+                        <button type="submit" [disabled]="passwordForm.invalid" style="margin-right:5px" class="btn btn-success pull-right" (click)="onPasswordChange()"  >
+                            Change Password </button>
+                        <button type="button" style="margin-right:5px" class="btn btn-danger pull-right" (click)="hideModal()"  >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+
+<p-dialog header="Sign out" [(visible)]="allowSignoutPage" [responsive]="true" showEffect="fade" [modal]="true" width="500">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title"  >
+                End Active Session
+            </h2>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <p-messages [value]="msgs"></p-messages>
+                <form class="form-horizontal form-material" id="logOutform" action="index.html" autocomplete="off">
+                    <div class="form-group">
+                        <label class="col-md-4" for="username">User Name</label>
+                        <div class="col-md-8">
+                            <input name="username" style="background-color:  #232232 ;" class="form-control" type="text" [(ngModel)]="data.username"
+                                placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4" for="username">Password</label>
+                        <div class="col-md-8">
+                            <input name="password" style="background-color: #232232; " class="form-control" type="password" [(ngModel)]="data.password"
+                                placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <button (click)="signOut($event)" [disabled]="!data.username || !data.password" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"  >End Active Session</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>

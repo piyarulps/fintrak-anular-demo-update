@@ -1,0 +1,5612 @@
+Arrival Time
+Collateral Customer Id
+Upload Reference Number
+Description
+Is Original Title Document
+Date Created
+Approval Status
+Date Approved
+View Detail
+Document Upload
+Approval Memo
+Facility Details
+Application Reference No:
+Customer Code
+Customer Name
+Branch Name
+Facility Type
+Date Created
+Relationship Manager
+Business Unit
+Product Index
+Application Date
+Facility Amount
+Interest Rate
+File Name
+Is An Original Copy
+File Size
+Document Type
+Document Category
+View
+Download
+Purpose of Submission
+--- Select Approval ---
+Approve
+Decline
+Refer Back
+Back to List
+Submit
+Facility Detail
+Approval Comments
+Document Title:
+-- Select Facility--
+Conditions
+Subsequent
+Internal
+Save Selected Changes
+Unsaved changes***
+Loan Conditions
+Edit
+Remove
+Condition
+Facility
+External Condition
+Condition Subsequent
+Timeline for Compliance
+-- Select Compliance Timeline--
+Save
+Cancel
+Suggested Conditions
+Add New
+Suggestion Type
+Add
+RM Suggestion
+-- Select Suggestion Type --
+Save and Close
+Cancel
+Customer Search
+Collapse
+Search
+Customer Name / Code
+Phone Number
+Search
+Clear
+Customer Search Result
+Occupation
+Customer Information
+Customer Type
+View Details
+Customer Information Details For:
+Refresh Customer Accounts
+Customer Code:
+Customer Type:
+Title:
+Gender:
+First Name:
+Date of Birth:
+Corporate Name:
+Date of Established:
+Middle Name:
+Customer BVN:
+Last Name:
+Place of Birth:
+Email Address:
+TIN:
+Marital Status:
+Occupation:
+Spouse:
+Maiden Name:
+Nationality:
+Account Creation Complete:
+Relationship Manager:
+Sector:
+Sub-Sector:
+Politically Exposed:
+Branch:
+Company:
+Customer Rating:
+Ownership:
+General
+Registration Number:
+Company Website:
+Company Email:
+Registered Office:
+Annual Turn Over:
+Paid Up Capital:
+Authorized Capital:
+Business Sector:
+Shareholder Fund:
+Corporate Information
+Export to CSV
+Customer Address Information
+Address
+Town/City
+Nearest Landmark
+Active
+Customer Phone Contact
+Home Phone No
+Mobile Phone No
+Contact
+First Name
+Surname
+Bank Verification Number
+Email
+Politically Exposed
+Account Signatory(s)
+Director
+Customer Top Supplier(s)
+Supplier Type
+Supplier Name
+Customer Top Client(s)
+Client Type
+Client Name
+Client/Supplier
+INDIVIDUAL - Significant Shareholder (5% and above)
+% Holding
+CORPORATE - Significant Shareholder (5% and above)
+Corporate Name
+RC Number
+View
+Shareholder
+Customer Employment History
+Employer Name
+Employer Address
+Office Phone
+Employment Date
+Employment History
+Director Name
+Relationship Type
+Insider Related Party
+Document Title
+Type
+File Number
+Physical Location
+Uploads
+Account Number
+Product
+Account Status
+Currency
+Ledger Balance
+Available Balance
+Has Overdraft
+Has Lien
+Account Information
+Back
+Upload Credit Bureau Report
+Back To Search
+Document Title:
+Ultimate Beneficial owner(s) of
+Ultimate Beneficial Owners
+Director Related Customer
+Close
+Customer Information
+Add New Customer
+Existing Customer
+Prospective Customer
+Customer Branch
+Customer Type
+-- Select Type --
+Customer Code
+Crms Legal Status
+--- Select Legal Status ---
+Crms Relationship Type
+--- Select Relationship Type ---
+Crms Company Size
+--- Select Company Size ---
+Account Officer
+--- Select Account Officer ---
+Title
+--- Select Title ---
+Gender
+--- Select Gender ---
+Middle Name
+Customer BVN
+Last Name
+Place of Birth
+Email Address
+TIN
+Marital Status
+--- Select Marital Status ---
+Spouse
+Maiden Name
+Add Child(ren)
+Country Of Origin
+-- Select Country --
+Business Unit
+--- Select Business Unit ---
+Past Due Obligations
+Ownership
+Country Of Residence
+Number Of Dependents
+Number Of Loans Taken
+Loan Monthly Repayment From Other Banks
+Date Of Relationship With The Bank
+Relationship Type With The Bank
+Borrowing
+Non borrowing
+Team LDR
+Team NPL
+Name Of Signatory
+BVN Of Signatory
+PhoneNumber Of Signatory
+Email Of Signatory
+Address Of Signatory
+Sector
+-- Select Sector --
+Sub-Sector
+---Select Subsector---
+Politically Exposed
+Get Account Balance
+Registration Number
+Corporate Name
+Company Website
+Company Email
+Registered Office
+Annual Turn Over
+Paid Up Capital
+Authorized Capital
+Shareholders Fund
+Add Address
+Contact Address Information
+Edit
+Delete
+Add Phone Contact
+MobileNumber
+Add New Director
+Directors
+Add New Signatory
+Director/Signatory
+Add New Supplier
+Add New Client
+Customer Next of Kin
+Last Name
+Gender
+Relationship
+Date Of Birth
+Next of Kin
+Next
+Previous
+Update Customer Information
+Back To Search
+First Name
+Last Name
+Corporate Name
+RC Number
+Other Names
+Contact Person
+Is Bank Customer
+Bank Name
+Account Number
+Enter Account Number
+TIN
+Phone Number
+Email
+Nature Of Business
+Address
+Save
+Identification No
+Identification Mode
+-- Select Identification Mode --
+Issuing Office
+Issuing Authority
+Surname
+Bank Verification Number
+Validity
+Politically Exposed
+Save
+Is Employer Related?
+Approved Employers
+-- Select Employer --
+Employer Name
+Employer Address
+Employer Country
+Employer State
+--- Select State ---
+Office Phone
+Employment Date
+Previous Employer
+Active
+Other Names
+BVN
+Any Valid ID
+Shareholder Type
+-- Select Shareholder Type --
+Any Valid ID
+Bank Verification Number
+% Shareholding
+Add Ultimate Beneficial Owner(s)
+-- Select Address Type --
+State
+-- Select State --
+-- Select LGA --
+Nearest Landmark
+City
+-- Select City --
+Utility Bill Number / AVR
+Mailing Address
+Contact Address
+Date of Birth
+City/Town
+Relationship
+Gender
+Customer Information Uploads
+-- Select Upload Type --
+Upload Title
+Select Document
+Upload file
+Upload
+Add Child(ren)
+Customer Child Name
+Child Date Of Birth
+S/No
+Child Name
+Date of Birth
+Add at least two children
+Save
+Add Ultimate Beneficial Owner(s)
+BVN
+Add To List
+Remove
+Search Customer from Flexcube
+Company Directors
+-- Select Director --
+Relationship Type
+Customer Account Balance
+Account Balance
+Loan Information
+General Information
+Application Reference Number:
+Relationship Manager:
+Business Manager:
+Amount:
+Application Date:
+Investment Grade:
+&apos;Yes&apos; : &apos;No&apos;
+Approval Status:
+Application Status:
+Submitted For Appraisal:
+Organisation/Management Profile:
+Collateral Detail:
+Facility Purpose:
+Take Over Loan:
+Is Employer Related
+Employer
+Product Name
+Tenor
+Rate
+Amount
+Exchange Rate
+View Details
+Modify Details
+Approved Application Information
+Loan Application Details
+Obligor Name:
+Currency:
+Proposed Product:
+Recommended Product:
+Proposed Amount:
+Recommended Amount:
+Proposed Tenor:
+Recommended Tenor:
+Proposed Rate:
+Recommended Rate:
+Principal Repayment:
+Interest Repayment:
+Moratorium
+Syndicated Loan Application Information
+Bank Code
+Bank Name
+Principal Name
+Invoice No
+Invoice Date
+Invoice Currency
+Contract Start Date
+Contract End Date
+Invoice Amount
+View Invoice
+Number Of Students
+Average School Fees
+Total Previous Term School Fees
+Market Name
+Average Monthly Turnover
+View Document
+Facility Rating
+Probability Of Default
+Remark
+Edit Details For:
+Middle Name
+Nationality
+Relationship Manager
+--- Select Relationship Officer ---
+Yes
+No
+Edit
+Related Party
+Contact Person
+Add Ultimate Beneficial Owner(s)
+Home Phone No:
+Mobile Phone No:
+Address Type
+Town/City
+Electric Meter Number
+Customer Address
+Upload Type
+Remove
+Maximum of Four Children
+Search Customer from Finnacle
+Type in your search parameter
+Documents For Upload
+Product Class Name
+Document Type Name
+Sector Name
+Sub-Sector Name
+Is Required
+Is uploaded
+Is Original Copy
+-- Select Document Category --
+Select Document Type
+Issue Date
+Expiry Date
+DateTime Uploaded
+Uploaded By
+Date / Time Deleted
+Deleted By
+Actions
+Refer Back
+Decline
+Approve
+Target Level / Staff
+-- Select Staff / Level --
+Comment
+Error
+Send
+Staff Name
+Approval Level
+Status
+State
+Export to Excel
+From : Staff Name
+From : Approval Level
+To : Staff Name
+To : Approval Level
+Arrival Date Time
+Response Date Time
+Print
+WITH:
+AT LEVEL:
+Route
+Re-route
+Preset Route
+Re-Route Workflow
+Staff
+-- Select Staff --
+Search Staff
+Staff Code
+Middle Name
+Preset-route
+Next Process
+-- Select Process --
+Final Approval Level
+-- Select Approval Level --
+Save Preset
+Re-route
+Operation
+-- Select Operation --
+Error
+Caption
+Set Caption Details
+Date
+View Mapped Financial Caption
+Reporting Year
+FS Caption Group
+--- Select FS Caption Group ---
+Unmapped FS Captions
+FS Caption Name
+Parent FS Caption
+Account Category
+Mapped FS Captions
+FS Caption Name
+FS Date
+Set Financial Caption Amounts
+Map
+FS Caption
+Save FS Caption Detail
+Offer Letter Generation
+Loan Reference Number
+Loan Type
+Obligor
+Loan Amount
+Application Date
+View
+View Details
+Generate Original Offer Letter
+print
+View Updates
+BCC Credit Appraisal Memorandum
+View Offer Letter
+Go Back
+Updates
+Intiated From
+Initiator Approval Level
+Directed To
+Response Approval Level
+Date of Arrival
+Date of Response
+Generated Offer Letter
+Refer Back
+Comments
+Target Staff / Level
+Search for Loan
+Search For Branch
+Branch Code
+State Name
+Facility Type
+Existing Limit
+Proposed Limit
+Change
+Outstandings
+Past Due Obligations Principal
+Past Due Obligations Interest
+Review Date
+Loan Status
+details
+Save
+Transaction Dynamics
+Unsaved changes
+Loan Transaction Dynamics
+Ordering
+Dynamics
+External Dynamics
+Proposed Collateral
+Collateral Detail
+Collateral Value
+Stamped To Cover
+Proposed Collateral History
+Stamped To Cover Amount
+Save and Close
+Cancel
+Additional Comment
+Additional Comment
+Consultants
+Consultant Name
+Loan Consultant
+Accredited Consultant
+-- Select Consultant --
+Monitoring Triggers
+Trigger
+Add Trigger
+Add Existing Trigger
+Save Monitoring Triggers Changes
+Monitoring Trigger
+Monitoring Triggers
+Repayment Schedule Terms
+Schedule
+Terms
+Schedule Repayment Terms
+-- Select Principal Repayment Pattern--
+Authentication Token
+Pass Code
+Authenticate
+Account Balance
+Account Name :
+Account Number :
+Account Balance :
+Product Name :
+Account Status :
+Customer Code :
+Product :
+Product Type :
+Currency Type :
+Freeze Status :
+freeze Reason :
+Last Transaction Date :
+Facility Details
+Reference Number:
+Last Operation
+Product Type
+Product Account Name
+Effective Date
+Business Manager
+Maturity Date
+Amount
+Interest Rate(%)
+Sector Name
+Outstanding Principal
+Sub-Sector Name
+Principal Frequency
+Interest Frequencyuency
+Currency
+First Principal Payment Date
+First Interest Payment Date
+Exchange Rate
+Tenor
+Booking Date
+Accrued Interest:
+Interest On Past Due Interest
+Interest On Past Due Principal
+Total Repayment
+Past Due Interest
+Past Due Principal
+Total Outstanding Balance
+Past Due Days
+Facility Purpose
+Written-off Accrual Amount
+Covenant Details
+Covenant Details
+Covenant
+Frequency
+Fees Details
+Fees Details
+Charge Fee Name
+Fee Amount
+Fee Interval
+Rate(%)
+Collateral Details
+Code
+Collateral Type
+Value
+Haircut
+Security Value
+Schedule Details
+Payment Date
+Start Principal
+Periodic Amount
+Principal Amount
+Interest Amount
+Balance
+AM Start Principal
+AM Periodic Amount
+AM Principal Amount
+AM Interest Amount
+AM Balance
+CBN CRMS Code
+Add Code
+Reset Code
+Start Date
+End Date
+Get Facilities
+CBN CRMS Code
+Beneficiary
+Granted Amount
+Interest Rate
+Effective Date
+CBN Facilities Report Export
+CBN CRMS Code
+Start Date
+End Date
+Template Type
+-- Select Template Type --
+Template 400 A
+Template 400 B
+Export To Excel
+LOADING
+Account Search
+Account Number / Name
+Search Result
+&apos;Yes&apos;
+&apos;No&apos;
+Product Account Number:
+Product Account Name:
+Customer Sensitivity Level:
+Ledger Balance:
+Available Balance:
+Product Code:
+Tenor:
+Has Lien:
+Product Name:
+Interest Rate:
+Lien Amount:
+Branch Code:
+Effective Date:
+Has Overdraft:
+Branch Name:
+Terminal Date:
+Overdraft Amount:
+Is Current Account:
+Action By:
+Overdraft Interest Rate:
+Account Status:
+Action Date:
+Overdraft Expiry Date:
+MIS Code:
+Operation:
+Post No Status:
+Old Product Account Number:
+Customer Search
+-- Select Customer Type --
+-- Select Branch --
+Search Result
+Edit Customer Details For:
+MIS Staff:
+Date Acted On:
+Acted On By:
+Tax Number:
+Active:
+&quot;Yes&quot;
+&quot;No&quot;
+Title
+Gender
+First Name
+Date Of Birth
+Middle Name
+Place of Birth
+Last Name
+Nationality
+Occupation
+Tax Number
+Marital Status
+Spouse
+First Child Name:
+Child Date of Birth
+Maiden Name
+Email Address
+Politically Exposed
+Personal
+Registration Number
+Company Name
+Company Website
+Company Email
+Registered Office
+Annual Turn Over
+Corporate Business Category
+Paid Up Capital
+Authorized Capital
+Previous Credit Rating
+Corporate
+Home Town
+Edit
+Phone
+Shareholders
+Customer BVN Information
+Valid
+BVN Details
+Identification No
+Identification Mode
+Issuing Office
+Issuing Authority
+Identification
+Add Supplier/Client Information
+First Name
+Last Name
+Middle Name
+Customer Type
+Address
+Phone Number
+Email
+Add Identification Information
+Identification No
+Identification Mode
+Issuing Office
+Issuing Authority
+Add BVN Information
+Surname
+Bank Verification Number
+Validity
+Politically Exposed
+Add Employment History Information
+Employer Name
+Employer Address
+Employer State
+Employer Country
+Office Phone
+Employment Date
+Previous Employer
+Active
+Add Company Directors Information
+Director Type
+Number Of Shares
+Add Customer Phone Contact
+Phone
+Add Customer Address
+Customer Addresses
+State
+Home Town
+City
+Nearest Landmark
+Electric Meter Number
+Mailing Address
+Address Type
+Customer Grouping
+Edit
+Customer Group
+Select Customer Group
+Select Relationship Type
+Search For Customer
+Customer Code
+Customer Name
+Customer Type
+Customer Code
+Customer Relationship
+Map to Group
+Group Name
+Name of the group
+Group Code
+GP00
+Group Description
+Contact Person
+Customer Address
+Risk Rating
+-- Select Credit Rating --
+Save Customer Group
+Map Customer to Group
+Customer Relationship Types
+Add New Relationship
+Edit Customer Relationship Type
+Relationship Type
+Branch
+Customer Identification:
+Occupation:
+Nationality:
+Maiden Name:
+First Child Name:
+Child Date of Birth:
+Registration Number
+Company Name
+Company Website
+Company Email
+Registered Office
+Annual Turn Over
+Corporate Business Category
+Credit Rating
+Previous Credit Rating
+Phone Contact:
+Phone:
+Phone Number:
+Customer Addresses:
+User IP Address:
+Application Url:
+Contact Information
+Prospective Customer Information
+Prospect Code
+Prospect Name
+Prospect Type
+Prospect Branch
+Search Customer from Flexcube
+Prospect Customer Update for:
+Prospect Code
+Customer Code
+Prospect Type
+Customer Type
+Prospect Corporate Name
+Customer Corporate Name
+Prospect Name
+Customer Name
+Prospect Middle Name
+Customer Middle Name
+Prospect Last Name
+Customer Last Name
+Update
+Back To List
+KYC CheckList
+Username
+Edit
+Sub Type
+Hair Cut
+Back To Eligibility
+New
+-- Select Collateral Type --
+-- Select Sub Type --
+Collateral Code
+Haircut (%)
+Valuation Cycle
+FAM Ref Number
+Allow Sharing
+Is Location Based
+Customer Collateral
+Security Type
+Rating
+Deal Ref Number
+Maturity Date
+Deal Amount
+Issuer Name
+Lien Usable Amount
+Unit Value
+Issuer Ref Number
+Percentage Interest
+Number Of Units
+Interest Payment Frequency
+Property Name
+City
+Country
+Construction Date
+Property Address
+Date Of Acquisition
+Last Valuation Date
+Valuer
+-- Select Valuer --
+Valuer Reference Number
+Value Base Type
+-- Select Property Value Base --
+Open Market Value
+Forced Sale Value
+Stamp To Cover
+Valuation Source
+Original Value
+Available Value
+Perfection Status
+-- Select Perfection Status --
+Reason for Non Perfection
+Machine Name
+Machine Number
+Manufacturer Name
+Year Of Manufacture
+Year Of Purchase
+-- Select Value Base --
+Machine Condition
+Machinery Location
+Replacement Value
+Equipment Size
+Intended Use
+Institution Name
+Guarantor Address
+Guarantor Reference Number
+Guarantee Value
+Start Date
+End Date
+Is Owned By Customer
+Insurance Policy Number
+Premium Amount
+Policy Amount
+Insurance Company Name
+Insurer Address
+Policy Start Date
+Assign Date
+Renewal Frequency
+-- Select Renewal Frequency Type --
+Insurer Details
+Policy Renewal Date
+Vehicle Type
+Vehicle Status
+Vehicle Make
+Model Name
+Manufactured Date
+Serial Number
+Chasis Number
+Engine Number
+Name Of Owner
+Registration Company
+Resale Value
+Valuation Date
+Last Valuation Amount
+Invoice Value
+Precious Metal Name
+Weight In Grammes
+Valuation Amount
+Unit Rate
+Precious Metal Form
+Reference Number
+Maturity Amount
+Lien Amount
+Owned By Customer
+Share Quantity
+Market Price
+Shares Security Value
+Share Value Amount
+Name of Security
+Insurance Information
+Document Code
+Document Uploads
+New Control Label
+Create
+Principal
+Select principal
+Others
+Customer Account
+Select Customer Account
+Contract Date
+Contract Expiry Date
+Is the principal willing to accept
+Bank Format
+NO
+YES
+Upload Document
+Tenored?
+Contract Value
+Contract Currency
+Select Currency
+Invoice Exchange Rate
+Naira Equivalent
+Number of Student
+Average School Fees Per Student
+Last Session Fees
+Market Location
+Average Monthly Turnover (Over 6 Months)
+Sold Items
+Application Number
+Sector Limit
+Exposure
+Sector
+Product
+Subsector
+Proposed Tenor
+Equity Contribution
+Equity Contribution
+Invoice Currency
+Update Facility Invoice
+Add Bulk Invoice
+of Invoice
+Invoice Total
+Invoice Exchange Rate
+Naira Equivalent
+Upload Bulk Invoice
+Syndication Ref No
+Syndication Name
+Add Syndication Details
+Syndication Amount
+Currency
+Exchange Amount
+Select Product Price Index
+Product Price Index Rate
+CRMS Funding Source
+Select CRMS Funding Source
+CRMS Repayment Source
+Select CRMS Repayment Source
+Facility Purpose
+Principal Repayment Frequency
+-Select Principal Repayment-
+Is Moratorium
+Moratorium
+Interest Repayment Frequency
+-Select Interest Repayment-
+Collection Account
+Select Collection Account
+Operating CASA Account
+Select Operating Account
+Take Over Loan?
+Is Line Facility?
+View Failed Rac
+List of Commodities
+View Invoice details
+Review Type
+Select Review Type
+Line limit
+Add Facility
+Requested Facility Amount
+Tenor(Days)
+Invoice Details
+Contract Number
+Purchase Order Number
+Entry Sheet Number
+Invoice Number
+Invoice Date is more than
+Invoice Date can not be in the future
+Reconfirm Invoice Number
+Add Invoice
+Contract No
+View Upload
+Bonds and Guarantees Document Upload
+Invoice Document
+Syndication Details
+Select Syndication Type
+Syndication Amount
+S/N
+Amount Contributed
+Done
+Rist Acceptance Criteria Result
+Criteria
+Loan Application List
+Reference
+Loan Eligibility Requirements
+Initiate Request
+Customer Financial Statement
+Tenor (Days)
+Edit Loan Amount
+Upload Supporting Documents
+Add New Upload
+New Loan Document Upload
+Customer Collateral
+Map Collateral
+Registered Collateral
+Mapped Collateral
+Customer Collateral
+Collateral Sub Type
+Insurance Company
+Policy Expiry Date
+Coverage Amount
+Document Title / Code
+Upload Supporting Documents
+Request for Fee Concession
+Obligor&apos;s Name
+Fees
+Default Rate
+Edit Rate
+Proposed Rate
+Reason for Concession
+Secretariat - Loan Application Search
+Credit Applications
+-- Select Application Type --
+Commitee Decision
+Loan Applications
+Committee Decision Upload
+Select facility to review
+Proposed Product
+-- Select Status --
+Not Supported
+Supported
+Recommended Product
+Recommended Limit
+Recommended Tenor
+-- Change Product --
+Vote
+-- Select Vote --
+Represent
+Step Down
+Committee Members Decision
+Loan Application Search
+Loan Applications
+Currently With
+Level
+Application Status
+Reassign Application
+Change Owner(Account Officer)
+Loan Application Information
+Source:
+Account Officer:
+Approved Amount:
+Approval Application:
+Related Party:
+Project Related:
+OnLending:
+Intervention Funds:
+ORR Based:
+Is Already Approved Application:
+Application WorkFlow:
+submitted For Appraisal:
+Fee Rates &amp; Concessions
+Fee
+Default
+Recommended
+Concession
+Concession Reason
+Customer Information
+Preview FAM Document
+-- Select Facility --
+Risk Acceptance Criteria
+Condition Precedent
+Supporting Documents
+Approval Process Changes
+Offer Letter
+Approval Process Comments
+Reason For Cancellation
+Cancel Loan
+Loan Cancellation
+Loan Contract
+Loan Application Details
+Select Facility:
+--select facility to see drawdown details--
+Application Initiation Date
+Sender Name
+Sender Level
+Current Level
+Responsible Staff Name
+Reassign DrawDown Approval
+View Comments
+View DrawDown Memo
+Draw Down Applications
+Search Application
+Loan Application Reference Number / Customer Name/ Staff Code
+Generated Offer Letter
+DrawDown Comments
+Drawdown Memo
+Generate Drawdown Memo
+Staff Role
+Rejected Loan Applications &amp; Offers
+Application Stage
+Approval
+Loan Application Information
+Group Name:
+Relationship Officer:
+Details:
+Obligor Name
+Initial Application Information
+Approved Information
+Request
+Send Request
+Request Review
+All Comments
+Loan Application Reference Number / Customer Name
+Collateral Release
+Active Loans -
+Interest Accrual
+Principal Repayment
+Total Repayment
+Collaterals
+Active Loans
+Location
+Release
+On Approval
+Assigned Collaterals
+Search Customer Collateral
+Showing registered collaterals of
+Collateral Summary
+Collateral Value (Local Equivalent)
+Hair Cut/Shrinkage
+Available Collateral Value
+Propose
+Proposed
+History
+Select for swap
+Registered Collaterals
+Collateral Owner
+Propose Facility Amount
+Expected Coverage
+Actual Coverage
+Unpropose
+Use
+Used
+3rd Party
+Collateral Sub Type
+Haircut/Shrinkage (%)
+Select Currency
+Valid Till
+Current Liened Amount
+Fund/Scheme
+Bank
+Defer Insurance Policy
+Description
+State
+Local Govt
+--- Select LGA ---
+City/Location
+Next Valuation Date
+Valuer Name
+Valuer Account No
+Property Base Type
+Estimated Value
+Is Owner Occupied
+Is Residential
+Bank Share of Collateral (FSV)
+Is Asset Pledged By a Third Party
+Third Party Name
+Is Asset Managed By a Trustee
+Trustee Name
+Machine Location
+First Name
+Middle Name
+Last Name
+BVN
+Name
+RC Number
+Phone Number 1
+Phone Number 2
+Address
+Tax Number
+Relationship
+Relationship Duration
+Email Address
+Last Name
+Name
+RC Number
+Insurance Type
+Insurance Detail
+Registration  Company
+Metal Type
+Account Name
+Company
+Total Value
+NOTE:
+Effective  Date
+Promissory Note Ref Number
+Phone Number 1
+Phone Number 2
+Tax Number
+Contract Detail
+Contract Employer
+Total Contract Value
+Outstanding Invoice Amount
+Account Name To Debit
+Account Number To Debit
+Bank Name / Payer
+Regular Payment Amount
+Intervals
+Monthly Salary
+Other Annual Allowances
+Total Annual Emolument
+Account Number (Salary  Domiciled)
+Annual Salary
+Bank Name / Payer
+Payment  Intervals
+Policy State
+Select Type
+Renewal
+Select Insurance Type
+Insurer
+Select Insurance Company
+Policy Description
+Has Expired
+Last Visitation Date
+Next Visitation Date
+Select Visitation File
+Done By
+Visitation Detail
+Label Name
+Collateral History
+Loan Reference
+Approved Loan Amount
+Collateral Amount in use
+Date Collateral was Mapped
+Loan Maturity Date
+Propose Collateral
+Facility Propose Amount
+Expected Coverage Percentage
+Collateral Information
+Collateral Information Registered for:
+Customer Name:
+Date Created:
+Collateral Type:
+Collateral Sub Type:
+Collateral Value:
+Haircut:
+Valuation Cycle:
+Description:
+Country:
+Construction Date:
+City/Location:
+Last Valuation Date:
+Property Base Type:
+Stamp To Cover:
+Reason for Non Perfection:
+Maturity Date:
+Deal Amount:
+Security Value:
+Unit Value:
+Interest Payment Frequency:
+Remark:
+BVN:
+Phone Number 1:
+End Date:
+Machine Number:
+Manufacturer Name:
+Year Of Manufacture:
+Machine Condition:
+Equipment Size:
+Insurance Type:
+Insurer Address:
+Policy Start Date:
+Assign Date:
+Premium Amount:
+Vehicle Status:
+Vehicle Make:
+Model Name:
+Manufactured Date:
+Chasis Number:
+Name Of Owner:
+Valuation Date:
+Precious Metal Name:
+Weight In Grammes:
+Valuation Amount:
+Unit Rate:
+Current Liened Amount:
+Account Number:
+Share Quantity:
+Market Price:
+Value:
+Collateral Details
+insurance Type
+Sum Amount
+is Primary Document
+Collateral Documents
+Collateral Visitation
+Last Visitaion Date
+Visitation Remark
+Property Visitation Details
+Active Customer Collaterals
+&apos;Yes&apos;
+&apos;No&apos;
+Awaiting Approval
+Collateral Swap Requests
+Swap Reference
+Old Collateral Code
+New Collateral Code
+See Swap Info
+Select Loan Application
+See Proposed Collaterals
+See Loan Details
+Collateral Swap Information
+Old Collateral Details
+Collateral Value (LCY)
+Available Collateral Value (LCY)
+Facility Coverage
+View Details
+New Collateral Details
+View History
+Submit For Approval
+Back to Requests
+Proposed Facilities
+Request Number / Customer Name
+Proposed Collaterals
+Collateral Type Name
+Place Lien
+Remove Lien
+Is Liened
+No Cash-Backed Collateral was proposed
+Loan Availment
+Date Recieved
+Class
+Ref No
+Is A Line
+Division
+Approved Amount
+Amount Requested
+Interest
+Add To My Desk
+DRAWDOWN REQUEST - GENERAL POOL
+View
+My Desk
+MY DESK
+Availment
+Facility Appraisal Memorandum
+Application Reference Number
+Approved Tenor
+Disbursed Amount
+Previous Request
+New Request
+Unapproved Request
+Approved Request
+Total Request
+Receiving Account
+Paying Account
+Loan Disbursement Approval
+Customer&apos;s Supporting Documentation
+Loan Details
+Loan Job Requests
+Collateral Stamp to Cover
+Available Security
+Stamp to Cover
+Checklists &amp; Collateral
+RM NPL Exposure
+RM NPL Limit
+Branch Exposure
+Branch Limit
+Obligor Exposure
+Obligor Limit
+Sector Exposure
+Limits &amp; Exposure Validation
+Cash Collateral Lien Placement
+Lien Placement
+Drawdown Memo
+Drawdown Memo
+Job Route
+Approval Memo
+Decision
+--- Select Decision ---
+Drawdown Amount
+CRMS Type
+CRMS Regulatory Type
+Add CRMS
+Approve
+CRMS REPAYMENT TYPE
+-- Select CRMS Repayment Agreement Type --
+MORATORIUM PERIOD (In Days)
+SECURED BY COLLATERAL
+CRMS COLLATERAL TYPE ID
+-- Select CRMS Collateral Type --
+IS SPECIALISED FACILITY
+False
+True
+Submit
+Add Guarantor
+Guarantor Type
+-- Select Customer Account --
+Individual
+Corporate
+Middlename
+Lastname
+BVN
+Phone Number 1
+Phone Number 2
+Relationship
+Relationship Duration (Yrs)
+Email Address
+Address
+Loan Gaurantor Form
+Third Party Customer Name
+Search customer
+Cycle
+share Allowed
+View Collateral Detail
+Search Collateral
+Detail
+Generated Offer Letter
+Refer back
+Bonds and Guarantee Document
+Loan Applications
+Customer
+View Details
+Last Comment
+From:
+Level:
+Application Information
+B and G Documents
+B and G Document
+Supporting Documents
+View Form 3800B
+Form 3800B
+Error:
+Save and Send
+Generated Offer Letter
+Central Job Request Management
+Request List
+Fetch By Status
+Create New
+All
+Pending
+Completed
+In-progress
+Cancelled
+Job Request Code/Reference Number
+Show Source Branch
+Job Type
+Sent By
+Source Branch
+Required for
+Assigned To
+Take Action
+Reassign this task to somebody
+Job Request View
+Response By:
+This Request has not been responded to
+Reassign Job
+-- Select Hub --
+Hub Target Staff
+-- Select Target Staff --
+Department
+Unit
+Job Title
+Role
+Rank
+Job Posted by
+-- New Destination Unit --
+Request Message
+Response Message
+Show Customer Information
+Customer Info
+Loan Info
+Document Description
+Arrival Date
+Revalidated
+Tenured?
+Bank&apos;s Format?
+Students#
+Previous School Fees Per Term
+Product Class
+Market
+Monthly Turnover
+Pricipal Name
+Principal Account
+-- Select Collateral State --
+Solicitor
+-- Select Solicitor --
+Search Class
+-- Select Search Class --
+Search Amount
+Add Charge
+Search Information
+Contact Name
+Firm Name
+Core Competence
+Mail To Solicitor
+Heading
+Subheading
+Normal
+Sans Serif
+Serif
+Monospace
+Forward To RM
+Collateral related charges already recommended!
+Solicitor has been paid!
+Charge Business
+Narration
+Post Charges
+JOB REVIEW &amp; PROCESSING
+Job request status
+Reason for rejection
+Request Status
+Reason For Disapproval
+-- Select Reason --
+Supporting Document
+Send
+RESPONSE
+Refresh
+Attach file
+REFER BACK
+Verification - Reason for Disapproval
+-- Reason For Disapproval --
+Authentication Token
+Attach Document
+All Requested Jobs Entries
+View Application Job Request Status
+Approved
+Processing
+Disapproved
+Job Count
+View Request
+Loan Job Request Information
+Time
+Sent At
+Sent From
+Sent To
+Reassigned To
+Selected Job Request Information Detail
+Job Sent At:
+Sent By:
+Unit Sent to:
+Hub Sent To:
+Staff Sent To:
+Reassigned To:
+Date Sent:
+Response Date:
+Acknowledgment Date:
+Job Source:
+Job Type:
+Request Status:
+Request Note
+Response Note
+Related Documents
+Job Request
+Request Type
+-- Select Request Type --
+-- Select Job Type --
+Target Facility
+IR:
+Destination Unit
+-- Select Destination Unit --
+Target Staff
+Require Document
+Request Route
+Message Title
+Message Body
+Message
+Upload Documents
+Main content
+Supporting Documents
+Solicitor&apos;s Collateral Search Confirmation
+Application Ref
+Request Code
+Consultant
+Search Type
+Acc# Debited
+Pending
+Confirm Search
+Reverse Transaction
+Job Request Response Comment
+Authentication Token
+Facility Job Request
+Responded by
+Load Checklist
+FAM Approved Loans Awaiting Checklist
+Check
+Unchecked Items
+Checklist Item
+External
+Check
+Checked Checklist Items
+Check list Status
+Deferals/Waivers Memo
+Go For Approval
+Checklist Details
+Reason
+Checklist Status
+--- Select Checklist Status ---
+Defered Date
+View Offer Letter Checklist
+Checklist Status(RM)
+Condition Type
+Validated
+Declined
+Not Checked
+Checklist Document
+--- Select Option ---
+--- Yes ---
+--- No ---
+DrawDown Initiation
+Use Multiple Drawdown
+Facility Name
+Requested Amount
+Proceed
+N/A
+Approved Employer Related Requests For Draw-down Initiation
+Date Received
+DrawDown Request Details
+(this customer is a Prospective Customer)
+New Request Amount
+-- Select Product --
+Customer Request Document
+Available  Amount
+Save Adjustment
+Comments:
+Related Employer:
+Initiate Drawdown&gt;
+Continue Drawdown
+Select Approver
+Select Group Member
+Select Customer
+NOTE: LIEN WILL BE PLACED FOR THIS LOAN!
+Take fee once
+Project Related
+Initiate Drawdown
+Customer Request
+Loan Request Info
+Appraisal Memorandum
+Generated Offer Letter
+Facility Collateral(s)
+Other Information
+Cash Collateral Lien Placement
+Approval Memo
+Edit Memo
+Project Risk Rating
+OBLIGOR/ CONTRACTOR
+Rating
+Risk Categorisation
+Project Location
+Project Details
+Project Risk Rating
+Deferral Waivers
+CASHBACK
+Background
+Issues
+Drawdown Memo
+Search Member
+Search Customer
+Project Risk Rating
+-- Select --
+Project Location
+Project Details
+Facility Booking
+Available Amount
+Routed
+Referred
+Show Facility Routing
+Product
+Loan Facility Type
+Is Related Party
+Yes
+No
+Politically Exposed?
+Type of Customer
+Paying Account
+-- Select Collecting Account --
+Rate Code
+-- Select Rate Code --
+Rate Amount
+Collection Account
+-- Select Collection Account --
+Sector
+Customer Account
+CRMS CODE
+Overview
+Account Officer
+Relationship Manager
+Group Approved Amount
+Customer Approved Amount
+Available Amount
+Disbursement Amount
+Facility
+Approved Line Effective Date
+Account to debit
+Approved Tenor (in days)
+Approved Tenor (in months)
+Primary Loan Information
+Loan Covenant
+Covenant Type
+Covenant Detail
+Frequency Type
+Loan Covenant Information
+Loan Collateral(s)
+Supporting Documents
+Loan Documents
+Loan Charge/Fee
+Fee Name
+Integral?
+Concession?
+Concession?
+Get Account Balance
+Total Fee Amount:
+Consession Reason
+Recommeded Rate
+Fee Concession
+Charge Fees
+Loan Application Checklist
+Checklist
+Loan Monitoring Trigger
+Monitoring Trigger
+Loan Transaction Dynamics
+Interest Rate
+Effective Date
+Maturity Date
+Overdraft Limit
+Basis
+Revolving Type
+Interest Type
+Price Index
+Discount
+Discounted Value
+Loan Tenor
+Add Beneficiary
+Beneficiaries&apos; Plan
+Total
+Contingent Amount
+Maturity Date
+Book Loan
+Maintain Facility Line
+Loan Beneficiary Form
+Loan Review Applications
+Application Details
+Current Approval Level
+Activity Type
+Review Details
+ASP Information
+Used Contingent
+Mapped Collateral Details
+Documents
+Checklists
+Collateral
+Job Request
+-- Select Document Section --
+Preview
+Preview Previous
+Approval Memorandum
+Appraisal Documentation for REFERENCE:
+Loan Origination
+Show Loan Review Drawdown
+Loan Management
+Add Call Memo
+Purpose
+Location of Meeting
+Call Date
+Next Call Date
+Send for Approval
+Customer Call Memo
+Start Date
+End Date
+Customer Name
+Search Call Plan
+Search Call Memo
+Print Call Memo
+Add Call Memo
+Search for Customer
+Purpose of the Meeting
+Location of the Meeting
+Call Time
+Next Call Time
+Cc: (Separate emails with semi-colon)
+Participants
+Customer Background
+Recent Update
+Meeting Highlights
+Action Plan
+Save Call Memo
+Search For Customer
+Email Address
+Go For Approval
+Loan Application Awaiting Checklist
+View
+View Loan Application CheckList
+Select Facility
+Validated
+Checklist Status
+Deferred Date
+Checklist Items
+Status
+Availment Validation
+Perform Environmental and Social Risk Assessment(ESGS)
+Yes
+No
+Remark/Comment
+Overall Risk level
+CATEGORY A
+CATEGORY B
+CATEGORY C
+Summary
+Low
+Medium
+High
+N/A
+Category A
+Category B
+Category C
+Replicate
+Show Summary
+Save ESGRating
+Perform Green Loan Identifier Assessment
+Green Category
+Checklist Status
+Save Green Rating
+Get Summary
+loan-maintenance works!
+guarantor-maintenance works! Thats true
+Offer Letter Generation
+View FAM
+View Customer Information
+Forward to Business
+Select Offer Letter Template
+Comments
+Offer Letter Review Comments
+Edit Offer Letter
+-- Select Option --
+Offer Letter Salutation
+Offer Letter Clause
+Offer Letter Acceptance
+Offer Letter Template
+-- Select Template --
+Apply Template
+Offer Letter Review
+Submit For Availment
+Refer back to Offer Letter Review
+Indicate Customer Acceptance
+Other Supporting Documentation
+Indicate Offer Letter Acceptance
+Cancel PEN
+Customer Details
+Relationship Officer
+Business Manager
+Related Companies
+Related Company Name :: Description
+Project Description
+Ownership Structure
+Client Description
+Tax Identification Number
+Existing Exposure
+Bank’s Role/Financial request
+Project Financing Plan
+CAP Region
+-- Select Region --
+PEN Details
+Proposed Terms &amp; Conditions
+Collateral Arrangement
+Implementation Arrangements
+Market Demand
+Environmental Impact
+PEN Details Cont&apos;d
+Business Profile
+Risk/Concerns &amp; Mitigants
+Prudential &amp; Exposure Limit Implications
+Bank Participation Justification
+Portfolio Strategic Alignment
+Commercial Viability Assessment
+Complete PEN
+Preliminary Evaluation Notes
+PEN Code
+View
+Commercial Viability Assesmdent
+Download
+View Approval Workflow
+Repayment Schedule Simulation
+Repayment Terms:
+Repayment Schedule:
+Schedule Method
+Select Schedule Method
+Contractual Interest Rate
+Payment Plans
+Date
+Principal and Interest
+Principal Only
+Interest Only
+--Select Frequency--
+Once
+Monthly
+Quaterly
+Count
+Delete Selected
+Generate
+Interest Frequency
+Select Frequency
+Interest First Pmt Date
+Principal Frequency
+Principal First Pmt Date
+Tenor in Days
+Tenor in Months
+Repricing Mode
+Select Repricing Mode
+Without Disbursement
+Schedule Details
+Effective Interest Rate
+Schedule
+Back
+Details
+Credit Bureau Search
+Search Customer
+Date of Birth/Incorporation
+BVN/RC Number
+n/a
+Is Positive?
+Proceed To Application
+Business Name
+Date of birth
+Start Search
+First Central Search Options
+Date of Incorporation
+Download Report
+Choose search option
+-- Select Search Option --
+(name, gender, dob)
+Registration No
+Telephone
+All Parameters
+CRC Loan Facility
+CRC Search Options
+Result Item ID
+Confidence Score
+CRMS RefNumber
+Credit Type
+Credit Limit
+Outstanding Amount
+Granting Institution
+Performance Status
+Type in your customer number or name
+Customer ID
+Customer Sector
+START LOAN APPLICATION
+next
+--- Select Customer Type ---
+Corporate Type
+---Further select Corporate Type ---
+Group Customer Information
+Search customer group
+Blacklisted
+Information Completed
+Credit Bureau Completed
+Edit
+Start Loan Application
+Application Type
+--- Select Application Type ---
+Existing Loans
+List of existing loans
+Written-off Facility
+Warning!
+Danger!
+New Loan Application
+Search Customer Groups
+Capture Fee
+Charge Fee
+Fee Rate
+-- Select Fee --
+CASA Chart Of Account
+CASA Account
+Fee Rate(%)
+Collateral Details
+Collateral SubType
+Used Contingent
+All Used Contingent
+Risk Acceptance Criteria
+SN
+Required
+Actual
+Comment
+Criteria Comments
+Save and  Close
+Document Search
+Search by Customer Code or Name
+-- Select Document Type --
+Document Search Result
+Intiated By
+Input Option
+Refer Back
+Loop In
+Search staff
+Search Staff
+Search Staff
+Collaterals
+Collateral Swap Details
+Search Application
+Proposed Collaterals
+Expected Collateral Coverage (%)
+Actual Collateral Coverage (%)
+Total Facility Coverage Achieved (%)
+View Collateral Details
+Swap With
+Memo For
+Load Template
+Save Changes
+Print Section
+Load Document Template
+Document Template
+-- Select Document Template --
+Load Document
+Proposed Facilities
+Application Ref No
+Booked Amount
+Book Date
+Coverage
+Outstanding Principal
+CREDIT OFFICER RISK RATING:
+Filter
+Loans In Pipeline (Amount)
+Approved Loans (Amount)
+Operations In Pipeline LMS (Amount)
+Approved Operations LMS (Amount)
+Dashboard Data Filter
+Filter
+Product Types
+Product Type Name
+Product Group Name
+New
+Type Name
+Group
+-- Select Group --
+Classification
+-- Select Classification --
+Require Principal GL
+Require Overdrawn GL
+Require Rate
+Require Tenor
+Require Principal GL 2
+Require Dormant GL
+Require Interest / Income Expense GL
+Product Groups
+Product Group Code
+Product Group Name
+Product Group Code
+Companies
+Website
+Shareholding %
+Edit Group
+Company Name
+Parent Company
+Select Company
+Currency
+Nature of Business
+Select Business Type
+Country
+Select Country
+Language
+Select Language
+Telephone
+Scheme Name
+Date of Inc
+Website
+Company Logo
+Image Path
+Image path
+Title
+Middle Name
+Is Active ?
+Shareholding %
+Custom Field Filter by Host Page
+Host Page
+-- Select Host Page --
+Custom Fields
+Control Type
+-- Select Control Type --
+Item Order
+Required Field
+Branches
+Region
+Address Line 2
+Comment
+Risk Scorings
+Rates
+Max Range
+Min Range
+Adviced Rate
+Rating
+Product
+Minimum Range
+Maximum Range
+Adviced Rate
+Description
+Minimum Range
+Maximum Range
+Chart of Account
+Account Code
+Account Type
+-- Select Account Type --
+Sub Account
+-- Select Account --
+Account Number
+-- Select Fin Statement Caption --
+Account Status
+Inactive
+Closed
+GL Class
+-- Select GL Class --
+Branch Specific
+Currencies
+Chart of Account Currencies
+Currency ID
+Currency Name
+Custom Chart of Accounts
+Account ID
+Currency Code
+Placeholder
+ISNOSTROACCOUNT
+Save
+WELCOME TO PRODUCT DEFINITION MODULE
+Click
+CHOOSE PRODUCT GROUP
+CHOOSE PRODUCT TYPE
+PRODUCT DETAILS
+Customer Class
+Select Customer Class
+Provide Product Name
+Product Code
+Provide Product Code
+Product Category
+--- Select Product Category ---
+Product Description
+Describe product
+--- Select Product Class ---
+Accrual Basis
+--- Select Day Count ---
+--- Select Deal Classification ---
+Product Price Index
+--- Select Product Price Index ---
+Product Spread Index
+Accrual Type
+Allow Overdraft
+Loan Schedule
+--- Select Loan Schedule ---
+Minumum Balance
+Opening Balance
+Tenor Bracket (Months)
+Mininum:
+Maximum:
+Rate Bracket (%)
+Minimum:
+Grace Period (Default)
+Days
+Clean-Up Period
+Expiry Period
+Allow Customer Account Force Debit
+Allow Moratorium
+Product Rating
+-- Select Product Rating --
+Exclude From Litigation/Debt Recovery Agencies
+Is Payday Product
+PRODUCT BEHAVIOUR
+Customer Limit
+Collateral LCY Limit
+Collateral FCY Limit
+Product Limit
+Is Invoice Based
+Allow Fund Usage
+Is Temporary Overdraft
+-- Select CRMS Regulatory Type --
+Principal Balance Ledger
+--- Select Principal Balance Ledger ---
+Interest Income Ledger
+--- Select Interest Income\Expense Ledger ---
+Principal Balance Ledger 2
+--- Select Principal Balance Ledger 2 ---
+Interest Receivable Ledger
+--- Select Interest Receivable\Payable Ledger ---
+Premium\Discount Ledger
+--- Select Premium\Discount Ledger ---
+Dormant Balance Ledger
+--- Select Dormant Balance Ledger ---
+Overdrawn Ledger
+--- Select Overdrawn Ledger ---
+Penal Charge Ledger
+--- Select Penal Charge Ledger ---
+Penal Charge Rate
+Use By LOS
+PRODUCT CURRENCIES
+View Selected Currencies
+Add Product Fee/ Collateral
+Unmapped Fees
+Charge Name
+Target
+Frequency
+Account Category
+Mapped Fees
+Value
+Dependent Amount
+Security Not Mapped
+Collateral Security Name
+Security Mapped
+Select Product Currencies
+Map Fee to Product
+Charge Name
+Target
+Category
+Frequency
+Rate Value
+Dependent Amount
+Map to Product
+Document Definition
+In Use
+Add Document Definition
+Product Document Mapping
+Subsector Name
+Edit
+Remove
+Map To Product Class
+Select Product Class
+--- Select Product class ---
+Map To Product
+Select Product
+--- Select Product ---
+Map To Sector
+Select Sector
+--- Select Sector ---
+Map To SubSector
+Select SubSector
+--- Select SubSector ---
+Select Document Category
+--- Select Document Category ---
+--- Select Document Type ---
+Product Mapping
+Customer KYC Item
+KYC Item
+Order
+Compulsory
+KYC Item
+Select Product
+Display Order
+Select Position
+Compulsory
+Check if the required item is compulsory
+Risk Assessment Title
+Assessment Title
+-- Select Assessment Title --
+Risk Assessment Index
+Top Level Factors
+Weight
+Risk Assessment Title
+Risk Assessment Name
+Risk Type
+-- Select Risk Type --
+Risk Assessment Index
+-- Select Title --
+Index Type
+-- Select index Type --
+Item Level
+-- Select Level --
+Parent
+-- Select Parent --
+Ledgers
+Ledger Code
+Ledger Name
+Account Category Name
+Ledger Name
+Ledger Code
+Account Category
+-- Select Category --
+Document Templates Setup
+Staff Role ID
+Operation ID
+Section
+--- Select Staff Role ---
+--- Select Operation ID ---
+Section List
+Title
+Position
+Roles
+Postion
+Can Edit
+Replace dynamic content with i18n
+List of Placeholders:
+Account Numbers
+All Customer Collateral Remarks
+All Customer Facilities
+Amount Disbursed
+Amount Paid So Far
+Amount Proposed
+Annual Review Date
+Approvals
+Business Sectors
+Collateral Coverage
+Conditions Precedent To Drawdown
+Contingent Facilities
+Current Date
+Customer Exposure
+Customer Turnover
+Environmental Social Risk
+Group Exposure
+Group Facility Summary
+Group Facility Summary Fcy
+Is Security
+Mis Code
+Obligor Risk Rating
+Prepared By
+Proposed Conditions
+Recommended Interest
+Review Type
+Security Description
+Security First Sell Value
+Security Location
+Security Open Market Value
+Security Perfection Status
+Security Valuation Date
+Share Holders
+Signatories
+Transactions Dynamics
+Section Role List
+Regulatory Setup Search
+--- Select Regulatory Type ---
+Regulatory Type
+Product Price Index
+Duration
+Allow Automatic Repricing
+Add/Update Price Index
+Name
+Rate
+Description
+Duration
+Allow Automatic Repricing
+Select Product Currencies
+Add/Update Price Index Currency
+Currency
+-- Select Currency --
+Edit Product
+Select Product Type
+Select Category
+Months
+Invoice Limit
+Charge Name
+Target
+Frequency
+Account Category
+Value
+Dep Amount
+Collateral Security Name
+Charge Name
+Target
+Category
+Frequency
+Rate Value
+Dependent Amount
+Add Product Fee / Collateral
+Fee Name
+Interval
+GL Account
+Dependent Amount
+Fee Name
+Interval
+GL Account
+Cities
+City Class
+Allowed For Collateral
+State
+Local Govt
+City Class
+--- Select City Class ---
+City
+Allow For Collateral
+Loan Covenant Types
+Covenant Type Name
+Require Amount
+Require Frequency
+Is Cleanup Cycle
+Edit
+Covenant Is Financial
+Frequency Required
+Cleanup Cycle
+Amount Required
+Workflow Groups
+Workflow Group Name
+Group Role
+--- Group Role ---
+Save Workflow Group
+Financial Statement Captions
+Is Derived
+Financial Statement Caption
+FS Name
+Save FS Caption
+Customer Financial Statement Groups
+New Customer Financial Statement Group
+FS Caption Group Name
+Save FS Caption Group
+Text Value
+Value Type
+Save FS Caption Detail
+Financial Statement Ratio Captions
+Financial Statement Ratio Caption
+Ratio Caption Name
+Annualised
+Save FS Ratio Caption
+Financial Statement Derived Detail
+FS Derived Caption
+--- Select Derived Caption --
+Financial Statement Derived Detail
+--- Select FS Group --
+--- Select FS Caption --
+Operation Type
+--- Select Divisor Type --
+Value/Previous Type
+--- Select Value/Previous Type --
+Multiplier
+Save FS Derived Detail
+Limits Setup
+Add New Definition
+New Limit Definition
+Limit Name
+Limit Value Type
+--- Select Limit Value Type ---
+Limit Metric
+--- Select Limit Metric ---
+Save Limit Definition
+New Limit Detail
+Limit Type
+--- Select Limit Type ---
+--- Select Limit Frequency Type ---
+Maximum Value
+Allow Override
+Maximum Value
+Maximum Amount
+PEN Limit
+Save Limit Detail
+Save Multiple Details
+Checklist Setup
+Add New Item
+Add New Mapping
+Response Type
+Edit
+Checklist Type
+Can Validate
+Remove
+Checklist Item Name
+Checklist Response Type
+--- Select Checklist Response Type ---
+--- Select Checklist Type ---
+Require Document Upload
+Save Checklist Item
+Checklist Definition Details
+--Select Operation Type--
+--- Select Approval Level ---
+Unmapped Checklist Items
+Add Multiple
+Mapped Checklist Items
+Checklist Item Details
+--- Select Checklist Item ---
+Item Description
+Is Active
+Save Checklist Definition
+Selected Checklist Items
+Save Checklist Definitions
+Approval Group
+--- Select Approval Group ---
+Validate Checklist
+Save Mapping
+Checklist Detail
+Target Type
+--- Select Target Type ---
+--- Select Product --
+--- Select Checklist Definition ---
+Custom Field Form
+Custom Fields
+Form Vaues
+Collateral Sub Types
+Collateral Sub Type Name
+Revaluation Cycle
+Visitation Cycle
+Add Coverage
+Valuation Cycle (Days)
+Visitation Cycle (Days)
+Collateral Coverage Setup
+Collateral Coverage (%)
+Collateral Valuer
+Valuer Licence Number
+Valuer Address
+Valuer Email
+Valuer Type
+-- Select Valuer Type --
+Valuer Country
+-- Select Valuer Country --
+Valuer City
+Collateral Type
+Details
+Require Insurance Policy
+Document Types
+Collateral Classification
+Tangible Related
+Comfort Related
+Charge GL Account
+-- Select GL Account --
+Require Visitation
+Add / Edit Document Type
+Fees and Charges
+Recurring
+Integral
+Charge Name
+-- Select Product Type --
+Fee Type
+Target
+-- Select Target --
+Amortisation Type
+-- Select Amortisation Type --
+-- Select Interval --
+Include Cut-Off Day
+Is Integral
+CRMS Fee Type
+-- Select CRMS Fee Type --
+Add Details
+Fee Detail Type
+Posting Type
+Edit
+Minimum
+Maximum
+New Range
+-- Select Fee Detail Type --
+-- Select Fee Type --
+-- Select Posting Type --
+-- Select Account Category --
+Require Amortisation
+Ledger Account
+-- Select Ledger Account --
+Amortisation Account
+-- Select Amortisation Account --
+Posting Group
+Taxes
+Rate
+Use Amount
+Tax Name
+Tax Rate
+Request Job Types
+Request Job Type Name
+Job Type Name
+Approval Level Setup
+of group
+and level
+View Approval Levels
+Approval Groups
+Approval Level Name
+Investment Grade
+Users
+Remove Level
+Edit Level
+View Level Staff
+Approver
+Scope
+Veto
+Remove Staff
+Edit Staff
+Approval Level Staff
+Level Name
+Via Staff Organogram
+-- Select Position--
+SMS Notification
+Email Notification
+Number of Users
+Number of Approvals
+Can View Document
+SLA Interval (hrs)
+Can View Uploaded File
+Can Upload File
+Can View Approval
+Can Approve
+SLA Notification Interval (hrs)
+Default Role
+-- Select Role--
+Can Escalate
+Level Type
+-- Select Level Type --
+Business Rule
+-- Select Business Rule --
+Route Via Only Initiator
+-- Select Route Initiator Role --
+Credit Appraisal Related
+Investment Grade Limit
+See Politically Exposed
+Can Resolve Dispute
+Maximum Tenor (days)
+Tenor in days
+Can Approve Untenored
+Level Staff
+View Scope
+Select View Scope
+Within Group
+The Entire Process
+Can Send Request
+Has Veto Power
+Approval Workflow Setup
+-- Select Class --
+Approval Setup
+for
+Multi Initiator
+Remove Group
+Selected Operation Approval Groups
+Operation Group
+-- Select Approval Group --
+Allow Multiple Initiator
+Approval Relief
+Relief Staff Name
+Relief Reason
+Edit
+Relief Staff
+Approval Level Rules
+Minimum Amount
+Is Project Related
+PEP Amount
+Is Politically Exposed Person
+Insider Related
+On Lending
+Intervention Funds
+orrBased Approval
+With Instruction
+Domiciliation Not In Place
+Is For Only Contingents
+Exclude All Contingents
+Exclude Level
+Is Agric Related
+Is Only For Renewals
+Exempt All Renewals
+Is ESR
+Save Business Rule
+Departments
+Department Code
+Department Name
+Departments Units
+List of Department Units
+Units
+Unit&apos;s Email
+Unit Name
+Unit Email
+-- Select Department --
+End of Day Operations
+Public Holidays
+Holiday Description
+Holiday Date
+Country Name
+EOD Operation
+Current Application Date
+Last EOD Refresh Date
+Start End Of Day Run
+EOD Date
+EOD Status
+Error Information
+Other Processes
+Refresh Staging Bulk Posting
+Deactivate Inactive Users
+Refresh Loan Classification
+End Of Day Information
+Action Date
+EOD Start Date
+EOD End Date
+View Log
+Year Weekends
+Current Year
+Generate Weekends
+Download Status Record
+States
+Collateral Search Charge
+Charting Amount
+Verification Amount
+Edit State
+Collateral Search Charge Amount
+Staff Relief
+Approved By
+Accredited Principal
+Principal Reg Number
+Solicitor Address
+Solicitor Email
+Accredited Consultants
+Add Consultant Type
+Add New Accredited Consultants
+Consultant Type
+Office Address
+Consultant Type
+Contact BVN
+Date Of Engagement
+Internal/External
+Agent Category
+-- Select Category Category --
+Remedial
+Retail
+State Covered
+Search by State
+Add Consultant Type
+Limits Details
+--- Filter By Limit Metric ---
+Search Customer
+Search Staff
+Search Customer Groups
+Call Limits Setup
+Call Limit Type
+--- Select Call Limit Type ---
+Call Frequency
+--- Select Call Frequency ---
+Save Call Limit
+Image Upload
+Title
+Image
+Upload
+Conditions Precedent / Subsequent
+Is External
+Condition
+-- Select Response Type --
+-- Select Timeline --
+Sub Sector
+Is Condition Subsequent
+Search for Customer Group
+Search For Customer Group
+Caption Date
+Caption Group
+Loan Principal
+Name
+Customer Account
+Email Address
+Phone Number
+Address
+Loan Approved Markets
+City Name
+Account Number
+Email Address
+Phone Number
+State
+City
+Address
+Trigger Setup
+Trigger Name
+Message Template
+Message Type
+Notification Period
+-- Select Message Type --
+Prudential Guideline Setup
+Internal Minimum
+Internal Maximum
+External Minimum
+External Maximum
+Edit
+Status Name
+Internal Minimum
+Internal Maximum
+External Minimum
+External Maximum
+Narration
+Product Class Process
+Product Class Process
+Use Amount Limit
+Product Process
+Maximum Amount
+Region
+Region Name
+Region Type
+Supervisors
+Edit
+--- Select Region Type ---
+Search For Staff
+Region Staff List
+Staff Type
+Region Staff Type
+--- Select Region Staff Type ---
+Region Supervisor
+--- Select Region Supervisor ---
+Click Here to filter staffs
+Approved Employer
+Employer Sub Type
+Employer Type
+-- Select Empleyer Type --
+Employer Sub Type
+-- Select Emplyer Sub Type --
+Phone Number
+Email Address
+State
+Address
+Search For Customer
+Limit Maintenance
+Add New Sector
+Add New Obligor Risk Rating
+Add Currency Limit
+Add Group Limit
+Branch Limit Amount
+Branch NPL Limit
+Bank Limit
+ShareHolder&apos;s Fund
+Sector Code
+Sector Limit Amount
+% of SHF
+Risk Rating
+% Of SHF
+Currency Limit Name
+Currency Limit Value
+Group Limit Value
+Limit Number
+Share Holders Fund
+Shareholder Fund
+Is Investment Grade
+Limit Description
+Group Limit Amount
+Group Limit Number
+Fees
+Interval
+Cut-Off
+Fee Name
+Product Type
+Fee Type
+Fee Interval
+-- Select Fee Interval --
+Fee Category
+-- Select Fee Category --
+Fee Target
+-- Select Fee Target --
+Fee GL
+-- Select Fee GL --
+Amortisation Type
+Include Cut-Off Day
+Is Integral
+Transaction Dynamics
+Dynamics
+Timelines for Compliance
+Timeline
+Duration
+Loan Recovery Setup
+Loan
+Casa Account
+Agent
+Amount Owed
+Write Off Amount
+loan
+-- Select Agent --
+Financial Statement Ratio Value
+List of Email Alert Notifications
+Alert Title
+Notification Period 1 (Days Before)
+Escalation Level 1
+Notification Period 2  (Days Before)
+Escalation Level 2
+Notification Period 3  (Days Before)
+Escalation Level 3
+Edit Alert Monitoring Message
+Notification Period 1 (days)
+Escalation Email(s)
+Notification Period 2 (days)
+Notification Period 3 (days)
+Staff Role Setups
+Add Staff Role
+Add Job Title
+Staff Role Code
+Staff Role Short Code
+Round Rublin In Use
+Edit
+Staff Role
+Resumption Time(24hrs)
+Closing Time(24hrs)
+Use Round Robin
+Additional Activities
+Job Title
+Product Classification
+Product Class
+Product Class Type
+Product Class Process
+Select Product Class Type
+Product Class Process
+Select Product Process
+Global SLA
+Business Unit
+Local Govts
+Local Govt
+Job Request Feedback
+Add New Feedback
+Job Status Feedback
+--- Select Request Status ---
+Search for Customer
+Customer FX Account Creation
+Channel
+Currency Code
+---Select CurrencyCode ---
+Scheme Code
+---Select SchemeCode ---
+GL Sub-Head Code
+---Select GL Sub-Head Code ---
+Sol ID
+---Select Sol_Id ---
+Mode Of Adavance
+---Select Mode Of Adavance ---
+Type Of Adavance
+---Select Type Of Adavance ---
+Purpose Of Adavance
+---Select Purpose Of Adavance ---
+Nature Of Adavance
+---Select Nature Of Adavance ---
+Account Occupation Code
+--- Select Account Occupation ---
+Borrower Category Code
+--- Select Borrower Category ---
+Sector Code
+--- Select Sector Code ---
+SubSector Code
+--- Select SubSector Code ---
+Free Code One
+--- Select Free Code One ---
+Free Code Four
+--- Select Free Code Four ---
+Free Code Five
+--- Select Free Code Five ---
+Free Code Six
+--- Select Free Code Six ---
+Free Code Seven
+--- Select Free Code Seven ---
+Free Code Eight
+--- Select Free Code Eight ---
+Free Code Nine
+--- Select Free Code Nine ---
+Free Code Ten
+--- Select Free Code Ten ---
+Back To Search
+ESG Checklist Setup
+Category
+Sub-Category
+--- Select Category ---
+--- Select checkListScore For Yes---
+--- Select checkListScore For No---
+Defined Grades For &apos;Yes&apos;
+Defined Grades For &apos;No&apos;
+Category Item Name
+Sub-Category Item Name
+Staff Repoting Line
+Staff Information
+Staff Branch
+Staff Email
+Staff MIS
+Username
+Team Unit
+Cost Cent
+Department
+Region
+Group
+Directorate
+Staff Supervisor
+Profile Setup
+User can reset password
+Enable password expiration after
+Minimum required password lenght
+Employer Type
+Employer Sub Type
+Employer Type
+Employer Sub Type
+Job Request Setup
+Add Admin
+Job Type Admin Staff
+Add Hub Admin
+Selected Staff
+Search Staff
+Job Request Setup
+Hub
+Hub Unit
+Add Job-Hub Staff
+Name of Staff
+-- Select Job Unit --
+Is Team Lead
+General Setup
+Rac Item
+Rac Definition
+Rac Category
+Tier
+Rac Item
+Rac Option
+RAC Definition
+Define RAC by
+-- Select Product Class--
+Credit Card
+Product Class
+Product
+Rac Category
+Rac Category Type
+-- Select Category Type --
+Rac Item
+Rac Input Type
+-- Select Input Type --
+Rac Option
+Defined Function
+-- Select Defined Function --
+Control Option
+-- Select Condition Operator --
+Conditional Operator
+Operation
+Control Amount
+Currency Base
+Select Currency Base
+Local
+Foreign
+Custom
+Currency
+-- Select Employment Type --
+Employee
+Self Employed
+Customer Type
+Show At Draw Down
+Require Upload
+Is Active
+Require Comment
+Is Required
+Rac Category
+Category Name
+Rac Category Type
+Category Type
+Rac Option
+Option Name
+Rac Option Item
+Label
+Key
+Is System Defined
+Rac Category Tier
+Category Tier
+Sub Category Type
+Rac Option Item
+Option
+Search For RAC Item
+Work Flow Change
+PlaceHolder
+Destination Url
+Skip Flow
+Work Flow Change
+Map By
+--- Select Operation ---
+Field Label
+Skip WorkFlow
+Document Upload
+Add New Document Category
+Add New Document Type
+Document Category Id Item
+Authourised Signatory
+Signatory Name
+Signatory Initials
+Signatory Title
+Signatory
+Letter Generation Search
+Letter Generation
+Letter Generation
+Search Application
+Reference Number / Customer Name
+Business Owner
+Binding Method
+Template Type
+Setup Group Email
+--- Select Template Type ---
+EMAIL
+SMS
+Default Email
+Sender Email
+Binding Mehtod
+Meeting Date
+Provide Holder
+Due Date
+Account Officer Name
+ALERT STAFF GROUP EMAIL SETUP
+Group Email
+--- Select Group Code ---
+Email Group Code
+Email Group Name
+LEVEL GROUP SETUP
+Level Group Name
+Group/Level Mapping
+Setup
+LEVEL GROUP MAPPING
+Level Code
+--- Select Level Code ---
+FINAL SETUP
+--- Select Alert Title ---
+--- Select Level Group ---
+--- Select Frequency ---
+--- Select Condition ---
+Operation Name
+Formular
+CONDITIONS SETUP
+Trigger Source
+Action For Trigger
+Formula
+Operations
+--- Select Operation---
+Alert Interval
+Last Run Date
+Next Run Date
+Green Loan Identification Setup
+Delete
+Green Loan Identification Definition
+Define the Grade For &apos;Yes&apos;
+Delete
+Approval Setups
+Add Approval Setup
+Enable Round Rublin
+Is Retail Specific
+Use Round Rublin
+Operational Flow Page Order
+Add Operational Flow Page
+Required Appraisal
+Required Offer Letter
+Required Availment
+Tag
+--Select Operation--
+Data Archive Setup
+Allow Periodic Archive
+Archive Trigger
+Select Trigger
+Automatic
+Manual
+Period
+Select Period
+Daily
+Weekly
+Quarterly
+Yearly
+Archive all Utilised Loans
+Archive a single batch of Utilised Loans
+Allow Manual Archive
+Archive batch transactions (fully Utilised Loans)
+Processing Time
+Manual Data Archive
+Manual Data Archive
+All fully Utilised Loans will be Archived
+Batch Archive Loans will be processed
+Project Criteria
+Tier 1
+Tier 2
+Tier 3
+Edit
+Edit
+Project Category
+Select Category
+Add New Cron
+Start Time
+End Time
+Cron Job Setup
+Select Frequency Type
+Search For Loan
+Loan Reference No
+Loan Principal Amount
+Application Users
+Account Status
+New User
+Staff Name
+Select Staff
+Username
+Password
+Confirm Password
+Secret Question
+Secret Answer
+User Profile
+User Groups
+Application Groups
+Groups Activities
+Map Activity
+Manage Access
+Manage Group Access
+Group Name
+Activity Name
+Access Rights
+Can Delete
+Can View
+Add Activity To Group
+Group Name
+Select Group
+Staff List
+Collapse Upload
+Bulk Upload
+Upload Staff
+Role Code
+User Role
+Delete
+Edit Other Information
+FIELD 1
+FIELD 2
+FIELD 3
+FIELD 4
+FIELD 5
+FIELD 6
+FIELD 7
+FIELD 8
+FIELD 9
+FIELD 10
+Add New Staff
+Select Branch
+Get  Details
+MIS Code
+Business Unit
+Select Gender
+Male
+Female
+Select Staff Role
+Sensitivity Level
+Select Level
+Select State
+--Select City--
+Phone
+Resume Work(24hrs)
+Close Work (24hrs)
+Staff Info
+Select Relationship
+Son
+Daughter
+Wife
+Father
+SUPERVISOR&apos;S NAME:
+Assign Supervisor
+Change  Supervisor
+Unassign Supervisor
+Staff Name
+Username
+Change Password?
+Password
+Confirm Password
+Change Security Question?
+Secret Question
+Secret Answer
+Additional User Group
+Activity Name
+Edit Activities
+View Active Activities
+Username :
+Team Unit :
+Cost Cent :
+Department :
+Region :
+Group :
+Directorate :
+Staff Code :
+Staff Name :
+Staff Branch :
+Staff Email :
+Staff Reporting Line
+Active Directory User Authentication
+Active Directory Password
+Activities
+Activities
+Expiring On
+Exchange Rate
+Base Currency
+Deleted Staff Log
+Deleted Staff
+Deleted Staff Code
+Deleted By Staff Code
+Date Deleted
+Dormant Staff Log
+Last Login Date
+Audit Trail
+Audit Action
+Action by
+Logged In Username
+Action in Detail
+Staff Signature Management
+Add New
+Upload Signature
+Select Scanned Staff Signature
+Select image file to upload
+User Account Management
+Last Login
+Active Status
+Locked Status
+Profile Settings List
+Minimum Required Password Length
+Minimum Required Alpha Numerical Char
+Maximum Valid Password Attempts
+Expire Password After (Days)
+Session Timeout
+Requires Question and Answer
+End Date
+Search Parameter
+API Url
+Request Date-Time
+Response Date-Time
+Start Date
+All Xml
+Apend EndPoint
+Error Message
+Error Source
+Status Code
+Search Parameter
+Any Parameter
+Any Parameter
+SID
+BATCH ID
+BATCH REF ID
+TRAN_TYPE
+AMT
+DR_ACCT
+CR_ACCT
+REF_CRNCY_CODE
+RATE_CODE
+RATE
+NARRATION
+STATUS
+TRAN_ID
+PSTD_FLG
+PSTD_DATE
+RCRE_DATE
+PSTD_USR_ID
+FAIL_FLG
+FAILURE_REASON_CODE
+FAILURE_REASON
+AMT_COLLECTED
+LIEN_AMT
+LIEN_FLG
+TOD_FLG
+VALUE_DATE_NUM
+LOAN_ACCT
+FINTRAK_FLG
+BANK_ID
+Daily Accrual Detail
+Batch Posting Details
+Start Date
+End Date
+Search Parameter
+Batch ID
+BATCH_ID
+RCRE_USER
+TOTAL_AMT
+REC_COUNT
+DEL_FLG
+IS_SELECTED
+TOTAL_AMT_COLLECTED
+Batch Posting Main
+Start Date
+Refresh Staging Monitoring
+Application Detail ID
+Schedule Name
+Scheme Name
+Scheme Code
+Created Date
+Application/Customer Name
+Application Reference
+Facility Line
+-- Select Facility Line --
+Scheme Name
+Scheme name
+Facility
+--- Select Facility ---
+Product Price Index
+Tenor
+Schedule
+--- Select Schedule ---
+Interest Rate
+Accurual Basis
+Interest Frequencyuency
+Currency
+Loan Approved Amount
+Search Scheme
+Search Scheme/Code
+Update
+Credit Officer Risk Rating
+Credit Officer Search
+Ratings Periods
+Credit Officer
+CORR Score
+CORR Comment
+Assessment Parameter
+Credit Officer Risk Rating Detail
+CREDIT OFFICER NAME:
+RATING SCORE:
+RISK RATING:
+KEY INDICATOR
+SCORE
+KEY INDICATOR SCORE
+ASSESSMENT PARAMETER
+ASSESSMENT PARAMETER SCORE
+CORR Rating Periods
+Start Rated
+End Rated
+Credit Officer Search
+Credit Officer Name
+Credit Documentation
+Basic Information
+Customer Group Name
+Type of Loan
+GL Account Name
+GL Account Number
+Relationship officer
+Team MIS Code Loan
+Profile Loan
+Customer Sensitivity Level
+Basic Information
+Contingent Information
+Facility Reference No:
+product Name
+Contingent Amount
+Date Approved
+Changes Made For
+New Effective Date
+New Maturity Date
+Operation Details
+Reduced Amount
+Added Amount
+Preview Amount Ammended
+Ammended Amount
+Contingent Information
+Approval Information
+Booked On
+Booked By
+First Interest Payment Date
+First Principal PaymentDate
+Principal Frequency Type
+Interest Frequency Type
+Integral Fee Amount
+Scheduled Prepayment Date
+Interesrt On Past Due Interest
+Accrued Interest
+Total Oustanding
+New Interest Rate
+Prepayment
+Old Principal First Payment Date
+Old Interest First Payment Date
+New Principal First Payment Date
+New Interest First Payment Date
+New Tenor
+Old Account
+New Account
+Interest Frequencyuency
+Interest First Payment Date
+Interest Frquency
+Principal First Payment Date
+Schedule Type
+Type
+Limit
+New Fee Amount
+Approval Information
+Attached Documents
+Attachments
+Fees
+CASA Account
+Manual Fees
+LMS Preview
+LOS Preview
+Covenant Details
+Fees Details
+Collateral Details
+Schedule Details
+Interest  Rate
+Effective  Interest Rate
+Schedule Details
+Supporting Documents
+Date Initiated
+CRMS Regulatory
+Close
+Appraisal Documentation for REFERENCE:
+of OBLIGOR:
+Assign Loans Recovery To Agents
+Search For Agent
+Pick an Agent
+Expected Completion Date
+Unpaid Days Overdue
+Total Outstanding Balance
+Loan Recovery Applications
+Reference Id
+Number of Loans
+Action
+Go For Approval
+Recovery Applications List
+View Loans
+Recovery Applications Status
+Facility Effective Date
+Facility Maturity Date
+Expected Completion Date
+Recovery Loans
+Recovery Approval Comments
+Search For Agent
+Capture Loans Recovery Receipt
+Capture Receipt
+Available Recovery Loans
+Recovered Loans Report
+Receipt Date
+Recovered Amount
+Agent % Commission
+Agent Commission
+Receipt Name
+Recovered Loans Report
+Search For Agent
+state Name
+Collateral(s)
+Collateral(s)
+Loan Recovery Form
+Mode of Collection
+Select Collection Mode
+Cheque
+Direct Transfer
+Amount Recovered
+Collateral Code
+Upload Receipt
+Agency Percentage Commission(%)
+Recovery Date
+Loan Recovery Re-Assignment
+Expected Completion Date
+Previous Agent
+Search For Agent
+Debt Collection Agencies
+Consultant Firm
+Adress
+Related Obligor
+Applications
+- Search results for
+Global
+Individual
+Staff
+Staff Approval
+Delegate
+--- Select Approval Status ---
+Approve Multiple Staff Details
+Delete Staff Approval
+Staff Delete Approval
+Approval Trail Log
+Products
+Product Group
+Product Approval
+Price Index Spread
+Deal Type
+Deal Classification
+Principal Balance GL
+Interest Income/Expense GL
+Interest Recievable/Payable GL
+Dormant GL
+Premium Discount GL
+Day Count
+Collateral LCY Limit
+Collateral FCY Limit
+Customer Limit
+Invoice Limit
+n/a
+Is Invoice Based?
+Product Behaviour Type
+Allow Account Force Debit
+Allow Schedule Type Override
+Allow Tenor Override
+Allow Rate Override
+Clean Up Period
+Default Grace Period
+Product Info
+Fee Target
+Gl Account
+Gl Account Code
+Rate Value
+Dependent Amount
+Product Fees
+Product Collateral
+Chart of Accounts
+Chart of Account Approval
+GL Class
+Chart of Account Info
+Users
+Company
+User Approval
+User Account Info
+Customer Group Mapping
+Customer
+Customer Group Approval
+Customer Group Info
+Customer Groups
+Preliminary Evaluation Approval:
+Go back
+Customers Within Group
+Bank’s Role
+Signatory BVNs
+Top Clients
+Top Suppliers
+Provide Recommendation
+Approval Decision
+Restructured Loan Awaiting Approval
+Effictive Date
+Approval Status
+Rebook Amount
+Preview Amount Ammended
+Attached Documents
+Preview
+Generate Original Offer Letter
+FAM
+Covenant Details
+Fees Details
+Source
+Collateral Details
+Schedule Details
+Interest Rate
+Effective Interest Rate
+Maturity Date
+Schedule Type
+Supporting Documents
+-- Select Status --
+Comment/Recommendation
+-- Select Decision --
+No with condition
+Yes with condition
+Search Restructured Loan Awaiting Approval
+Loan Reference/Customer Name/Customer Code
+Contigent Facility Release Approval
+Contingent Facility
+Customer Name
+Contingent Amount
+Investment Grade?
+Disbursable Amount
+Loan status
+Loan Monitoring Trigger
+Supporting Documents
+Outstanding Interest
+Interest On Past Due Principal
+Interesrt On Past Due Interest
+CRMS Code
+CRMS Date
+Facility Tranches
+Deferred Loan Fee Awaiting Approval
+Loan Amount
+Product Account Number
+Product Account Name
+Sector/SubSector
+Schedule Information
+Collateral Release Approvals
+Released
+Rejected
+Collateral Release
+Collateral Code:
+Time Created:
+Allow Sharing:
+Is Released:
+Hair Cut:
+Is Location Based:
+Interest Payment  Frequency
+Latitude
+Longitude
+View Map
+First  Name
+Additional Document Uploads
+Refer Back
+New Release Document Upload
+Line Operation Awaiting Approval
+Single
+Facility Line Details
+Facility
+Approved Limit
+Line Tenor
+Expiry Date
+Operation Performed: Tenor Change
+Added Tenor (days)
+New Expiry Date
+New Tenor Left (days)
+Total Tenor (days)
+Operation Performed: Interest Rate Change
+Principal Sub-Allocation
+Running Commercial Loan For Sub-Allocation
+New Principal
+All Selected Loan Principal:
+Sub Allocation Principal Sum:
+Sub Allocation Principal Sum:
+Adjust Selected Principal
+Sub Allocate
+Operation Performed: Line Facility Amount Change
+New Line Amount
+Facility Details
+Fees
+Supporting Documents
+Approve Line Operation
+Commercial Loan Review Operation Awaiting Approval
+Loan Ref No
+Customer&apos;s Name
+Facility Details
+Tenor Left
+Sub Allocation Principal Sum:
+All Selected Loan Principal:
+Operation Performed: Roll Over
+Tenor (days)
+Instruction
+Operation Performed: Automatic Roll Over
+Defferal / Waiver Approvals
+Deferred Document
+Checklist Status
+LMS
+View
+Checklist Item Awaiting Approval
+Deferral Memo
+Print
+Deferral Memo
+Deferral Date
+Date Deferred/Waived:
+Details and Approval
+Recommedation
+refer Back
+Deferral/Waiver Memo
+Override Request Awaiting Approval
+Customer BVN
+Override Request
+Request By
+Request Date
+Checklist Approval
+Override Request
+Reason for Override
+Customer Information Awaiting Approval
+Customer Code
+Modification Type
+Modified By
+Date Modified
+Customer Information Approval
+Modified Info
+General Information Awaiting Approval
+CRMS Legal Status:
+CRMS Company Size:
+CRMS Relationship Type:
+Corporate Information Awaiting Approval
+Address Information Awaiting Approval
+Contact Address
+Local Government
+Phone Contact Information Awaiting Approval
+Director Information Awaiting Approval
+Account Signatory Information Awaiting Approval
+Top Supplier Information Awaiting Approval
+Top Client Information Awaiting Approval
+Individual Shareholder Information Awaiting Approval
+Corporate Shareholder Information Awaiting Approval
+Employment History Awaiting Approval
+Modified Information
+Approving Staff
+Fee Concession Awaiting Approval
+Concession Type
+Reason For Concession
+Default Value
+Fee Charge
+View Document
+View Details
+Fee Concession Approval
+Concession Type
+Concession Value
+Contingent Loans Usage Approval
+Time In
+Principal
+Contingent Loan Usage
+Obligor:
+Principal:
+Contingent Amount:
+Book Date:
+Amount Used:
+Percentage Used:
+Amount Requested:
+Disapprove
+Promissory Note Number:
+State:
+Is Owner Occupied?:
+Is Property Residential?:
+Is Asset Pledged By a Third Party ?:
+Third Party Name:
+Is Asset Managed By a Trustee ?:
+Trustee Name:
+Bank Share Of Collateral:
+Account Name:
+Account Name To Debit:
+Account Number To Debit:
+Bank Name / Payer:
+Regular Payment Amount
+Employer:
+Monthly Salary:
+Other Annual Allowances:
+Total Annual Emolument
+Account Number (Salary Domiciled)
+Annual Salary:
+Remark
+Contract Detail:
+Contract Employer:
+Total Contract Value:
+Outstanding Invoice Amount
+Bank Name / Payer
+Interval:
+Phone Number 2:
+Relationship Duration:
+Email
+Start Date:
+End Date
+Collateral Item Policy Approval
+Add Insurance
+Main Collateral Detail
+Insurance Policy Detail
+Insurance Company:
+Insured Amount:
+Request Details
+Reason:
+Comment:
+Previous Comments
+Insurance Policy History
+Upload Policy Document
+Upload
+Previous Insurer
+Select Previous Insurance
+Staff Role Approval
+Staff Role Approval
+LIST OF GROUP
+LIST OF ACTIVITIES
+Staff Role Info
+Reassign Loan Account Manager
+Current Relationship Manager
+New Relationship Manager
+Reassign Loan Account Manager
+Accrued Interest
+Past Due
+Total Amount
+Effective Date
+Assign Relationship Manager
+New Relationship Manager
+Reason For Change
+Status
+Comment
+Fee / Charge Approval
+Charge Name
+Fee Amount
+Charge Fee Approval
+Charege Fee
+Charge Fee Info
+Written-Off Accounts / Black-Book Approval List
+Camsol Type
+Can Take Loan
+Written-Off Accounts / Black-Book Detail
+Balance:
+Loan System Type:
+camsolType
+Interest Insuspense:
+Loan Reference:
+Date Logged:
+Written-off Accounts/Black-Book Details
+Approve Multiple Camsol Details
+Drawdown Approvals
+Drawdown Memo
+Multiple Facility Drawdown
+Generated Offer Letter
+Show Loan Information
+DRAWDOWN DOCUMENTS
+Approval Memo
+Cash Collateral Lien Placement
+-- Select Approval Status --
+Drawdown Memo
+Approval Group Modification
+Workflow Group
+Operation Name:
+Submit
+Approval Workflow Level
+Number Of Users
+Number Of Approvals
+Approval Workflow Level
+Level Name:
+Position:
+Maximum Amount:
+Investment Grade Amount:
+Fee Rate:
+Number Of Users:
+Number Of Approvals:
+SLA Interval:
+is Politically Exposed:
+Can Escalate:
+Can Approve Untenored:
+Can Resolve Dispute:
+Is Active:
+SLA Notification Interval:
+Can View Document Value:
+Can Edit Value:
+Can View Uploaded File:
+Can Upload File:
+Can View Approval:
+Can Approve Value:
+Can Recieve Email:
+Can Recieve SMS:
+Route Via Staff Organogram:
+Submit
+Approval Level Staff Modification
+Approval Level Staff Modification
+Process View Scope:
+Can View Document:
+Can Approve:
+Can Edit:
+Veto Power:
+Approval Level Name:
+Staff Level Name:
+Submit
+Approve Staff Relief
+View Details
+Staff Relief Details
+Staff Name:
+Relief Staff Name:
+Relief Reason:
+Loan Application Cancellation Approval
+Loan Applications
+Loan Application Information
+Submit
+Facility Booking Verification
+Interest CAP Account
+Nostro Account
+Status
+Customer Approved Amount
+Disbursement Amount
+Loan Covenant
+Select Revolving Type
+Select Price Index
+Submit Booking
+Generated Offer Letter
+Re-route
+Accredited Consultants Awaiting Approval
+View Details
+Accredited Consultant Details
+Registration Number:
+Name:
+Firm Name:
+Solicitor BVN:
+Email:
+Address:
+Consultant Name:
+Submit
+User Account Status Change Approval
+Loan Fee Change Awaiting Approval
+CASA Account Name
+CASA Account Number
+Changes Made For Take Fee
+Global Interest Rate Change Awaiting Approval
+Old Rate
+New Rate
+isMarketInduced
+Market Induced
+View to Approve
+View Comments
+Product Price Index Global
+Approve Global Interest Rate Change
+Product Price Index
+Effective Date
+Old Rate
+New Rate
+Market Induced
+Comment
+Status
+Approve Global Interest Rate Change
+Credit Decision
+Accept
+Global Interest rate Approval Comments
+Upload
+Custonmer
+Passed
+Action
+Disburse
+Select Interest Type
+Save Without Posting
+Schedule Details
+Core-Banking Information
+Core Banking Reference Number
+NGN Equivalent
+ATC Lodgement
+Date Lodged
+ATC Type
+Depot
+Unit Number
+Additional Detail
+ATC Logdment
+ATC Lodgement Detail
+Customer Account Balance
+Approval Panel
+ATC Release
+Date Released
+Atc Type
+Unit To Release
+Approval Comments
+Customer&apos;s ATC
+Unit Cost
+Number Of Bags
+ATC Details
+ATC Lodgement Detail
+ATC Release
+Total Units
+Units to Release
+Total Unit
+unit Released
+Unit Balance
+Save Request For Approval
+Customer Account Balance
+Approval Panel
+Submit and Close
+Project Site Report Approval
+Project Site Report
+Contractor Name
+Project Cost
+Facilities
+Project Site Report
+PERFORMANCE ANALYSIS
+Value Of Collateral
+Certified VOWD to Date
+PMU assessed Work to Date
+Value Of Collateral:
+Certified VOWD to Date:
+PMU assessed Work to Date:
+Amount Disbursed:
+Requested Amount:
+Performance Analysis
+PERFORMANCE EVALUATION
+Report Type
+Project Sum
+APG Issued
+Progress Payment To Date
+Project Sum:
+APG Issued:
+Amount Received:
+PMU Assessd VOWD To Date:
+Amount Disbursed To Date:
+Independent Consultant To Date:
+Cost Variation:
+Time Variation:
+Certified VOWD To Date:
+Amortised APG:
+Progress Payment to date:
+Performance Evaluation
+COMMENT FROM INSPECTION
+OBSERVATIONS AND IMPACT
+Observations
+RECOMMENDATIONS
+Recommendations
+TASKS FOR NEXT INSPECTION
+Next Inpectioan Date
+Tasks
+View Report
+Evaluation Report
+Approval Panel
+Client Name:
+Project Cost:
+Project Description:
+Project Completion Date (Planned):
+Next VisitationDate:
+Project Site Report Type:
+Approval Panel
+Submit
+List of Facilities
+Legal Reference Code
+Loan Purpose
+Total Utilized Amount
+Project Site Report
+Letter Generation Approval
+Select Request Type
+As At Date
+Loan Balance
+Debt Status
+Signatory&apos;s Tile
+Signatory&apos;s Name
+Signatory&apos;s Initials
+Letter Generation Approval
+Valuation Name
+Valuation Reason
+Collateral Valuations
+View Valuation Prerequisite
+Valuation Prerequisite
+Customer Account Number
+Valuer Account Number
+Valuation Fee
+Valuation Prerequisite Type
+Valuation Comment
+Narration
+Document Uploads
+Valuer Information
+Valuer Comment
+WHT (%)
+WHT Amount
+OMV
+FSV
+Add Valuer
+Back to list
+Submit for Approval
+Valuation Prerequisite
+List Of Valuers
+Valuers List
+--- Select Valuer ---
+Close
+Edit Valuation Prerequisite
+Approval Comment
+Security Release Approval
+Collateral ID
+Document Reference Number
+Is On AMCON List
+Litigation Status
+Created By
+View
+Approval Items
+Perfection Status:
+Litigation Status:
+Is On AMCON List:
+-- Select Litigation Status --
+Ongoing Court Case
+No Ongoing Court Case
+Submit
+Uploaded Documents
+Call Memo Approval
+Call Memo
+Call Memo List
+Approve
+Call Memo Documents
+Approval Process Comments
+Bulk Loan Disbursement Approval
+Success
+Failed
+View Schedule
+Enter Comment Here
+Submit For Approval
+Loan Recovery Repayment Approval
+Repayment Date
+Loan Recovery Repayment
+Loan Reference Number:
+Amount To Recover:
+Recovery Effective Date:
+Recovery End Date:
+Amount Recovered:
+Recovery Repayment Date:
+Repayment Amount:
+Authentication Token
+Deferred Document Approval
+Exclude Legal
+From Approval Level
+To Approval Level
+Approve Deferred Document
+deferral for
+Deferred Document:
+Deferral Approval Status:
+Deferred Duration:
+Cumulative Days:
+Deferral Expiration:
+Reason for deferral:
+To Approval Level:
+From Approval Level:
+Approve
+Document Name
+Deferral Extension Approval
+Approve Deferral Extension
+Approve
+Batch Prepayments Approval
+Batch Code
+Number Of Loans
+Approve
+Send for Approval
+Send for Approval
+Lien Removal Awaiting Approval
+Lien Date
+Lien Reference
+View
+Lien Approval
+LIEN RELEASE DOCUMENT
+Request Letter Name
+Action
+Lien Approval Comments
+Bulk Recovery Assignment Awaiting Approval
+Consultant Company
+Assignment Type
+Bulk Recovery Loans
+Bulk Recovery Approval
+Recovery Reporting Awaiting Approval
+Action
+View Loans
+Approve
+Amount Recovered
+Bulk Recovery Reporting Loans
+Recovery Reporting Approval Comments
+DateTime Created
+Recovery Reporting Approval
+Payment Recovery Commission Awaiting Approval
+Commission Amount
+Commission Rate (%)
+Commission Amount Less WHT
+Agent Account Number
+Action
+View
+Credit To Agent
+Amount To Debit
+Amount To Credit
+Recovery Commission Loans
+Facility Modifications Awaiting Approval
+Application Reference
+Facility Modification
+Product
+approved Tenor
+Review Type
+LMS Facility Modifications Awaiting Approval
+Credit Documentation Filling Awaiting Approval
+Module
+Approve
+Credit Documentation Filling Approval
+Related Employers Approval
+Related Employer
+Loan Review Drawdown Approval
+Exceptional Loan Approval
+Proposed Amount
+Breached Limit
+Memo
+Exceptional Loans
+Changes
+Bulk Recovery Unassignment Awaiting Approval
+Bulk Approval
+Cash Security Release Approval
+Bulk Recovery Approval Comments
+Facity Maturity Date
+Exceptional Loan Application Search
+Exceptional Loan Applications
+Loan Application Information
+Operation Type:
+Review Detail:
+Exceptional Loan Applications
+Loan Application Reference Number/ Customer Name/ Staff Code
+Generated Offer Letter
+Loan Search
+-- Select Facility Type --
+Search by loan / application reference number
+Loan Search Result
+Loan Covenant
+Loan Search
+Add New Covenant
+Loan Covenant
+-- Select Covenant Type --
+Covenant Date
+-- Select Frequency Type --
+Is Percentage Based
+Risk Assessment
+Total Score
+Save Computed Scores
+Finish Assessment
+Set Risk Assessment Type
+Assessment Title
+Target:
+Start Assessment
+Selected application is at
+- Search results for
+Customer Name/Group
+CP
+SLA
+APPLICATION REQUEST - GENERAL POOL
+Global
+Undo
+Save Changes
+Time:
+Customer Account Statistics
+-- Select Customer --
+Load Customer Turnover
+Fetch Customer Account Statistics
+Customer Rating
+Customer And Facility Rating
+Generate Customer Rating
+Term Sheet Details
+Term Sheet Code
+Computation Of Interest
+Repayment Source
+Availability
+Processing Fee
+Customer Ratio
+-- Select Ratings--
+Save and Validate Limit
+Limit:
+Exposure:
+Available Limit:
+Undisbursed Approved Loans Balance
+List of Written-off Facilities
+Show Changes
+Other applications check found
+Product Limit Validation
+Last Session School Fees
+Limit (%)
+IS VALID
+NOT VALID
+Validity
+Edit Limit
+Application Status
+Project  Related
+Domiciliation is not in place
+Is With Instruction
+Save changes
+Send to applications for edit
+Escalate
+Fetching Approvers
+Risk Acceptance Criteria
+Proposed Collaterals
+Save Change
+Update Exposure
+Contractor Rating
+Customer Tier
+Contractor&apos;s Rating
+CASHBACK
+Loans -
+Decline with condition
+Accept with condition
+Change log
+Review Amount
+Recommended Amount
+Account Statistics
+From
+-- Select Month --
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+Year
+To
+Highest Debit Amount
+Lowest Debit Amount
+Highest Credit Amount
+Lowest Credit Amount
+Debit Turn Over
+Credit Turn Over
+Turnover Details
+Float Charge
+Revenue Item
+Modify Exposure
+Outstanding Exposure
+Legal Lending Unit Unit(NGN)
+Tenor(Month)
+LLL Unit(NGN)
+Tenor(Month)
+Save Exposure
+Contractor Rating
+Term Sheet Details
+Term Sheet Code:
+Computation Of Interest:
+Repayment Source:
+Availability:
+Processing Fee:
+Security Condition:
+Other Condition:
+Taxes:
+Transferability:
+Additional Comment:
+Borrower:
+Facility Amount:
+Purpose:
+Permitted Account:
+Debt Service Reserve Account
+Cancellation:
+Current Facility Details
+CASA Account Number
+Outstanding Interest
+Facility Purpose
+Operation Type
+Review Details
+Contingent Liability Details
+Is Tenored
+Is Bank Format
+Loan Status
+Is Disbursed
+Approval Status
+Contingent Code
+Contingent Outstanding Principal
+Existing Amortization Amount
+Contingent Liability Details
+Guarantors Details
+Guarantor Name
+Guarantors Details
+Contingent Operations
+--- Select Operation Type ---
+Sub Allocation Limit
+Topup Limit
+Validate Drawn Limit
+Operation Details
+Take Fee?
+--- Select Status ---
+Take Fee
+Do Not Take Fee
+Take Fee
+Save Review
+Search For OD
+Search For Account
+Account Details For:
+Payment Plans
+Date
+Amount
+Upload Document
+Contingent Operations
+Contingent Liability Operations
+Perform Operation
+Search For Contingent Loans
+Schedule Details
+Effective Interest Rate
+Rebook Amount
+APG Balance
+Validate Drawn  Limit
+Collateral Release Awaiting Job Request
+Release Type
+Expired B&amp;G
+Contingent Liability Details
+Covenant Details
+Fees Details
+Guarantors Details
+Collateral Details
+Supporting Documents
+Details For:
+Yes : No
+Rate Review
+Review Bulk Interest Rates
+-- Select Price Index --
+Interest Rate Review List
+Rate Review
+Pending Rate Reviews
+Pending Interest Rate Review Application
+Rate Application
+New Exemption
+Bulk Rate Review Exemption List
+Rate Exemptions
+Search For Loan
+Contingent Facility Release
+-- Select Nostro Account --
+Legal Reference Number
+Group Approved Amount
+Can Share?
+Drawdown Memo
+Loan Covenant
+Covenant Class
+-- Select Covenant Class--
+Back To List
+Upload Supporting Documents
+New Release Document Upload
+Loan Restructuring Operation
+RESTRUCTURE
+Loan Review Approval Details
+Restructure
+Loan Operations
+Payment Plan
+Proposed Effective Date
+Is-Management-Rate
+Overdraft Sub Allocation
+Prepayment Amount
+OverDraft Topup
+Fee Charges Amount
+Termination And ReBook
+YES
+NO
+Complete Write-Off
+Cancel Undisbursed Loan
+Principal Payment Date
+Interest Payment Date
+Search For Loan
+Search For Account
+Account Details For
+Terminal Date
+Overdraft Amount
+Is Current Account
+Action By
+Overdraft Interest Rate
+Overdraft Expiry Date
+Post No Status
+Old Product Account Number
+Payment Plans
+Date
+Amount
+EOD Operation
+Date
+Run End Of Day
+HOU Routing
+Loan Applications
+Responsible Person
+Loan Review Applications
+Customer Collaterals -
+--- Select Release Type ---
+Final Release
+Temporal Release
+Note
+Collateral History
+Amount Used (by Principal):
+Amount Used (by Outstanding):
+Collateral Value:
+Available Value (by Principal):
+Available Value (by Outstanding):
+Amount Used
+Amount In Used
+Date Used
+Expiration Date
+Primary Document
+Predefined Fields
+List of Deferred And Waived Checklist
+Deferral Duration
+Cumulative Days
+Current Staff
+View
+Reassign checklist Approval
+Extend Checklist Deferral
+Provide Deferred Checklist
+Checklist deferral for
+Staff:
+Deferral Details
+Uploaded Documents
+Deleted Documents
+Deferral Uploads
+Deferral Memo
+Print
+Extend Checklist Deferral
+Reason for Extension
+Extension Date
+Has Supporting Document?
+Deferred Checklist Upload
+Checklist Document
+Exclude Legal?
+Deferral/Waiver Memo
+Customer Product Fee Concession
+Customer Account No
+Set Customer Product Fee:
+Product
+-- Select product --
+--- Select Product Fee ---
+Rate/Value
+Dependent Amount
+Existing Customer Products Fee
+Rate/Value Type
+Override Request
+New Override
+Overide
+Override Request
+Customer Search
+Customer Code
+Allowed Override
+Project Site Report
+List of Facilities
+Get Facility
+Create Report
+Project Site Report
+Inspection Date
+All Comment
+PERFORMANCE ANALYSIS
+Amount Requested :
+PERFORMANCE EVALUATION
+Disbursed To date
+COMMENT FROM INSPECTION
+Add Supporting Images
+comment
+COMMENT SUPPORING IMAGES
+ID
+Image Caption
+Replace
+OBSERVATIONS AND IMPACT
+RECOMMENDATIONS
+TASKS FOR NEXT INSPECTION
+PROJECT SITE IMAGES
+Supporting Images
+Search Application
+Loan Application Reference Number /Customer Name
+Project Site Report
+Select Facility Type
+Project Location
+Project Commencement Date
+Project Completion Date (Planned)
+List Of Facilities
+Comment
+Observation
+Next Inspection Task
+Next Inspection Date
+Is Done
+Recommendation
+Performance Analysis
+Value of Collateral
+Performance Evaluation
+Current Project Cost
+PMU Assessd VOWD To Date
+Amount Disbursed To Date
+Independent Consultant VOWD To   Date
+Cost Variation
+Time Variation
+Certified VOWD To Date
+APG Amount  Received
+Amortised  APG
+List of Facilities
+Relationship Officer Name
+Site Comment Images
+Upload Picture
+Project Comment Images
+Recovery Payment Plan
+loan
+Payment Amount
+Recovery Plan
+-- Select recovery Plan --
+Loan Review Application
+Select Status Type
+Customer Name / Customer Id (For importing Customers) / Application Reference Number
+Loan System Type
+Performing
+Written-Off
+Selected Loan Details
+New Application
+Activity type
+-- Select Activity Type --
+Duration (days)
+Application Form
+Submit Application
+THIRD-PARTY FACILITIES
+Manual Fee
+New Fee
+Submit Fee
+Loan Review Appraisal
+Selected application is at
+Approved Rate
+Show Finacial Statement
+Save and Validate Limit
+Fetch Account Statistics
+Load Customer Turnover
+Show Account Statistics
+Application Status
+Preview Previous
+Show Document Upload
+Transaction Dynamics
+Show Collateral
+Proposed Collaterals
+Job Requests
+Management Convey Memo
+Save and Close
+Cancel
+From:
+--Select Month--
+Jan
+Feb
+Mar
+Apr
+Jun
+Jul
+Aug
+Sep
+Oct
+Nov
+Dec
+Accounts
+-- Filter By Selected Account --
+To:
+Highest Debit Balance
+Lowest Debit Balance
+Highest Credit Balance
+Lowest Credit Balance
+Loan Review Offer Letter
+Refer Back to CAP
+Offer Letter Checklist
+Loan Review Availment
+Application Details
+Availment
+Facility Application Number:
+Facility  Type
+Customer Term Sheet
+-- Select TERMSHEET Code --
+Require Collateral
+-- Select Require Collateral --
+Is An Already Approved Application?
+Add Facility
+Loan Amount with Other Bank:
+Is Employer Related?
+-Select Employer-
+List of facility(s)
+Provide Organisation and Management Profile
+Ownership Structure (% Local/Foreign Ownership)
+Save and Continue
+Limit / Exposure
+Limit
+Total Initiated balance
+Total Approved balance
+Total Exposure :
+Branch NPL Limit :
+Branch NPL :
+Branch NPL To Total Exposure :
+Current Facility Details
+Contingent Liability Details
+Supporting Documents
+Search for loan
+Search For Loan
+Search Result
+View Concession
+Loan Fee Concession
+Edit
+-- Select Concession type --
+Loan Fee Type
+Default Value (%)
+Concession (%)
+Used (%)
+Amount Remaining
+Contingent Loans Usage ::
+Account  Number
+Contingent Amount
+Book  Date
+Maturity  Date
+Percentage Used
+Percentage Requested
+Exchange Rate
+Exchange Amount
+Request Form
+Loan Prepayment
+Search for Loan Customer
+Past Due Interest
+Past Due Principal
+Total Outstanding
+Prepayment Method
+-- Select Prepayment Method --
+Maturity Date
+New Payment Plan
+Date
+Amount
+Balance:
+View Loan Details
+Overdraft Operations
+Undrawn Amount
+Drawn Amount
+Expiry Date
+Search For OD
+Search For Account
+Payment Plans
+Loan Review Operation
+Schedule Method:
+Outstanding Principal:
+Installments:
+Reference No:
+Past Due Interest:
+Total Outstanding:
+Past Due Principal:
+Interest on Past Due Principal:
+Interest on Past Due Interest
+Change Principal Pmt Date
+Change Interest Pmt Date
+Tenor In Days
+Change Interate Rate
+Amount to Pay
+ADJUSTABLE
+Select Account
+--- Select Account ---
+Type
+First Day Interest
+Second Day Interest
+Change Maturity Date
+Date
+Amount
+Generate1
+%
+Interest Rate (%)
+Rebook Loan with Reference No:
+Account Details For:
+Commercial Loans Maturity Instruction
+Accruled Amount
+New Loan Instruction
+Instruction Type
+Instruction Document
+Commercial Loan - Rollover
+New Loan Instruction
+Set Instruction
+Roll-over Loan
+Add Tenor (days)
+Add Tenor
+Value Date
+Commercial Loans - Pre-payment
+Search for running loan tranche with loan reference number
+Running Loan Lines
+Line Reference No
+IR
+Oustanding Principal Amount
+Interest At Maturity
+Loan Tenor (Days)
+Tenor Left (Days)
+Interest Cap Account
+Loan Payment
+Payment Effective Date
+Amount To Pay
+Add Payment
+Commercial Loans - Sub Allocation
+Source Data
+Sub Allocation Process
+Source Tranche
+Destination Tranche
+Sub Allocate
+New Tranche Information
+Search For Source Loan
+Facility Line Information
+Availed On
+Loan Application Reference Number/customer Name
+Facility Details
+CASA Account Number 2 :
+loan Type
+Principal Amount
+Tenor (Days)
+Product Price Index Rate
+System Prudential Guideline Status
+User Prudential Guideline Status
+Date Disbursed
+Disburser Comment
+Nostro Account Id
+Nostro Rate Code
+Nostro Rate Amount
+Notstro Currency
+Overdraft Facility Details
+Get Balance
+Product Name
+Overdraft Limit
+Current RM
+Start Date
+End Date
+New RM
+Reason For Change
+Loan Search
+Recovery Operations
+Interest Accrued Amount
+WrittenOff Amount
+Amount To Recover
+Recovery Agent
+--- Select Recovery Agent ---
+Payment Mode
+--- Select Payment Mode ---
+General Ledger
+Date
+Amount
+Schedule Details
+Loan Performance
+Type in your search parameter (LoanReferneceNo or CustomerName)
+System Performance Status
+--- Select Performance Status ---
+Details
+Loan Details
+Loan Fee Charge
+Fee Amouunt
+Earned Amount
+Unearned Amount
+Fee Rate Value
+Return
+Enter Customer Name, CASA Account number or Loan Reference Number
+Charge Fee Modification
+Charge/Fee Type
+New Rate Value
+Refund Amount
+Download Sample
+Cusotmer Name / Code
+Can Take Loan
+true
+false
+loan Ref
+Loan Written-off Accounts Detail
+Zoom In
+Zoom Out
+Lat
+Lng
+Drag
+Add Marker
+Facility Detail Summary
+Facility Details
+CRMS Reference Number:
+CASA Product Account Name
+Spread
+Interest Repayment Frequency
+Is performing
+Principal Repayment Frequency
+Is written off
+Nostro Currency
+Facility Details
+Overdraft Facility Details
+Drawn Amount
+Undrawn Amount
+Overdraft Facility Details
+Contingent Liability Details
+Covenant Details
+Fees Details
+Collateral Details
+Schedule Details
+Last Restructure Date
+Related Loan Ref Number
+Outstanding Principal Amount
+Related Facilities
+Source Reference Number
+Credit Amount
+Debit Amount
+valueDate
+Post Currency
+Transaction Detail
+Start Date
+End Date
+Get Accrual
+Daily Accrual Category
+Daily Accrual Amount
+Daily Interest Accrual
+Date Requested
+Contingent Untilization
+Rebook Reference Number
+Operation Completed
+Bond Amount
+Rebook Date
+Exposure Before Rebook
+Who Performed Previous Operation
+LMS Operations
+Is Used
+Maturity Instruction
+Full and Final Repayment Pattern
+Facility Details History
+Overdraft Loan History
+Schedule Details History
+Related Contingent Liability Details
+FX REVOLVING Loan - Payment
+Interest Rate
+New Principal Balance
+Interest To Date
+Reduce Principal
+New Maturity Amount
+Commercial Loan Review Operation
+FX Revolving Loan Review Operation
+Facility Line Review Operations
+Tenor Change
+Interest Rate Change
+Line Facility Amount Change
+Collateral Details
+Loan Review Application Search
+Review Applications
+Related Reference
+Person
+Condition Precidence
+Loan Review Cancellation
+Generated Offer Letter
+Print To PDF
+Bulk Loan Prepayment Reversal
+Bulk Loan Prepayment Reversal
+Prepayment Date
+Load Selected
+Search For Current Prepayment Loan
+Collapse upload
+Bulk upload
+Upload File
+All Prepayments
+Batch Prepayments
+Edit Prepayment Amount
+Prepayment Information
+Send for Approval
+Send for Approval
+Loan Prepayment Reversal
+Prepayment Amount Entered As At Current Run Date
+Checklist Item Simulation
+Global Interest Rate Change
+hasBeenApplied
+Has Been Applied
+Add/Update Global Price Index
+Product Price Index
+Effective Date
+Old Rate
+New Rate
+Is Market Induced
+Completed Loans
+EffectiveDate
+Loan Preview
+Loan Reference Number
+Product Type Name
+Relationship Manager Name
+OutstandingInterest
+Mark Loan As Completed
+Cancel In-Active Contingent
+Cancel Contingent Liability
+Search For Loan
+Reason For Cancellation
+Disburse
+Reference No
+Amount Disburse
+Capture CRMS Code For Facility Booking
+Capture CRMS Code
+Generate Multiple CRMS Code
+Generate CRMS300
+Generate Bulk CRMS Code
+Capture CRMS Code
+Availment Routing
+LOS Availment Applications
+Approval Date
+Routed To
+LMS Availment Applications
+Full and Final Complete Wrote-off
+Full And Final Complete Write-off Information
+Full And Final Complete Write-off
+Search Loan
+Full And Final Details
+Loan Details
+Initial Outstanding Amount:
+Current Outstanding Amount:
+New Status
+Agreement Details
+Agreed Payment Amount
+Agreement Details
+Term Sheet
+Security Condition
+Other Condition
+Taxes
+Transferability
+Term Sheet
+Borrower
+Permitted Account
+Cancellation
+Interest Payment
+Currency Of Disbursement
+Documentation
+Drawdown
+Early Repayment Of Principal
+Pricing
+Management Fees
+Facility Fee
+Conditions Precedent To Utilisation
+Presentations And Warrantees
+Covenants
+Events Of Default
+Governing Law And Jurisdiction
+Loan Monitoring Trigger
+Loan Transaction Dynamics
+Loan Charge/Fee
+Interest Rate
+Effective Date
+Maturity Date
+Overdraft Limit
+Contingent Amount
+Maturity Date
+Generated Offer Letter
+Re-route
+Original Documents Management
+Document Management Operation
+New Document Upload
+Search Uploaded Document
+Original Documents Management
+Upload File
+Submission of Original Documents
+Search For Collateral
+Main Menu
+Original Documents
+&apos;n/a&apos;
+View Documents
+Original Document Detail
+Application ReferenceNumber
+Is an Original Title Document
+Back
+Back
+Uploaded Documents
+close
+LC Application(s)
+Search for LC to Enhance
+Search for LC to Extend
+LC ID
+LC Amount
+Total Released Amount
+Available Amount For Release
+Release Amount
+LC Issuances
+Select Release:
+--select amount to see release details--
+Release Amount:
+Save Release Amount
+Shipping Documents
+Lc Issuance Details
+for LCID:
+Lc Issuance
+Beneficiary Name
+Beneficiary Phone Number
+Beneficiary Address
+Beneficiary Email
+Beneficiary Bank
+LC Type
+--- Select LC Type ---
+LC Draft Required
+Lc Reference Number
+LC Expirydate
+Fund Source
+--- Select LC Fund Source ---
+--- Select Collection Account ---
+--- Select IFF Line ---
+FORM M Number
+Total Approved Amount
+Tolerance Value (%)
+Tolerance Value
+Proforma Invoice Date
+Proforma Invoice Due Date
+Transaction Cycle(Days):
+LC Issuance details
+LC Establishment Date
+Cash Build Up Plan
+LC Required Documents
+Shipping
+Line Collateral(s)
+Line Conditions
+Line Transaction Dynamics
+IFF Line Details
+Lc Usance Details
+Select Usance:
+--select usance to see details--
+Select Usance Extension:
+--select usance extension to see details--
+Usance Amount:
+Usance Rate (%)
+Usance Value Date:
+Usance Tenor (Days)
+Proposed Usance Tenor (Days)
+Approved Usance Tenor (Days)
+Usance Maturity Date
+Outstanding LC Amount:
+Proposed Usance Maturity Date
+Approved Usance Maturity Date
+Reset
+Save LC Usance Details
+LC Usance
+LC Usance Approval Memo
+LC Issuance Approval Memo
+LC Cancellation
+Start LC Cancellation
+LC Cancellation
+Back to Issuances
+Select LC Application for Enhancement
+Issuance Application Status
+Release Application Status
+Usance Application Status
+Issuance Approval Status
+Release Approval Status
+Usance Approval Status
+Issuance Approval Level
+Release Approval Level
+Usance Approval Level
+Select
+LC Applications
+Search LC
+LC Issuance Reference Number/ Form M Number / Customer Name/ Customer Code
+Lc Document
+Lc Issuance Id
+Is Sent To Issuing Bank
+Number Of Copies
+Is Sent To Applicant
+Lc Document
+Lc Shipping
+Party Name
+Party Address
+Port Of Discharge
+Port Of Shipment
+Latest Shipment Date
+Is Part Shipment Allowed
+Is Trans Shipment Allowed
+Lc Shipping
+Lc Condition
+Is Satisfied
+Is Transaction Dynamics
+Lc Condition
+Capture Deferred Fee
+-- Add deferred fee --
+Effective Fee Date
+enter fee rate
+enter fee amount
+ATC Lodgement
+New ATC Lodgement
+Add New ATC
+Usage Status
+ATC Lodgement
+-- Select ATC Type --
+ATC Lodgement Detail
+New ATC Type
+Save Request For Approval
+View Collateral
+Get Accoubt Balance
+unit To Release
+ATC Release List
+Submit and Close
+LC Application(s) For
+for LCID:
+Lc Issuance
+Lc Issuance Details
+Facility Details and FAM
+Line Collateral(s)
+Line Conditions
+Line Transaction Dynamics
+New Usance Tenor (Days)
+Old Usance Tenor (Days)
+New Usance Maturity Date
+Old Usance Maturity Date
+LC Application Search
+LC Applications
+LC Application Status
+LC Cancellation Approval Status
+LC Cancellation at Current Level
+Currently with
+View Lc
+View Cancelation Details
+View amount modifications
+View Extensions
+View Usance Extensions Status
+LC Applications For LMS
+Enhancement Initiation Date
+Enhancement Amount
+View Enhancement Details
+View Extension Details
+Enhancement Applications
+Usance Extension Initiation Date
+Usance Amount
+Proposed Usance Tenor
+Proposed maturity Date
+Usance Extension Applications
+Search LC
+LC Search
+Collateral Valuation
+Add Collateral Valuation
+Add / View Prerequisite(s)
+Valuation Request Type
+View/Upload Document
+Valuation Prerequisites
+Cusomer Name
+Prerequisite(s)
+Collateral Valuations Request
+New Collateral Valuation
+New Valuation Prerequisite
+Valuer Report Information
+WHT
+View Document
+Letter Generation Request
+Reference Code
+Letter Generation Request
+Customer Exposures
+Letter Generation Request
+Security Release
+Back to List
+Document Release List
+Customer Collateral Id
+Loan Application Reference Number /Customer Name
+Search
+Cancel
+Add To Release List
+Collateral Insurance
+Request Insurance
+Reinitiate
+Insurance Requests
+Request Number
+Reason For Insurance
+Bulk Loan Disbursement
+Letter Generation Completed
+Letter Generation Completed
+Print Document
+Insurance Search
+useSearch
+Insurance Search
+Main Insurance Detail
+Request Number:
+Insurance Details
+request Number
+insurance Documents
+Loan Recovery Payment
+customer Name
+Recovery Effective Date
+Recovery End Date
+Amount To Recover
+Total Amount Paid
+Expected Amount
+Repayment Amount
+Repayment Schedule
+Repayment Schedule
+Date to Pay
+Make Payment
+Loan Termination
+Interest On Past Due Interest
+LMS Operation Routing
+LMS Operations
+Loan Operations
+Facility Operation Information
+Loan Application Modification
+Rejected Review Loan Applications &amp; Offers
+DrawDown Application Search
+Stage
+Drawdown Memo
+Modify Facility
+Product
+Review Type
+results for
+Assign to Self
+Select Staff To Assign
+List of Written-off Loans
+Basic Information
+Contingent Information
+Approval Information
+Interest Rate
+Maturity Date
+Schedule Type
+Customer Details
+Lien Application Search
+Lien Applications
+Lien Release Applications
+Loan Lien Applications
+Loan Reference Number/Account Number/ Customer Name
+Lien Removal Request
+Upload Request Letter
+Request Letter Date
+Comment
+Lien Application Information
+LIEN RELEASE DOCUMENT
+Lien Application Details
+Lien Customer Account
+Account No
+Account Details
+Product Name:
+Account Details
+Lien Account
+Lien Type
+-- Select Lien Type --
+Amount
+Description
+Casa Account Loans
+-- Select Loan Reference --
+Add Lien
+Lien Account
+Project Site Report Records
+Flag Printed
+Print General Information
+Print Corporate Information
+Print Offer Letter
+Print FAM
+Fee will be deducted from account :
+Loan Beneficiary Form
+Completed Credit Documentation
+Search
+Basic Information
+Contingent Information
+Approval Information
+Attached Documents
+Fees
+Covenant Details
+Fees Details
+Collateral Details
+Schedule Details
+Supporting Documents
+List Of Completed Facilities
+Print Offer Letter
+Print FAM
+Loan Covenant
+Supporting Documents
+Drawdown Memo
+Loan Beneficiary Form
+Authentication Token
+Facility Details
+Relationship Officer
+Add Tenor
+Product
+Review Details
+Modify Facility
+Loans Recovery Reporting
+Loans Recovery Reporting
+Go For Approval
+Recovery Reporting List
+View Loans
+Recovery Reporting Applications Status
+Loans Recovery Reporting
+Recovery Reporting Supporting Document
+Loan Recovery Reporting Form
+MIS Code
+Recovery Reporting Loans
+Payment of Recovery Commission
+Recovery Commission
+Go For Approval
+Recovery Commission List
+View Loans
+Recovery Commission Applications Status
+Payment Recovery Commission
+Recovery Commission Supporting Document
+Payment Recovery Commission Form
+Date Of Collection
+Mode Of Collection
+Select Mode Of Collection
+Recovered Amount
+Commission Rate(%)
+Commission Amount
+WHT Rate(%)
+WHT Amount
+Capture CRMS Code
+Consumer Protection KFS
+Actual Amount Borrowed
+Monthly Payment
+Total Fees &amp; Charges
+Annual Interest Rate
+Insurance
+Loan APR
+Total Fees
+Term Of Loan (Y)
+View Memo
+Add Consumer Protection KFS
+Loan Amount
+Annual Interest Rate (%)
+Total Fees (%)
+Insurance (%)
+Term of Loan in Years
+Loan APR
+Monthly Payment
+Number of Payments
+Total Fees and Charges
+Actual Amount Borrowed
+Submit  Details
+Consumer Protection KFS Memo
+Consumer Protection Documentation
+Related Employers
+Add Related Employer
+Establishment Date
+Employer Type
+--- Select Employer Type ---
+Employer City
+Email Address
+Settlement Account
+Directorate
+Total Recovery Amount
+DPD
+Record Details
+Settlement Account:
+Region:
+Directorate:
+Division:
+Total Recovery Amount:
+Total Outstanding Balance:
+DPD:
+Value Date:
+Range:
+Overdue Principal Amount
+Overdue Interest Amount:
+Exposure Type:
+Category:
+Assigned Recovery Loans
+Generate Mail To Agents
+Un-Assign
+Loan Recovery Re-Assignment
+Pick New Agent
+Expected Completion Date
+Search For Agent
+Recovery Reporting
+Recovery Agent
+-- Select Recovery Agent --
+Submit
+Total Amount Recovery
+Total Exposure
+Posted Date
+Recovery Commission For External Agents
+Capture Commission
+List Of Assigned Recovery Loans
+Collection Date
+Commission Payable
+Recovery Commission Reporting
+Payment Of Recovery Commission
+Total Recovery Amaount
+Commission Rate
+Commission Payable
+Lc CashBuildUpPlan
+Lc Issuance Ref
+Cash BuildUp ReferenceType
+Days Interval
+Plan Date
+Lc CashBuildUpPlan
+Select Cash BuildUp ReferenceType
+Collection Account
+Recovery Report Collection
+Capture Report
+Recovery Collection Report
+Report Of Recovery Collection
+Total Recovery Amount
+Recovery Commission For Internal Agents
+Month
+List Of Internal Recovery Agents
+Recovery Commission Report
+List Of Assigned Recoveries
+Total Outstanding Amount
+Assigned Recovery Loans
+Assigned By
+Re-Assign
+Assigned Recovery Loans List
+Unassigned Recovery Loans Status
+Loan Recovery Re-Assignment
+Search For Agent
+Collateral Valuation Search
+Collateral Valuation
+Collateral Valuation
+Search Collateral Valuation
+Reference Number/ Customer Name/ Customer Code
+Collateral Swap Search
+Collateral Swap Request(s)
+Sent from
+Collateral Swap Reference Number/ Application Reference Number / Customer Name
+Security Release Search
+Security Release
+Security Release
+Search Security Release
+Original Document Search
+Original Document
+Original Document
+Customer Name/ Customer Code
+Related Documentation
+Deferral/Waiver Approval Documentation
+Flag As Documented
+After Printing
+Deferral Memo
+Generate PDF
+Deferred Document Approval Documentation
+Deferral Extension Approval Documentation
+Deferral/Waiver
+Is Original Titke Document
+Facility Details
+Application Amount
+Original Document Submission
+Approved Items
+Letter Generation requests
+Project Site Report Requests
+Project Site Report
+Show Report
+Collateral Swap
+Collateral Item Policy
+Collateral Insurance
+Security Release
+Collateral Valuation Request
+Download document
+Collateral Swap
+Collateral Insurance
+PERFORMANCE ANALYSIS
+PERFORMANCE EVALUATION
+COMMENT FROM INSPECTION
+OBSERVATIONS AND IMPACT
+RECOMMENDATIONS
+TASKS FOR NEXT INSPECTION
+PSR Details
+Project Site Report
+Loan Review Contingent Application Search
+Contingent Review Applications
+Contingent Loan Applications
+Generated Offer Letter
+Cash Security Release
+Back to List
+Collateral Applications
+Is Guarantee?
+Go For Approval
+Cash Security Release Search
+Cash Security Release
+Cash Security Release
+Cash Search Security Release
+Application Reference Number/ Customer Name/Customer Code
+Report For

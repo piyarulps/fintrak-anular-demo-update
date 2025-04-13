@@ -1,0 +1,22 @@
+
+/* #modal-display-more-details .modal { */
+    /* position: relative; */
+    /* z-index: 9999 !important; */
+ /* } */
+
+ /* .modal-backdrop {
+    z-index: 1071 !important;
+} */
+
+/* .modal-backdrop {
+      
+    display: none !important;    
+} */
+
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+#modal-display-more-details .modal {
+    margin: 2px auto;
+    z-index: 5000 !important;
+}

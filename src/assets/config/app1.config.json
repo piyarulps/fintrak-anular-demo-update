@@ -1,0 +1,7 @@
+
+{
+    "baseApiUrl": "https://fintrakcredit360api.azurewebsites.net/api/v1/",
+    "tokenUrl": "https://fintrakcredit360api.azurewebsites.net/token",
+    "hostUrl": "https://fintrakcredit360web.azurewebsites.net",
+    "appTimeOut": 5
+}

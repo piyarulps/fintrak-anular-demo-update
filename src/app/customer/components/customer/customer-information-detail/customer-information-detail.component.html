@@ -1,0 +1,662 @@
+<!--div *ngIf="displayLoadButton" class="panel panel-default">
+    <div class="panel-body">
+        <button type="button" class="btn btn-primary pull-left" (click)="loadLoanCustomerList()">View Customer Information</button>
+    </div>
+</div-->
+
+<div *ngIf="displayLoanCustomerList" class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div style="margin-bottom:0" class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 i18n class="panel-title pull-left">
+                                Customer Information
+                            </h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div *ngIf="showSpinnerChangeLog == true" class="little-spinner"></div>
+                        <p-dataTable *ngIf="displayChangeLog == true" [value]="loanApplicationCustomerList" [rows]="20">
+
+                            <p-column field="customerCode" i18n-header header="Customer Code"></p-column>
+                            <p-column field="customerName" i18n-header header="Customer Name"></p-column>
+                            <!-- <p-column field="customerAccountNo" header="Account Number"></p-column> -->
+
+                            <p-column field="customerTypeId" i18n-header header="Customer Type">
+                                <ng-template let-i="rowIndex" let-model="rowData" pTemplate type="body">
+                                    {{ getCustomerType(model.customerTypeId) }}
+                                </ng-template>
+                            </p-column>
+
+                            <p-column [style]="{'width':'100px'}">
+                                <ng-template pTemplate="header"></ng-template>
+                                <ng-template let-user="rowData" let-i="rowIndex" pTemplate="body">
+                                    <a #viewDetail name="viewDetail" (click)="viewCustomerDetails(i)" href="javascript:void(0)"
+                                     i18n>View Details</a>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="displayCustomerInfoDetails" class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div style="margin-bottom:0" class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2  class="panel-title pull-left">
+                                <ng-container i18n>Customer Information Details For:</ng-container>
+                                
+                                <strong>{{ customerFullName }}</strong>
+                            </h2>
+                            <div class="pull-right" *ngIf="canRefreshAccount == true">
+                                <button i18n-label pButton type="button" (click)="fetchAndAddCustomerAccounts()" label="Refresh Customer Accounts"
+                                    class="ui-button-info">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div *ngIf="showSpinnerChangeLog == true" class="little-spinner"></div>
+                        <p-tabView>
+                            <p-tabPanel i18n-header *ngIf="customerSelection" header="General" id="print-section-customer-information">
+                                <table class="table table-customer-information" border="1" >
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong i18n>Customer Code:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.customerCode }}</td>
+                                            <td>
+                                                <strong i18n>Customer Type:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.customerTypeName }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Title:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.title }}</td>
+                                            <td>
+                                                <strong i18n>Gender:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.gender }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>First Name:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.firstName }}</td>
+                                            <td>
+                                                <strong i18n>Date of Birth:</strong>
+                                            </td>
+                                            <td> {{customerSelection.dateOfBirth | date : 'dd/MM/yyyy' }}</td>
+                                        </tr>
+                                        <tr *ngIf="isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Corporate Name:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.firstName }}</td>
+                                            <td>
+                                                <strong i18n>Date of Established:</strong>
+                                            </td>
+                                            <td> {{customerSelection.dateOfBirth | date : 'dd/MM/yyyy' }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Middle Name:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.middleName }}</td>
+                                            <td *ngIf="isMozambique">
+                                                <strong i18n>Organic Number:</strong>
+                                            </td>
+                                            <td *ngIf="isMozambique">{{ customerSelection.customerBVN }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Last Name:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.lastName }}</td>
+                                            <td>
+                                                <strong i18n>Place of Birth:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.placeOfBirth }}</td>
+                                        </tr>
+                                        <tr  *ngIf="isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Email Address:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.emailAddress }}</td>
+                                            <td>
+                                                <strong i18n> {{taxName}}:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.taxNumber }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Marital Status:</strong>
+                                            </td>
+                                            <td>{{customerSelection.maritalStatus }}</td>
+                                            <td>
+                                                <strong i18n> Occupation:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.occupation }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Spouse:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.spouse }}</td>
+                                            <td>
+                                                <strong i18n> Maiden Name:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.maidenName }}</td>
+                                        </tr>
+                                        <tr *ngIf="!isCorperateCustomer">
+                                            <td>
+                                                <strong i18n> Nationality:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.nationality }}</td>
+                                            <td>
+                                                <strong i18n> Account Creation Complete:</strong>
+                                            </td>
+                                            <td><span i18n>{{ customerSelection.accountCreationComplete ? 'Yes' : 'No' }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Relationship Manager:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.relationshipOfficerName }}</td>
+                                            <td>
+                                                <strong i18n>Politically Exposed:</strong>
+                                            </td>
+                                            <td><span i18n>{{ customerSelection.isPoliticallyExposed ? 'Yes' : 'No' }}</span></td>
+                                            
+                                        </tr>
+                                        <tr *ngIf="isCorperateCustomer">
+                                            <td>
+                                                <strong i18n>Sub-Sector:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.subSectorName }}</td>
+                                            <td>
+                                                <strong i18n> Sector:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.sectorName }}</td>
+                                           
+                                        </tr>
+                                        <!-- <tr>
+                                            
+                                            <td>
+                                                <strong i18n>Customer Rating:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.customerRating }}</td>
+
+                                        </tr> -->
+                                        <!--<tr>
+                                            <td>
+                                                <strong i18n>Branch:</strong>
+                                            </td>
+                                            <td>{{ getBranch(customerSelection.branchId) }}</td>
+                                            <td>
+                                                <strong i18n>Company:</strong>
+                                            </td>
+                                            <td>{{ getCompany(customerSelection.companyMainId) }}</td>
+
+                                        </tr>-->
+                                        <tr>
+                                            <!--<td>
+                                                <strong i18n>Customer Rating:</strong>
+                                            </td>
+                                            <td>{{ customerSelection.customerRating }}</td>-->
+                                            <td *ngIf="isMozambique && !isCorperateCustomer">
+                                                <strong  i18n>National ID Number:</strong>
+                                            </td>
+                                            <td *ngIf="isMozambique && !isCorperateCustomer">{{ customerSelection.customerNationalId }}</td>
+
+                                            <td *ngIf="isCorperateCustomer">
+                                                <strong  i18n>Ownership:</strong>
+                                            </td>
+                                            <td *ngIf="isCorperateCustomer">{{ customerSelection.ownership }}</td>
+                                            
+                                            <td> <strong  i18n></strong>
+                                            </td>
+                                            <td></td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && isCorperateCustomer" header="Corporate Information" id="print-section-corporate-information">
+                                <table class="table table-customer-information" border="1">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Registration Number:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.registrationNumber }}</td>
+                                            <td>
+                                                <strong i18n>Company Website:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.companyWebsite }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Company Email:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.companyEmail }}</td>
+                                            <td>
+                                                <strong i18n>Registered Office:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.registeredOffice }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Annual Turn Over:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.annualTurnOver ?
+                                                customerCompanyInfomation.annualTurnOver : '0.00' }}</td>
+                                            <td>
+                                                <strong i18n> Paid Up Capital:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.paidUpCapital ?
+                                                customerCompanyInfomation.paidUpCapital : '0.00'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Authorized Capital:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.authorizedCapital ?
+                                                customerCompanyInfomation.authorizedCapital : '0.00' }}</td>
+                                            <td>
+                                                <strong i18n> Business Sector:</strong>
+                                            </td>
+                                            <td>{{
+                                                getSectorBySectoeId(customerCompanyInfomation?.corporateBusinessCategory)
+                                                }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong i18n> Shareholder Fund:</strong>
+                                            </td>
+                                            <td>{{ customerCompanyInfomation?.shareholderFund ?
+                                                customerCompanyInfomation.shareholderFund : '0.00' }}</td>
+                                            <td>
+                                                <strong> </strong>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection" header="Contact">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt [value]="customerAddresses" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Customer Address Information</p-header>
+                                            <p-column i18n-header field="address" header="Address"></p-column>
+                                            <p-column *ngIf="hasDigitalAddress" i18n-header field="digitalAddress" header="Digital Address"></p-column>
+                                            <p-column i18n-header field="city" header={{smallerSubRegionName}}></p-column>
+                                            <p-column i18n-header field="nearestLandmark" header="Nearest Landmark"></p-column>
+                                            <p-column i18n-header field="active" header="Active"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"> 
+                                        <p-dataTable #dt [value]="customerPhoneContact" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Customer Phone Contact</p-header>
+                                            <p-column i18n-header field="phone" header="Home Phone No"></p-column>
+                                            <p-column i18n-header field="phoneNumber" header="Mobile Phone No"></p-column>
+                                            <p-column i18n-header field="active" header="Active"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && isCorperateCustomer" header="Director">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt [value]="customerCompanyDirectors" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header>Directors</p-header>
+                                            <p-column i18n-header field ="firstname" header="First Name"></p-column>
+                                            <p-column i18n-header field ="surname" header="Surname"></p-column>
+                                            <p-column i18n-header field ="bankVerificationNumber" header="Bank Verification Number"></p-column>
+                                            <p-column i18n-header field ="email" header="Email"></p-column>
+                                            <p-column i18n-header field ="isPoliticallyExposed" header="Politically Exposed">
+                                                <!--ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                            {{ d.isPoliticallyExposed | uppercase }}
+                                                        </ng-template-->
+                                            </p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt  [value]="customerCompanyAccountSignatory" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Account Signatory(s)</p-header>
+                                            <p-column i18n-header field ="firstname" header="First Name"></p-column>
+                                            <p-column i18n-header field ="surname" header="Surname"></p-column>
+                                            <p-column i18n-header field ="bankVerificationNumber" header="Bank Verification Number"></p-column>
+                                            <p-column i18n-header field ="email" header="Email"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && isCorperateCustomer" header="Client/Supplier">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt [value]="customerSupplier" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Customer Top Supplier(s)</p-header>
+                                            <p-column i18n-header field ="customerTypeName" header="Supplier Type"></p-column>
+                                            <p-column i18n-header field ="clientOrSupplierName" header="Supplier Name"></p-column>
+                                            <p-column i18n-header field ="client_SupplierAddress" header="Address"></p-column>
+                                            <p-column i18n-header field ="client_SupplierPhoneNumber" header="Phone Number"></p-column>
+                                            <p-column i18n-header field ="client_SupplierEmail" header="Email"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt  [value]="customerClient" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Customer Top Client(s)</p-header>
+                                            <p-column i18n-header field ="customerTypeName" header="Client Type"></p-column>
+                                            <p-column i18n-header field ="clientOrSupplierName" header="Client Name"></p-column>
+                                            <p-column i18n-header field ="client_SupplierAddress" header="Address"></p-column>
+                                            <p-column i18n-header field ="client_SupplierPhoneNumber" header="Phone Number"></p-column>
+                                            <p-column i18n-header field ="client_SupplierEmail" header="Email"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && isCorperateCustomer" header="Shareholder">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt [value]="customerCompanyShareholderIndividual" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>INDIVIDUAL - Significant Shareholder (5% and above)</p-header>
+                                            <p-column i18n-header field ="firstname" header="First Name"></p-column>
+                                            <p-column i18n-header field ="surname" header="Surname"></p-column>
+                                            <p-column i18n-header field ="bankVerificationNumber" header="Bank Verification Number"></p-column>
+                                            <p-column i18n-header field ="email" header="Email"></p-column>
+                                            <p-column i18n-header field ="numberOfShares" header="% Holding"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="customerCompanyShareholderCorporate" class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt  [value]="customerCompanyShareholderCorporate" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n> CORPORATE - Significant Shareholder (5% and above)</p-header>
+                                            <p-column i18n-header field ="firstname" header="Corporate Name"></p-column>
+                                            <p-column i18n-header field ="rcNumber" header={{rcName}}></p-column>
+                                            <p-column i18n-header field ="numberOfShares" header="% Holding"></p-column>
+                                            <p-column i18n-header field ="email" header="Email"></p-column>
+                                            <p-column [style]="{'width':'100px'}">
+                                                <ng-template pTemplate="header">Ultimate Beneficial</ng-template>
+                                                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                    <a i18n (click)="viewShareholderUltimateBeneficial(i)" href="javascript:void(0)">
+                                                        View
+                                                    </a>
+                                                </ng-template>
+                                            </p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && !isCorperateCustomer" header="Employment History">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable #dt  [value]="customerEmploymentHistory" [responsive]="true">
+                                            <p-header>
+                                                <div class="ui-helper-clearfix">
+                                                    <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                                </div>
+                                            </p-header> 
+                                            <p-header i18n>Customer Employment History</p-header>
+                                            <p-column i18n-header field="employerName" header="Employer Name"></p-column>
+                                            <p-column i18n-header field="employerAddress" header="Employer Address"></p-column>
+                                            <p-column i18n-header field="officePhone" header="Office Phone"></p-column>
+                                            <p-column i18n-header field="employDate" header="Employment Date" sortable="true"
+                                                [filter]="true" filterMatchMode="contains">
+                                                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                    {{ d.employDate | date: 'dd-MM-yyyy' }}
+                                                </ng-template>
+                                            </p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection && !isCorperateCustomer" header="Next Of Kin">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p-dataTable [value]="customerNextOfKin" [responsive]="true">
+                                            <p-header i18n>Next Of Kin</p-header>
+                                            <p-column i18n-header field="firstName" header="First Name"></p-column>
+                                            <p-column i18n-header field="lastName" header="Last Name"></p-column>
+                                            <p-column i18n-header field="gender" header="Gender"></p-column>
+                                            <p-column i18n-header field="relationship" header="Relationship"></p-column>
+                                            <p-column i18n-header field="address" header="Address"></p-column>
+                                            <p-column i18n-header field="dateOfBirth" header="Date Of Birth">
+                                                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                    {{ d.dateOfBirth | date: 'dd-MM-yyyy' }}
+                                                </ng-template>
+                                            </p-column>
+                                            <p-column i18n-header field="phoneNumber" header="Phone Number"></p-column>
+                                            <p-column i18n-header field="email" header="Email">
+                                                <ng-template let-col let-rowData="rowData" pTemplate="body">
+                                                  <div style="white-space: normal; word-break: break-all; max-width: 100%;">
+                                                    {{ rowData.email }}
+                                                  </div>
+                                                </ng-template>
+                                              </p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection" header="Insider Related Party">
+                                <p-dataTable #dt  [value]="customerRelatedParties" [paginator]="true" [rows]="5">
+                                    <p-header>
+                                        <div class="ui-helper-clearfix">
+                                            <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                        </div>
+                                    </p-header> 
+                                    <p-column i18n-header field="customerName" header="Customer Name" sortable="true" [filter]="true"
+                                        filterMatchMode="contains"></p-column>
+                                    <p-column i18n-header field="directorName" header="Director Name" [filter]="true"
+                                        filterMatchMode="contains"></p-column>
+                                    <p-column i18n-header field="relationshipType" header="Relationship Type" sortable="true"
+                                        [filter]="true" filterMatchMode="contains"></p-column>
+                                </p-dataTable>
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection" header="Uploads">
+                                <p-dataTable #dt [value]="kycDocumentUploadList" [paginator]="true" [rows]="5">
+                                    <p-header>
+                                        <div class="ui-helper-clearfix">
+                                            <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                        </div>
+                                    </p-header> 
+                                    <p-column i18n-header field="documentTitle" header="Document Title" sortable="true" [filter]="true"
+                                        filterMatchMode="contains"></p-column>
+                                    <p-column i18n-header field="fileExtension" header="Type" [filter]="true" filterMatchMode="contains"
+                                        [style]="{'width':'60px'}"></p-column>
+                                    <p-column i18n-header field="physicalFileNumber" header="File Number" sortable="true" [filter]="true"
+                                        filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+                                    <p-column i18n-header field="physicalLocation" header="Physical Location" sortable="true"
+                                        [filter]="true" filterMatchMode="contains"></p-column>
+                                    <p-column [style]="{'width':'100px'}">
+                                        <ng-template pTemplate="header"> </ng-template>
+                                        <ng-template pTemplate="body" let-d="rowData" let-i="rowIndex">
+                                            <a i18n *ngIf="['jpg','jpeg', 'png'].indexOf(d.fileExtension.toLowerCase()) > -1"
+                                                (click)="viewDocument(d.documentId)" href="javascript:void(0)">View</a>
+                                            <a i18n *ngIf="['doc','docx', 'pdf','xls', 'xlsx'].indexOf(d.fileExtension.toLowerCase()) > -1"
+                                                (click)="DownloadDocument(d.documentId)" href="javascript:void(0)">Download</a>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+
+                            </p-tabPanel>
+                            <p-tabPanel i18n-header *ngIf="customerSelection" header="Account Information">
+                                <p-dataTable #dt [value]="customerCASAInformation">
+                                    <p-header>
+                                        <div class="ui-helper-clearfix">
+                                            <button i18n-label type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV" (click)="dt.exportCSV()" style="float:left"></button>
+                                        </div>
+                                    </p-header> 
+                                    <p-column i18n-header field="productAccountNumber" header="Account Number"></p-column>
+                                    <p-column i18n-header field="productName" header="Product"></p-column>
+                                    <p-column i18n-header field="accountStatusName" header="Account Status"></p-column>
+                                    <p-column i18n-header field="currency" header="Currency"></p-column>
+                                    <p-column i18n-header field="ledgerBalance" header="Ledger Balance">
+                                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                            {{ d.ledgerBalance | number: '.2-2' }}
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column i18n-header="availableBalance" header="Available Balance">
+                                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                            {{ d.availableBalance | number: '.2-2' }}
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column i18n-header field="hasOverdraft" header="Has Overdraft"></p-column>
+                                    <p-column i18n-header field="hasLien" header="Has Lien"></p-column>
+                                </p-dataTable>
+
+                            </p-tabPanel>
+                        </p-tabView>
+                    </div>
+                </div>
+                <div class="panel-footer" *ngIf="showBackButton">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button *ngIf="!showProceedBackButton" type="button" (click)="closed()" style="margin-right:5px"
+                                class="btn btn-danger pull-right" i18n>Back</button>
+                            <div *ngIf="showProceedBackButton">
+                                <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right:5px"
+                                    (click)="goForPenApplication($event)">Preliminary Evaluation</button> -->
+                                <button style="margin-right:5px" type="button" class="btn btn-primary pull-right" style="margin-right:5px"
+                                    (click)="proceedToApplication()" i18n>Upload Credit Bureau Report</button>
+                                <button type="button" (click)="closeModal()" style="margin-right:5px" class="btn btn-danger pull-right" i18n>
+                                    Back To Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog [responsive]=true [(visible)]="displayUpload" modal="modal" showEffect="fade" width="1200" [style]="{'z-index':'25000'}">
+    <div *ngIf="displayUpload" style="margin-bottom:0" class="panel panel-default">
+
+        <div class="panel-heading">
+            <h2 class="panel-title" > <ng-container i18n>Document Title:</ng-container>
+                <strong>{{ selectedDocument }}</strong>
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="displayUpload=false">&times;</a>
+            </div>
+        </div>
+
+        <div class="panel-body" style="overflow:auto;height:500px">
+            <div style="margin: auto; width: 50%">
+                <img *ngIf="binaryFile" style="max-width: 100%; display: block 2px black;" [src]="'data:image/jpg;base64,'+binaryFile"
+                    alt="" class="img-thumbnail">
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+<p-dialog [responsive]=true [(visible)]="displayViewUltimateBeneficial" modal="modal" showEffect="fade" width="800">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2   class="panel-title">
+                <ng-container i18n>Ultimate Beneficial owner(s) of</ng-container>
+                <strong>{{corporateShareholderName}}</strong>
+            </h2>
+            <div class="pull-right">
+                <a class="close" (click)="displayViewUltimateBeneficial=false">&times;</a>
+            </div>
+        </div>
+        <div class="panel-body" style="min-height:120px;">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <p-dataTable [value]="customerCompanyUltimateBeneficial" [responsive]="true">
+                        <p-header i18n>Ultimate Beneficial Owners </p-header>
+                        <p-column i18n-header="firstname" header="First Name"></p-column>
+                        <p-column i18n-header="surname" header="Surname"></p-column>
+                        <p-column i18n-header="bankVerificationNumber" header="Bank Verification Number"></p-column>
+                        <p-column i18n-header="email" header="Email"></p-column>
+                        <p-column i18n-header="numberOfShares" header="% Holding"></p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" (click)="displayViewUltimateBeneficial=false" style="margin-right:5px" class="btn btn-danger pull-right">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

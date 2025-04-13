@@ -1,0 +1,81 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="panel-title pull-left" i18n>
+                            Collateral Release
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<customer-search (customer)="getCustomerCollateral($event.customerId)"></customer-search>
+  
+    <!--append modal-->
+    <p-dialog [responsive]=true [(visible)]="showCustomerCollaterals" id="append-modal" modal="modal" showEffect="fade" width="1000">
+            <div style="margin-bottom:0" class="panel panel-default">
+    
+                <div class="panel-heading">
+                    <h2 class="panel-title" i18n>Active Customer Collaterals</h2>
+                    <div class="pull-right"><a class="close" (click)="showCustomerCollaterals=false">&times;</a></div>
+                </div>
+        
+                <div class="panel-body">
+    
+                    <p-dataTable [value]="customerCollaterals">
+    
+                        <p-column i18n-header field="collateralTypeId" header="Collateral Type" [filter]="true" filterMatchMode="contains">
+                            <ng-template let-i="rowIndex" let-d="rowData" pTemplate type="body">
+                                {{ getCollateralTypeName(d.collateralTypeId) }}
+                            </ng-template>
+                        </p-column>
+    
+                        <p-column i18n-header field="collateralCode" header="Collateral Code" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="applicationReferenceNumber" header="Reference Number" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="hairCut" header="Hair Cut" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+                        <!-- <p-column i18n-header field="isLocationBased" header="Location Based" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column> -->
+    
+                        <p-column i18n-header field="isLocationBased" header="Location" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            <ng-template let-i="rowIndex" let-d="rowData" pTemplate type="body">
+                                {{ isLocationBased ?<span i18n> 'Yes' </span> : <span i18n> 'No' </span>}}
+                            </ng-template>
+                        </p-column>
+    
+                        <p-column i18n-header field="valuationCycle" header="Valuation Cycle" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+    
+                        <p-column i18n-header [style]="{'width':'120px'}">
+                            <ng-template pTemplate="header">
+                                <div style="text-align:center">
+                                    <button (click)="add()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                                </div>
+                            </ng-template>
+                            <ng-template let-x="rowData" let-i="rowIndex" pTemplate="body">
+                                <span *ngIf="x.isReleased == false && (x.releaseApprovalStatusId == 0 || x.releaseApprovalStatusId == 3)">
+                                    <a (click)="releaseConfirm(x.loanCollateralMappingId)" href="javascript:void(0)" i18n>Release</a>
+                                </span>
+                                <span *ngIf="x.isReleased == false && x.releaseApprovalStatusId == 1" i18n>
+                                    Awaiting Approval
+                                </span>
+                            </ng-template>
+                        </p-column>
+    
+                    </p-dataTable>
+    
+                </div>
+    
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <button type="button" (click)="appendDocument(appendForm)" [disabled]="appendForm.invalid" class="btn btn-warning pull-right">Load Document</button> -->
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </p-dialog>
+        <!--end of append modal-->

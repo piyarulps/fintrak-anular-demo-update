@@ -1,0 +1,178 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="panel-title pull-left"  i18n>
+                            Approval Relief
+                        </h2>
+
+                        <div class="pull-right">
+                            <button (click)="showModalForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <p-dataTable [value]="reliefs" [rows]="10" [paginator]="true">
+            
+                    <p-column  i18n-header field="staffName" header="Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                    <p-column  i18n-header field="reliefStaffName" header="Relief Staff Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                    <p-column  i18n-header field="reliefReason" header="Relief Reason" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+            
+                    <p-column  i18n-header field="startDate" header="Start Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.startDate | date: 'dd-MM-yyyy' }}
+                        </ng-template>
+                    </p-column>
+            
+                    <p-column  i18n-header field="endDate" header="End Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            {{ d.endDate | date: 'dd-MM-yyyy' }}
+                        </ng-template>
+                    </p-column>
+                    <p-column  i18n-header field="isActive" header="Active" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+            
+                    <p-column [style]="{'width':'100px'}">
+                        <ng-template pTemplate="header"></ng-template>
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            <a (click)="edit(d)" href="javascript:void(0)" i18n>
+                                Edit
+                            </a>
+                        </ng-template>
+                    </p-column>
+            
+                </p-dataTable>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [responsive]="true" [(visible)]="displayModalForm" id="add-modal" modal="modal" showEffect="fade" width="500">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                {{panelHeader}}
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="primaryForm" (ngSubmit)="submitPrimaryForm(primaryForm)" autocomplete="off">
+            <div class="panel-body">
+
+                <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-12" i18n>Staff</label>
+                    <div class="col-md-12">
+                        <input (focus)="openSearchBox(1)" type="text" id="staffName" name="staffName" class="form-control" formControlName="staffName" [ngClass]="primaryForm.controls['staffName'].valid ? 'valid-input':'required-input'">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-12"  i18n>Relief Staff</label>
+                    <div class="col-md-12">
+                        <input (focus)="openSearchBox(2)" type="text" id="reliefStaffName" name="reliefStaffName" class="form-control" formControlName="reliefStaffName" [ngClass]="primaryForm.controls['reliefStaffName'].valid ? 'valid-input':'required-input'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-6"  i18n>Start Date</label>
+                    <label class="col-md-6"  i18n>End Date</label>
+                    <div class="col-md-6">
+                        <p-calendar id="startDate" formControlName="startDate" [minDate]='currentDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2050"
+                            [showIcon]="true" [inputStyle]="primaryForm.controls['startDate'].valid ? {'width': '100%','border-left':'3px solid #3cd225'} : {'width': '100%','border-left':'3px solid #ff0000'}"
+                            [style]="{'width': '100%', 'overflow': 'visible'}"></p-calendar>
+                    </div>
+                    <div class="col-md-6">
+                        <p-calendar id="endDate" formControlName="endDate" [minDate]='currentDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2050"
+                            [showIcon]="true" [inputStyle]="primaryForm.controls['endDate'].valid ? {'width': '100%','border-left':'3px solid #3cd225'} : {'width': '100%','border-left':'3px solid #ff0000'}"
+                            [style]="{'width': '100%', 'overflow': 'visible'}"></p-calendar>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12" i18n>Relief Reason</label>
+                    <div class="col-md-12">
+                        <textarea style="height:60px;" name="reliefReason" formControlName="reliefReason" id="reliefReason" class="form-control" [ngClass]="primaryForm.controls['reliefReason'].valid ? 'valid-input' : 'required-input'"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="checkbox-container">
+                            <input formControlName="isActive" id="isActive" type="checkbox">
+                        </div>
+                        <label class="checkbox" i18n>Active</label>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]="primaryForm.invalid" class="btn btn-success pull-right"  i18n>Save</button>
+                        <button type="button" (click)="displayModalForm=false" style="margin-right:5px" class="btn btn-danger pull-right" i18n>Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>
+
+
+
+<!--real time search form-->
+<p-dialog [responsive]="true" [(visible)]="displaySearchModal" modal="modal" id="searchModal" showEffect="fade" width="650">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <div style="margin-left:0" class="row">
+                <h2 class="panel-title pull-left" i18n>
+                    Search Staff
+                </h2>
+                <div class="pull-right">
+                    <a class="close" style="margin: -10px 8px;" (click)="displaySearchModal=false">&times;</a>
+                </div>
+            </div>
+        </div>
+        <div style="padding:3px" class="panel-body">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" id="search" (keyup)="searchDB($event.target.value)" class="form-control" i18n-placeholder placeholder="Type in your search parameter">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <p>
+                        <!--{{mfacilityType}}-->
+                    </p>
+                    <table *ngIf="searchResults" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th i18n>Staff Code</th>
+                                <th i18n>First Name</th>
+                                <th i18n>Middle Name</th>
+                                <th i18n>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr (click)="pickSearchedData(res)" style="cursor: pointer" *ngFor="let res of searchResults; let i = index">
+                                <td>{{res.staffCode}}</td>
+                                <td>{{res.firstName}}</td>
+                                <td>{{res.secondName}}</td>
+                                <td>{{res.lastName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+
+

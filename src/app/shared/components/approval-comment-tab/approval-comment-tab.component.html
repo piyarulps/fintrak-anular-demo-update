@@ -1,0 +1,18 @@
+<p-dataTable [value]="approvalWorkflowData" [paginator]="true" [rows]="5" [responsive]="true">
+  <p-column i18n-header field="requestStaffName" header="Intiated By"></p-column>
+  <p-column i18n-header field="requestApprovalLevel" header="Initiator Approval Level"></p-column>
+  <!-- <p-column i18n-header field="responseStaffName" header="Directed To"></p-column> -->
+  <p-column i18n-header field="responseApprovalLevel" header="Response Approval Level"></p-column>
+  <p-column i18n-header field="approvalStatus" header="Approval Status"></p-column>
+  <p-column i18n-header field="comment" header="Comment"></p-column>
+  <p-column i18n-header field="systemArrivalDate" header="Date of Arrival">
+    <ng-template let-col let-apr="rowData" pTemplate="body">
+      {{apr[col.field] | date: 'medium'}}
+    </ng-template>
+  </p-column>
+  <p-column i18n-header field="systemResponseDate" header="Date of Response">
+    <ng-template let-col let-apr="rowData" pTemplate="body">
+      {{apr[col.field] | date: 'medium' }}
+    </ng-template>
+  </p-column>
+</p-dataTable>

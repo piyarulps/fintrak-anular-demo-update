@@ -1,0 +1,408 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="panel-title pull-left" i18n>
+                            DrawDown Application Search
+                        </h2>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <p-tabView>
+            <p-tabPanel i18n-header header="Loan Applications">
+                <div class="card no-padding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="panel-title pull-left" i18n>
+                                        Loan Applications
+                                    </h2>
+                                    <!-- <div class=""><a class="close"
+                                        (click)="displayApplicationDetail=false; displaySearchTable=true;">&times;</a>
+                                    </div> -->
+                                    <div class="pull-right">
+                                        <button (click)="showSearchForm()" pButton type="button" i18n-label label="Search"
+                                            icon="fa-search"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p-tabView>
+                                <p-tabPanel i18n-header header="Loan Applications" *ngIf="displaySearchTable">
+                                    <p-dataTable [value]="applications" [paginator]="true" [rows]="10"
+                                        [rowsPerPageOptions]="[10,20,30]">
+                                        <p-column i18n-header field="applicationDate" header="Date" sortable="true" [filter]="true"
+                                            filterMatchMode="contains">
+                                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                {{ d.applicationDate | date: 'dd-MM-yyyy' }}
+                                            </ng-template>
+                                        </p-column>
+                                        <p-column i18n-header header="Customer Name" sortable="true" [filter]="true"
+                                            filterMatchMode="contains">
+                                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                {{ d.firstName }} {{ d.middleName }} {{ d.lastName }}
+                                            </ng-template>
+                                        </p-column>
+                                        <p-column i18n-header field="applicationReferenceNumber" header="Reference" sortable="true"
+                                            [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-header field="applicationAmount" header="Amount" sortable="true"
+                                            [filter]="true" filterMatchMode="contains" [style]="{'text-align':'right'}">
+                                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                                {{ d.applicationAmount | number : '1.2' }}
+                                            </ng-template>
+                                        </p-column>
+                                        <p-column i18n-header field="responsiblePerson" header="Currently With" sortable="true"
+                                            [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-header field="currentApproval Level" header="Level" sortable="true"
+                                            [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-header [style]="{'width':'120px'}" [filter]="true"
+                                            filterMatchMode="contains">
+                                            <ng-template pTemplate="header" i18n>Stage</ng-template>
+                                            <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                                                <div class="btn-group"
+                                                    [innerHtml]="getLoanApplicationStatus(row.applicationStatusId)">
+                                                </div>
+                                            </ng-template>
+                                        </p-column>
+                                        <p-column i18n-header field="applicationStatus" header="Application Status" sortable="true"
+                                            [filter]="true" filterMatchMode="contains"></p-column>
+                                        <p-column i18n-header>
+                                            <ng-template pTemplate="header"></ng-template>
+                                            <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                                                <a (click)="view(row)" href="javascript:void(0)"><i
+                                                        class="glyphicon glyphicon-eye"></i><span i18n>View</span></a>
+                                            </ng-template>
+                                        </p-column>
+                                    </p-dataTable>
+                                </p-tabPanel>
+
+                                <p-tabPanel i18n-header header="Loan Application Details" *ngIf="displayApplicationDetail">
+                                    <div style="margin-bottom:0" class="panel panel-default" *ngIf="displayApplicationDetail">
+                                        <div class="panel-heading">
+                                            <h2 class="panel-title" i18n>
+                                                Loan Application Information
+                                            </h2>
+                                            <div class="pull-right">
+                                                <a class="close" (click)="closeGrid()">&times;</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <p-tabView>
+                                                <p-tabPanel i18n-header header="General Information" *ngIf="hideGeneralInfoPanel">
+                                                    <table class="table table-casa-information">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong i18n>Application Reference Number:</strong></td>
+                                                                <td>{{ application.applicationReferenceNumber }}</td>
+                                                                <td colspan="2" style="text-align:left">
+                                                                    {{ application.customerGroupName }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong i18n>Relationship Officer:</strong></td>
+                                                                <td>{{ application.relationshipOfficerName }}</td>
+                                                                <td><strong i18n>Relationship Manager:</strong></td>
+                                                                <td>{{ application.relationshipManagerName }}</td>
+                                                                <td><strong></strong></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong i18n>Amount:</strong></td>
+                                                                <td>{{ application.applicationAmount | number:'1.2' }}
+                                                                </td>
+                                                                <td><strong i18n>Approved Amount:</strong></td>
+                                                                <td>{{ application.approvedAmount | number:'1.2' }}</td>
+                                                                <td><strong></strong></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong i18n>Tenor:</strong></td>
+                                                                <td>{{ application.applicationTenor }}</td>
+                                                                <td><strong i18n>Application Date:</strong></td>
+                                                                <td>{{ application.applicationDate | date:"dd-MM-yyyy" }}
+                                                                </td>
+                                                                <td><strong i18n>Approval Application:</strong></td>
+                                                                <td>{{ application.applicationStatus }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong i18n>Investment Grade:</strong></td>
+                                                                <td>{{ application.isInvestmentGrade ? 'Yes' : 'No' }}
+                                                                </td>
+                                                                <td><strong i18n>Politically Exposed:</strong></td>
+                                                                <td>{{ application.isPoliticallyExposed ? 'Yes' : 'No' }}
+                                                                </td>
+                                                                <td><strong i18n>Related Party:</strong></td>
+                                                                <td>{{ application.isRelatedParty ? 'Yes' : 'No' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong i18n>Approval Status:</strong></td>
+                                                                <td>{{ getApprovalStatus(application.approvalStatusId) }}
+                                                                </td>
+                                                                <td><strong i18n>Application Status:</strong></td>
+                                                                <td>{{ application.applicationStatus }}</td>
+                                                                <td><strong i18n>submitted For Appraisal:</strong></td>
+                                                                <td>{{ application.submittedForAppraisal ? 'Yes' : 'No' }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </p-tabPanel>
+
+                                                <p-tabPanel i18n-header header="Customer Information" *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <app-customer-information-detail
+                                                            [loanApplicationId]="application?.loanApplicationId">
+                                                        </app-customer-information-detail>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Loan Information" *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="pull-right">
+                                                                    <button (click)="previewDocumentation()"
+                                                                        style="padding: 3px 6px 3px 6px;"  >
+                                                                        <span class="glyphicon glyphicon-file"></span>
+                                                                        <ng-container i18n> Preview FAM Document</ng-container>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <app-loan-application-details-view [isRecommendedInfo]="true"
+                                                            [loanApplicationId]="application?.loanApplicationId"
+                                                            [loanApplicationDetail]=loanApplicationDetail
+                                                            [loanInformation]="loanApplicationDetail?.loanInformation"
+                                                            [visible]="false"> </app-loan-application-details-view>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Transaction Dynamics" *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <div class="form-horizontal">
+                                                            <p-dataTable [responsive]="true" [value]="dynamicsList"
+                                                                [rows]="12">
+
+                                                                <p-column i18n-header [style]="{'width':'30px'}">
+                                                                    <ng-template let-i="rowIndex" let-line
+                                                                        pTemplate="rowexpansion">{{ i + 1 }}
+                                                                    </ng-template>
+                                                                </p-column>
+
+                                                                <p-column i18n-header field="dynamics" header="Transaction Dynamics"
+                                                                    sortable="true" [filter]="true"
+                                                                    filterMatchMode="contains"></p-column>
+
+                                                            </p-dataTable>
+                                                        </div>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Condition Precedent" *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <div class="form-horizontal">
+                                                            <p-dataTable [responsive]="true" [value]="conditionList"
+                                                                [rows]="12">
+                                                                <p-column i18n-header [style]="{'width':'30px'}">
+                                                                    <ng-template let-i="rowIndex" let-line
+                                                                        pTemplate="rowexpansion">{{ i + 1 }}
+                                                                    </ng-template>
+                                                                </p-column>
+                                                                <p-column i18n-header field="condition" header="Condition"
+                                                                    sortable="true" [filter]="true"
+                                                                    filterMatchMode="contains"></p-column>
+                                                            </p-dataTable>
+                                                        </div>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Supporting Documents" *ngIf="hideGeneralInfoPanel">
+                                                    <document-upload [deleteLink]="false" [panelTitle]="DRAWDOWNDOC"
+                                                        [showUploadForm]="isCreator()" [reload]="reload"
+                                                        [operationId]="application?.operationId"
+                                                        [customerId]="application?.customerId"
+                                                        [customerGroupId]="application?.customerGroupId"
+                                                        [isOperationSpecific]="false"
+                                                        [targetId]="application?.loanApplicationId"
+                                                        [targetReferenceNumber]="application?.applicationReferenceNumber">
+                                                    </document-upload>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Approval Process Changes"
+                                                    *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <table class="table table-casa-information">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th i18n>Customer Name</th>
+                                                                    <th i18n>Product Name</th>
+                                                                    <th i18n>Tenor</th>
+                                                                    <th i18n>Rate</th>
+                                                                    <th i18n>Amount</th>
+                                                                    <th i18n>Exchange Rate</th>
+                                                                    <th i18n>Approval Status</th>
+                                                                    <th i18n>Staff</th>
+                                                                </tr>
+                                                                <tr *ngFor="let x of changeLog">
+                                                                    <td>{{ x.customerName }}</td>
+                                                                    <td>{{ x.approvedProductName }}</td>
+                                                                    <td >{{ x.approvedTenor/30 | number : '1.0-0' }}
+                                                                        months</td>
+                                                                    <td>{{ x.approvedRate | number:'1.2' }}</td>
+                                                                    <td>{{ x.approvedAmount | number:'1.2' }}</td>
+                                                                    <td>{{ x.exchangeRate | number:'1.2' }}</td>
+                                                                    <td>{{ getApprovalStatus(x.statusId) }}</td>
+                                                                    <td>{{ x.staffName }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <!-- <p-tabPanel i18n-header header="Offer Letter" *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <button type="button" class="btn btn-primary"
+                                                            style="margin-right: 5px;"
+                                                            [disabled]="isOfferLetterAvailable"
+                                                            (click)="popoverSeeMore()">View Offer Letter</button>
+                                                    </div>
+                                                </p-tabPanel> -->
+                                                <p-tabPanel i18n-header header="Approval Process Comments"
+                                                    *ngIf="hideGeneralInfoPanel">
+                                                    <div class="panel-body">
+                                                        <app-approval-comments [all]="true"
+                                                            [tableLabel]="'Approval Process Comments'"
+                                                            [operationId]="application?.operationId"
+                                                            [applicationId]="application?.loanApplicationId">
+                                                        </app-approval-comments>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Loan Cancellation"
+                                                *ngIf="staffRoleId == 6 || staffRoleId == 181">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h2 class="panel-title" i18n>Reason For Cancellation</h2>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12">
+                                                                    <textarea type="text" name="cancellationReason"
+                                                                        item-height="100"
+                                                                        [(ngModel)]="cancellationReason"
+                                                                        id="cancellationReason"
+                                                                        class="form-control"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-footer">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <button type="button"
+                                                                        (click)="saveLoanApplicationCancellation()"
+                                                                        [disabled]="!cancellationReason"
+                                                                        class="btn btn-success pull-right" i18n>Cancel Loan</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel i18n-header header="Drawdown Memo">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h2 class="panel-title pull-left" i18n>
+                                                                        Drawdown Memo
+                                                                    </h2>
+                                                                    <button  (click)="printMemo()" style="margin-left:10px" i18n >Generate Drawdown Memo</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="print-drawdown-section" class="panel-body" [innerHtml]="drawdownHtml"></div>
+                                                    </div>
+                                                </p-tabPanel>
+
+                                            </p-tabView>
+                                        </div>
+
+                                    </div>
+
+                                </p-tabPanel>
+                            </p-tabView>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-9 ">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+
+    <p-dialog [responsive]=true [(visible)]="displaySearchForm" id="add-modal" modal="modal" showEffect="fade"
+        width="450">
+        <div style="margin-bottom:0" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title" i18n>
+                    Search Application
+                </h2>
+            </div>
+
+            <form novalidate [formGroup]="searchForm" autocomplete="off">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="searchString" class="control-label col-md-12" i18n>Loan Application Reference Number / Customer Name/ Staff Code</label>
+                            <div class="col-md-12">
+                                <input type="text" name="searchString" formControlName="searchString" id="searchString"
+                                    class="form-control"
+                                    [ngClass]="!searchForm.controls['searchString'].valid ? 'required-input' : 'valid-input'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" (click)="submitForm(searchForm)" [disabled]="searchForm.invalid"
+                                class="btn btn-success pull-right" i18n>Search</button>
+                            <button type="button" (click)="displaySearchForm=false" style="margin-right:5px"
+                                class="btn btn-danger pull-right" i18n>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </p-dialog>
+
+    <p-dialog [responsive]=true [(visible)]="displayDocumentation" modal="modal" showEffect="fade" width="1000"
+        [contentStyle]="{'overflow':'auto','max-height':'700px'}">
+        <div *ngIf="displayDocumentation" style="margin-bottom:0" class="panel panel-default">
+
+            <div class="panel-heading">
+                <h2 class="panel-title " >
+                    <ng-container i18n>FACILITY APPROVAL MEMO No.:</ng-container>
+                    <strong>{{ application?.applicationReferenceNumber }}</strong>
+                    <button (click)="print()"><ng-container i18n>Print To PDF</ng-container>
+                    </button>
+                </h2>
+                <div class="pull-right">
+                    <a class="close" (click)="closeDocumentation()">&times;</a>
+                </div>
+            </div>
+            <div id="print-section" #pdfTable class="panel-body" style="overflow:auto;height:700px">
+                <div *ngFor="let x of documentations">
+                    <span [innerHtml]="x.templateDocument"></span>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+
+</div>

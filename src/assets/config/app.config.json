@@ -1,0 +1,8 @@
+{
+    "baseApiUrl": "http://localhost:51104/api/v1/",
+    "tokenUrl": "http://localhost:51104/token",
+    "hostUrl": "http://localhost:4200",
+    "appTimeOut": 5,
+    "lang" : "en"
+}
+

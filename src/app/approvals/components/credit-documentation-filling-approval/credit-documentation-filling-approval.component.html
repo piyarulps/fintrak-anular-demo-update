@@ -1,0 +1,323 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                Credit Documentation Filling Awaiting Approval
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p-tabView>
+                        <p-tabPanel i18n-header header="Loan Origination">
+                            <p-dataTable #dt [value]="loans" [paginator]="true" resizableColumns="true" [responsive]="true"
+                            [rows]="10">
+                            <p-header>
+                                <div class="ui-helper-clearfix">
+                                    <button type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV"
+                                        (click)="dt.exportCSV()" style="float:left" i18n>Export to CSV</button>
+                                </div>
+                            </p-header>
+                            <p-column i18n-header field="fillingRequestDate" [style]="{'width':'100px'}" header="Arrival Date"
+                                sortable="true" [filter]="true" filterMatchMode="contains">
+                                <ng-template let-i="rowIndex" let-row="rowData" pTemplate type="body">
+                                    {{ row.fillingRequestDate | date: 'medium' }}
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'width':'50px'}" field="divisionShortCode" header="Unit" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+                                <p-column i18n-header [style]="{'width':'50px'}" field="module" header="Module" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+                            <p-column i18n-header field="productTypeName" [style]="{'width':'107px'}" header="Facility Type"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+    
+                            <p-column i18n-header [style]="{'width':'70px'}" field="productClassName" header="Class" sortable="true"
+                                [filter]="true" filterMatchMode="contains"></p-column>
+    
+                            <p-column i18n-header [style]="{'width':'120px'}" field="loanReferenceNumber" header="Ref No"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+    
+                            <p-column i18n-header [style]="{'width':'50px'}" field="isLineFacilityString" header="Is A Line"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+    
+                            <p-column i18n-header field="applicantName" [style]="{'width':'150px'}" header="Obligor's Name"
+                                sortable="true" [filter]="true" filterMatchMode="contains">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    <span *ngIf="item.loanTypeId == 1">{{item.customerName}}</span>
+                                    <span *ngIf="item.loanTypeId != 1">{{item.customerName}}
+                                        ({{item.customerGroupName}})</span>
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="approvedAmount"
+                                header="Approved Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.approvedAmount | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="bookingAmountRequested"
+                                header="Requested Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.bookingAmountRequested | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="amountDisbursed"
+                                header="Disbursed Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    <!-- <span *ngIf="routableUser">{{item.routedToStaff != null ? item.routedToStaff : 'None'}}</span> -->
+                                    <!-- <span *ngIf="!routableUser">{{item.amountDisbursed | currency:item.currencyCode:true:'1.2-2'}}</span> -->
+                                    {{item.amountDisbursed | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column>
+                            <!-- <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="customerAvailableAmount" header="Available Amount" sortable="true"
+                                        >
+                                        <ng-template pTemplate="body" let-item="rowData">
+                                            {{item.customerAvailableAmount | currency:item.currencyCode:true:'1.2-2'}}
+                                        </ng-template>
+                                    </p-column>  -->
+                            <!-- <p-column i18n-header [style]="{'width':'65px'}" field="interestRate" header="Rate">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    <span
+                                        *ngIf="item.productPriceIndex != null || item.productPriceIndex != undefined ">{{item.interestRate}}
+                                        ({{item.productPriceIndex.substring(0,3)}}) </span>
+                                    <span *ngIf="item.productPriceIndex == null ">{{item.interestRate}} </span>
+                                </ng-template>
+                            </p-column> -->
+                            <p-column i18n-header [style]="{'width':'80px'}" field="approvedTenor" header="Tenor" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.approvedTenorString}}
+                                </ng-template>
+                            </p-column>
+    
+                            <p-column i18n-header [style]="{'width':'100px', 'text-align':'left'}">
+                                <ng-template pTemplate="header" i18n>
+                                    Action
+                                </ng-template>
+                                <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                                    <button type="button" (click)="approval(row, $event)" i18n>
+                                        Approve
+                                    </button>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+                        </p-tabPanel>
+                        <p-tabPanel i18n-header header="Loan Management">
+                            <p-dataTable #dt [value]="lmsLoans" [paginator]="true" resizableColumns="true" [responsive]="true"
+                            [rows]="10">
+                            <p-header>
+                                <div class="ui-helper-clearfix">
+                                    <button type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV"
+                                        (click)="dt.exportCSV()" style="float:left" i18n>Export to CSV</button>
+                                </div>
+                            </p-header>
+                            <p-column i18n-header field="arrivalDate" [style]="{'width':'100px'}" header="Arrival Date"
+                                sortable="true" [filter]="true" filterMatchMode="contains">
+                                <ng-template let-i="rowIndex" let-row="rowData" pTemplate type="body">
+                                    {{ row.arrivalDate | date: 'medium' }}
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'width':'50px'}" field="divisionShortCode" header="Unit" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+                                <p-column i18n-header [style]="{'width':'50px'}" field="module" header="Module" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+
+                            <p-column i18n-header field="customerName" header="Customer Name" sortable="true" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+                            <p-column i18n-header field="productTypeName" [style]="{'width':'107px'}" header="Facility Type"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+    
+                            <!-- <p-column i18n-header [style]="{'width':'70px'}" field="productClassName" header="Class" sortable="true"
+                                [filter]="true" filterMatchMode="contains"></p-column> -->
+    
+                            <p-column i18n-header [style]="{'width':'120px'}" field="loanReferenceNumber" header="Ref No"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+
+                            <p-column i18n-header field="lmsrApplicationReferenceNumber" header="Application Ref." sortable="true" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+
+                            <p-column i18n-header field="relationshipManagerName" header="Relationship Manager" sortable="true"
+                                [filter]="true" filterMatchMode="contains"></p-column>
+
+                            <p-column i18n-header field="operationTypeName" header="Operation Type" sortable="true" [filter]="true"
+                                filterMatchMode="contains"></p-column>
+    
+                            <!-- <p-column i18n-header [style]="{'width':'50px'}" field="isLineFacilityString" header="Is A Line"
+                                sortable="true" [filter]="true" filterMatchMode="contains"></p-column> -->
+    
+                            
+                            <!-- <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="approvedAmount"
+                                header="Approved Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.approvedAmount | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column>
+                            <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="bookingAmountRequested"
+                                header="Requested Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.bookingAmountRequested | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column> -->
+                            <!-- <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="amountDisbursed"
+                                header="Disbursed Amount" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData"> -->
+                                    <!-- <span *ngIf="routableUser">{{item.routedToStaff != null ? item.routedToStaff : 'None'}}</span> -->
+                                    <!-- <span *ngIf="!routableUser">{{item.amountDisbursed | currency:item.currencyCode:true:'1.2-2'}}</span> -->
+                                    <!-- {{item.amountDisbursed | currency:item.currencyCode:true:'1.2-2'}}
+                                </ng-template>
+                            </p-column> -->
+                            <!-- <p-column i18n-header [style]="{'text-align':'right','width':'120px'}" field="customerAvailableAmount" header="Available Amount" sortable="true"
+                                        >
+                                        <ng-template pTemplate="body" let-item="rowData">
+                                            {{item.customerAvailableAmount | currency:item.currencyCode:true:'1.2-2'}}
+                                        </ng-template>
+                                    </p-column>  -->
+                            <!-- <p-column i18n-header [style]="{'width':'65px'}" field="interestRate" header="Rate">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    <span
+                                        *ngIf="item.productPriceIndex != null || item.productPriceIndex != undefined ">{{item.interestRate}}
+                                        ({{item.productPriceIndex.substring(0,3)}}) </span>
+                                    <span *ngIf="item.productPriceIndex == null ">{{item.interestRate}} </span>
+                                </ng-template>
+                            </p-column> -->
+                            <!-- <p-column i18n-header [style]="{'width':'80px'}" field="approvedTenor" header="Tenor" sortable="true">
+                                <ng-template pTemplate="body" let-item="rowData">
+                                    {{item.approvedTenorString}}
+                                </ng-template>
+                            </p-column> -->
+    
+                            <p-column i18n-header [style]="{'width':'100px', 'text-align':'left'}">
+                                <ng-template pTemplate="header" i18n>
+                                    Action
+                                </ng-template>
+                                <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                                    <button type="button" (click)="approvalLms(row, $event)" i18n>
+                                        Approve
+                                    </button>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [responsive]=true [(visible)]="displayApprovalModal" widgetVar="ajaxDialog"
+    [contentStyle]="{'overflow':'scroll','max-height':'600px'}" modal="modal" showEffect="fade" width="900">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <p-tabView>
+
+                <p-tabPanel i18n-header header="Credit Documentation Filling Approval">
+
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong i18n>Comment</strong>
+                                </td>
+                                <td>
+                                    <textarea [ngClass]="!loanSelectedData.comment ? 'required-input' : 'valid-input'"
+                                        class="form-control" [(ngModel)]="loanSelectedData.comment" name="comment"
+                                        cols="15" rows="3"></textarea>
+                                </td>
+                                <td>
+                                    <strong i18n>Status</strong>
+                                </td>
+                                <td>
+                                    <select name="approvalStatusId" id="approvalStatusId" class="form-control"
+                                        [(ngModel)]="loanSelectedData.approvalStatusId"
+                                        [ngClass]="!loanSelectedData.approvalStatusId ? 'required-input' : 'valid-input'">
+                                        <option value="" i18n>--- Select Approval Status ---</option>
+                                        <option value="2" i18n>Approved</option>
+                                        <option value="3" i18n>Disapproved</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+
+            </p-tabView>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group pull-right">
+                            <button (click)="displayApprovalModal = false" type="button" class="btn btn-danger"
+                                style="margin-right:5px" i18n>Close</button>
+                            <button [disabled]="!loanSelectedData.comment || !loanSelectedData.approvalStatusId"
+                                type="button" (click)="promptToGoForApproval(loanSelectedData)" style="margin-right:5px"
+                                class="btn btn-success" i18n>Submit For Approval</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayLmsApprovalModal" widgetVar="ajaxDialog"
+    [contentStyle]="{'overflow':'scroll','max-height':'600px'}" modal="modal" showEffect="fade" width="900">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <p-tabView>
+
+                <p-tabPanel i18n-header header="Credit Documentation Filling Approval">
+
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong i18n>Comment</strong>
+                                </td>
+                                <td>
+                                    <textarea [ngClass]="!loanSelectedData.comment ? 'required-input' : 'valid-input'"
+                                        class="form-control" [(ngModel)]="loanSelectedData.comment" name="comment"
+                                        cols="15" rows="3"></textarea>
+                                </td>
+                                <td>
+                                    <strong i18n>Status</strong>
+                                </td>
+                                <td>
+                                    <select name="approvalStatusId" id="approvalStatusId" class="form-control"
+                                        [(ngModel)]="loanSelectedData.approvalStatusId"
+                                        [ngClass]="!loanSelectedData.approvalStatusId ? 'required-input' : 'valid-input'">
+                                        <option value="" i18n>--- Select Approval Status ---</option>
+                                        <option value="2" i18n>Approved</option>
+                                        <option value="3" i18n>Disapproved</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+
+            </p-tabView>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group pull-right">
+                            <button (click)="displayLmsApprovalModal = false" type="button" class="btn btn-danger"
+                                style="margin-right:5px" i18n>Close</button>
+                            <button [disabled]="!loanSelectedData.comment || !loanSelectedData.approvalStatusId"
+                                type="button" (click)="promptToGoForLmsApproval(loanSelectedData)" style="margin-right:5px"
+                                class="btn btn-success" i18n>Submit For Approval</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+
+<app-fintrakbanking-dialog [title]="title" [show]="displayConfirmDialog" [width]="width" [message]="message"
+    (approveEvent)="goForApproval(loanSelectedData)" (closeEvent)="cancelApproval()"></app-fintrakbanking-dialog>

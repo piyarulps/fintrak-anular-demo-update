@@ -1,0 +1,187 @@
+<div *ngIf="displaySearch" class="ui-g">
+    <div class="ui-g-12 no-padding">
+      <div class="card no-padding">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 i18n class="panel-title pull-left">
+                  Commercial Loan - Rollover
+                </h2>
+                <div *ngIf="showButton" class="pull-right">
+                    <!-- <button (click)="showGrid()" pButton type="button" label="Back To List" icon="fa-plus"></button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="panel-body" style="overflow:auto; height:350px">
+            <div class="form-horizontal">
+          <div class="form-horizontal">
+            <form  [formGroup]="manualRolloverForm" autocomplete="off">
+              <div>
+                  <table *ngIf="loanViewSelection != null" class="table table-customer-information">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <strong i18n>Reference Number:</strong>
+                          </td>
+                          <td>{{ loanViewSelection.loanReferenceNumber ? loanViewSelection.loanReferenceNumber : 'N/A'}}</td>
+                          <td>
+                            <strong i18n>Application Reference No:</strong>
+                          </td>
+                          <td>{{ loanViewSelection.applicationReferenceNumber ? loanViewSelection.applicationReferenceNumber : 'N/A'}}</td>
+                          <td>
+                            <strong i18n> CASA Account Number</strong>
+                          </td>
+                          <td>{{ loanViewSelection.casaAccountNumber }}</td>
+                
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n>Customer Code</strong>
+                          </td>
+                          <td>{{ loanViewSelection.customerCode }}</td>
+                          <td>
+                            <strong i18n>Customer Name</strong>
+                          </td>
+                          <td>{{ loanViewSelection.customerName ? loanViewSelection.customerName : 'N/A'}}</td>
+                          <td>
+                            <strong i18n> Product Account Name</strong>
+                          </td>
+                          <td>{{ loanViewSelection.productAccountName }}</td>
+        
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n>Last Operation</strong>
+                          </td>
+                          <td>{{ loanViewSelection.operationName }}</td>
+                          <td>
+                            <strong i18n>Product Type</strong>
+                          </td>
+                          <td>{{ loanViewSelection.productTypeName }}</td>
+                          <td>
+                            <strong i18n> Effective Date</strong>
+                          </td>
+                          <td>{{ loanViewSelection.effectiveDate | date }}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n>Branch Name</strong>
+                          </td>
+                          <td>{{ loanViewSelection.branchName }}</td>
+                          <td>
+                            <strong i18n>Customer Type</strong>
+                          </td>
+                          <td>{{ loanViewSelection.loanTypeName }}</td>
+                          <td>
+                            <strong i18n> Sector Name</strong>
+                          </td>
+                          <td>{{ loanViewSelection.sectorName }}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n>Initiating Officer</strong>
+                          </td>
+                          <td>{{ loanViewSelection.relationshipOfficerName ? loanViewSelection.relationshipOfficerName : 'N/A' }}</td>
+                          <!-- <td>
+                            <strong i18n>Business Manager</strong>
+                          </td>
+                          <td>{{ loanViewSelection.relationshipManagerName }}</td> -->
+                          <td>
+                            <strong i18n> Maturity Date</strong>
+                          </td>
+                          <td>{{ loanViewSelection.maturityDate | date }}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n> Amount</strong>
+                          </td>
+                          <td>{{ loanViewSelection.principalAmount }}</td>
+                          <td>
+                            <strong i18n> Interest Rate</strong>
+                          </td>
+                          <td>{{ loanViewSelection.interestRate }}</td>
+                          <td>
+                            <strong i18n> Sub-Sector Name</strong>
+                          </td>
+                          <td>{{ loanViewSelection.subSectorName }}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <strong i18n> Outstanding Principal</strong>
+                          </td>
+                          <td>{{ loanViewSelection.outstandingPrincipal }}</td>
+                          <td>
+                            <strong i18n> Outstanding Interest</strong>
+                          </td>
+                          <td>{{ loanViewSelection.outstandingInterest }}</td>
+                          <td>
+                            <strong i18n> Currency</strong>
+                          </td>
+                          <td>{{ loanViewSelection.currency}}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                              <strong i18n> Tenor</strong>
+                            </td>
+                            <td>{{ loanViewSelection.tenor }}</td>
+                            <td>
+                              <strong i18n> Booking Date</strong>
+                            </td>
+                            <td>{{ loanViewSelection.bookingDate | date }}</td>
+                          <td>
+                            <strong i18n> Exchange Rate</strong>
+                          </td>
+                          <td>{{ loanViewSelection.exchangeRate }}</td>
+                        </tr>
+                      
+                      </tbody>
+              </table>
+            </div>
+
+              <fieldset style="padding-left:14px">
+                <legend i18n>
+                  New Loan Instruction
+                </legend>
+                <div class="form-group">
+                  <label i18n for="newTenor" class="control-label col-md-2">Tenor (days)</label>
+                  <div class="col-md-4 ">
+                    <input type="text" name="newTenor" formControlName="newTenor" id="newTenor" class="form-control"
+                      [ngClass]="!manualRolloverForm.controls['newTenor'].valid ? 'required-input' : 'valid-input'">
+                  </div>
+                  <label i18n for="instructionType" class="control-label col-md-2">Set Instruction</label>
+                <div class="col-md-4 ">
+                    <select name="instructionType" id="instructionType" formControlName="instructionType"  class="form-control" [ngClass]="!manualRolloverForm.controls['instructionType'].valid ? 'required-input' : 'valid-input'">
+                        <option i18n value=""></option>
+                        <option *ngFor="let b of maturedLoansInstructionType" value="{{b.instructionTypeId}}">
+                            {{b.instructionTypeName}}
+                        </option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label i18n for="document" class="control-label col-md-2">Instruction Document</label>
+                <div class="col-md-4">
+                  <input type="file"  placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg" #fileInput name="fileInput" formControlName="fileInput" style="padding-top:2px;" class="form-control">
+                </div>
+                <label i18n for="submit" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <!-- <button (click)="rolloverLoan(manualRolloverForm)" [attr.disabled]="!manualRolloverForm.valid" class="btn btn-sm btn-primary" [disabled]="!manualRolloverForm.valid"><span class="glyphicon glyphicon-upload"></span> Roll-over Loan</button> -->
+                    <button type="button"  (click)="rolloverLoan(manualRolloverForm)"  class="btn btn-success" i18n>Roll-over Loan</button>
+                    <!-- <button  (click)="rolloverLoan(manualRolloverForm)" class="btn btn-sm btn-primary" ><span class="glyphicon glyphicon-upload"></span> Roll-over Loan</button> -->
+                    <!-- <button (click)="showCovenantDetailForm()" pButton type="button" label="Terminate" icon="fa-plus" class="btn btn-default"></button> -->
+                </div>
+              </div>
+                </fieldset>
+             
+              <hr>
+            </form>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ <fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>

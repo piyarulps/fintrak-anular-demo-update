@@ -1,0 +1,1033 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="panel-title pull-left" i18n>
+          General Setup
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+
+    <p-accordion>
+        <p-accordionTab header="Item">
+            <div class="panel panel-default">
+    
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 class="panel-title pull-left" i18n>
+                      Rac Item
+                    </h2>
+                    <div class="pull-right">
+                      <button (click)="showRacItemForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="panel-body">
+    
+                <p-dataTable [value]="racItems" [responsive]="true" [paginator]="true" [rows]="7">
+    
+                  <p-column i18n-header field="criteria" header="Criteria" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+                  <p-column i18n-header field="description" header="Description" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+                  <!-- <p-column i18n-header field="racItem" header="Additional Comment" sortable="true" filterMatchMode="contains">
+                  </p-column> -->
+    
+                  <p-column [style]="{'width':'100px'}" header="View">
+                    <ng-template pTemplate="header"> </ng-template>
+                    <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                      <div style="text-align:center">
+                        <a (click)="deleteRacItem(d)" href="javascript:void(0)" i18n>Remove</a>
+                        <span style="padding:3px;">|</span>
+                        <a (click)="editRacItem(d)" href="javascript:void(0)" i18n>Edit</a>
+                      </div>
+                    </ng-template>
+                  </p-column>
+    
+                </p-dataTable>
+    
+              </div>
+    
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Definition">
+              <p-tabView [activeIndex]="activeTabindex" (onChange)="onTabChange($event)">
+                <p-tabPanel header="RAC Definition List">
+                  <div class="panel panel-default">
+      
+                    <div class="panel-heading">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h2 class="panel-title pull-left" i18n>
+                            Rac Definition
+                          </h2>
+                          <div class="pull-right">
+                            <button (click)="showRacDefinitionForm()" pButton type="button" i18n-label label="Add New"
+                              icon="fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="panel-body">
+      
+                      <p-dataTable [value]="racDefinitions" [responsive]="true" [paginator]="true" [rows]="7">
+                        <p-column i18n-header field="productClassName" header="Product Class " [filter]="true" sortable="true" filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="productName" header="Product " [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="categoryName" header="Rac Category" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="racCategoryType" header="Tier" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <!-- <p-column i18n-header field="isActive" header="Is Active" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column> -->
+                        <p-column i18n-header field="isRequired" header="Is Required" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="racItemName" header="Rac Item" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <!-- <p-column i18n-header field="racInputType" header="Rac Input Type" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column> -->
+                        <p-column i18n-header field="racOptionName" header="Rac Option" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <!-- <p-column i18n-header field="conditionalOperatorName" [filter]="true" header="Conditional Operator "
+                          sortable="true" filterMatchMode="contains"></p-column> -->
+                        <!-- <p-column i18n-header field="definedFunctionName" [filter]="true" header="Defined Function" sortable="true"
+                          filterMatchMode="contains"></p-column> -->
+                        <!-- <p-column i18n-header field="requireUpload" header="Require Upload" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column> -->
+                        <!-- <p-column i18n-header field="operationName" header="Operation " [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column> -->
+                        <!-- <p-column i18n-header field="approvalLevelName" header="Approval Level" [filter]="true" sortable="true"
+                          filterMatchMode="contains">
+                        </p-column>
+                        <p-column i18n-header field="controlAmount" header="control Amount" [filter]="true" sortable="true"
+                          filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="controlOption" header="control Option" [filter]="true" sortable="true"
+                          filterMatchMode="contains"></p-column> -->
+      
+                        <!-- <p-column i18n-header field="racDefinition" header="Additional Comment" sortable="true" filterMatchMode="contains">
+                            </p-column> -->
+      
+                        <p-column [style]="{'width':'100px'}" header="View">
+                          <ng-template pTemplate="header"> </ng-template>
+                          <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                            <div style="text-align:center">
+                              <a (click)="deleteRacDefinition(d)" href="javascript:void(0)" i18n>Remove</a>
+                              <span style="padding:3px;">|</span>
+                              <a (click)="editRacDefinition(d)" href="javascript:void(0)" i18n>Edit</a>
+                            </div>
+                          </ng-template>
+                        </p-column>
+      
+                      </p-dataTable>
+      
+                    </div>
+      
+                  </div>
+                </p-tabPanel>
+                <p-tabPanel header="New RAC Definition">
+                  <div style="margin-bottom:0" class="panel panel-default">
+                  
+                    <div class="panel-heading">
+                      <h2 class="panel-title" >
+                        {{ formState }} <ng-container i18n>RAC Definition</ng-container>
+                        
+                      </h2>
+                    </div>
+                  
+                    <form novalidate [formGroup]="racDefinitionForm" (ngSubmit)="saveRacDefinition(racDefinitionForm)" autocomplete="off">
+                      <div class="panel-body">
+                        <div class="form-horizontal">
+                  
+                          <div class="form-group">
+                            <label for="" class="control-label col-md-2" i18n>
+                              Define RAC by
+                            </label>
+                            <div class="col-md-4">
+                              <select   name="searchBasePlaceholder" id="searchBasePlaceholder" formControlName="searchBasePlaceholder"
+                              [ngClass]="racDefinitionForm.controls['searchBasePlaceholder'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control" (change)="getCurrenciesbyProduct($event.target.value)"
+                                (change)="racFlow($event.target.value)">
+                                <option value="" i18n>-- Select Product Class--</option>
+                                <option  [value]=PRODUCTCLASS i18n>Product Class</option>
+                                <option  [value]=PRODUCT i18n>Product</option>
+                                <option  [value]=CREDITCARD i18n>Credit Card</option>
+                                <option  [value]=OPERATION i18n>Operation</option>
+                              </select>
+                            </div> 
+                        
+                          </div>
+                          <div class="form-group" *ngIf="hideProduct==false">
+                            <label for="productClassId" class="control-label col-md-2" i18n>
+                              Product Class
+                            </label>
+                            <div class="col-md-4">
+                              <select  name="productClassId" id="productClassId" formControlName="productClassId"
+                                [ngClass]="racDefinitionForm.controls['productClassId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control" (change)="getCurrenciesbyProduct($event.target.value)"
+                                [attr.disabled]="productControl == 2 ? true : null">
+                                <option value="" i18n>-- Select Product Class--</option>
+                                <option *ngFor="let x of productClass" [value]="x.lookupId">
+                                  {{ x.lookupName }}</option>
+                              </select>
+                            </div> 
+      
+                            <label for="productId" class="control-label col-md-2" i18n>
+                              Product 
+                            </label>
+                            <div class="col-md-4">
+                              <select  name="productId" id="productId" formControlName="productId"
+                                [ngClass]="racDefinitionForm.controls['productId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control" (change)="getCurrenciesbyProduct($event.target.value)"
+                                [attr.disabled]="productControl == 1 ? true : null">
+                                <option value="" i18n>-- Select Product --</option>
+                                <option *ngFor="let x of products" [value]="x.productId">
+                                  {{ x.productName }}</option>
+                              </select>
+                            </div> 
+      
+                            
+                          </div>
+      
+                          <div class="form-group">
+                              <label for="" class="control-label col-md-2" i18n>
+                                  Rac Category
+                                </label>
+                                <div class="col-md-4">
+                                  <select name="racCategoryId" id="racCategoryId" (change)="getCategoryTypes($event.target.value)" formControlName="racCategoryId"
+                                    [ngClass]="racDefinitionForm.controls['racCategoryId'].valid ? 'valid-input' : 'required-input'"
+                                    class="form-control">
+                                    <option value="" i18n>-- Select Category --</option>
+                                    <option *ngFor="let x of racCategorys" [value]="x.racCategoryId">
+                                      {{ x.categoryName }}</option>
+                                  </select>
+                                </div>
+                             
+                            <label for="" class="control-label col-md-2" i18n>
+                                Rac Category Type
+                              </label>
+                              
+                              <div class="col-md-4">
+                                <select name="racCategoryTypeId" id="racCategoryTypeId" formControlName="racCategoryTypeId"
+                                  [ngClass]="racDefinitionForm.controls['racCategoryTypeId'].valid ? 'valid-input' : 'required-input'"
+                                  class="form-control">
+                                  <option value="" i18n>-- Select Category Type --</option>
+                                  <option *ngFor="let x of categoryType" [value]="x.racCategoryTypeId">
+                                    {{ x.racCategoryType }}</option>
+                                </select>
+                              </div>
+                             
+                        </div>
+                  
+                          <div class="form-group">
+                              <label for="" class="control-label col-md-2" i18n>
+                                  Rac Item
+                                </label>
+                                <div class="col-md-4">
+                                  <!-- <select name="racItemId" id="racItemId" formControlName="racItemId"
+                                    [ngClass]="racDefinitionForm.controls['racItemId'].valid ? 'valid-input' : 'required-input'"
+                                    class="form-control">
+                                    <option value="" i18n>-- Select Item Type --</option>
+                                    <option *ngFor="let x of racItems" [value]="x.racItemId">
+                                      {{ x.criteria }}</option>
+                                  </select> -->
+                                  <input type="text" name="racItemId" (focus)="openSearchBox()" formControlName="racItemId" id="label" class="form-control"
+                                    [ngClass]="racDefinitionForm.controls['racItemId'].valid ? 'valid-input' : 'required-input'">
+                                </div>
+      
+                              <label for="" class="control-label col-md-2" i18n>
+                              Rac Input Type
+                            </label>
+                            <div class="col-md-4">
+                              <select name="racInputTypeId" id="racInputTypeId" formControlName="racInputTypeId"
+                                [ngClass]="racDefinitionForm.controls['racInputTypeId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control">
+                                <option value="" i18n>-- Select Input Type --</option>
+                                <option *ngFor="let x of inputTypes" [value]="x.racInputTypeId">
+                                  {{ x.inputTypeName }}</option>
+                              </select>
+                            </div>
+                               
+                          </div>
+                  
+                          <div class="form-group">
+                            <label for="" class="control-label col-md-2" i18n>
+                              Rac Option
+                            </label>
+                            <div class="col-md-4">
+                              <select name="racOptionId" id="racOptionId" formControlName="racOptionId"
+                                [ngClass]="racDefinitionForm.controls['racOptionId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control">
+                                <option value="" i18n>-- Select Option --</option>
+                                <option *ngFor="let x of racOptions" [value]="x.racOptionId">
+                                  {{ x.optionName }}</option>
+                              </select>
+                            </div>
+                            <label for="" class="control-label col-md-2" i18n>
+                                Defined Function
+                              </label>
+                              <div class="col-md-4">
+                                <select name="definedFunctionId" id="definedFunctionId" formControlName="definedFunctionId"
+                                  [ngClass]="racDefinitionForm.controls['definedFunctionId'].valid ? 'valid-input' : 'required-input'"
+                                  class="form-control">
+                                  <option value="" i18n>-- Select Defined Function --</option>
+                                  <option *ngFor="let x of definedFunctions" [value]="x.definedFunctionId">
+                                    {{ x.functionName }}</option>
+                                </select>
+                              </div>
+                          </div>
+                  
+                  
+                          <div class="form-group">
+                           
+                            <label for="" class="control-label col-md-2" i18n>
+                              Control Option
+                            </label>
+                            <div class="col-md-4">
+                              <select name="controlOptionId" id="controlOptionId" formControlName="controlOptionId"
+                                [ngClass]="racDefinitionForm.controls['controlOptionId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control">
+                                <option value="" i18n>-- Select Condition Operator --</option>
+                                <option *ngFor="let x of controlOption" [value]="x.racOptionItemId">
+                                  {{ x.label }}</option>
+                              </select>
+                            </div>
+                            <label for="" class="control-label col-md-2" i18n>
+                                Conditional Operator
+                              </label>
+                              <div class="col-md-4">
+                                <select name="conditionalOperatorId" id="conditionalOperatorId" formControlName="conditionalOperatorId"   (change)="onCondionOperationChange($event.target.value)"
+                                  [ngClass]="racDefinitionForm.controls['conditionalOperatorId'].valid ? 'valid-input' : 'required-input'"
+                                  class="form-control">
+                                  <option value="" i18n>-- Select Condition Operator --</option>
+                                  <option *ngFor="let x of conditionOperators" [value]="x.conditionalOperatorId">
+                                    {{ x.operatorName }}</option>
+                                </select>
+                              </div>
+                          </div>
+                  
+                          <div class="form-group">
+                            <label for="" class="control-label col-md-2" i18n>
+                              Operation
+                            </label>
+                            <div class="col-md-4">
+                              <select name="operationId" id="operationId" formControlName="operationId"
+                                [ngClass]="racDefinitionForm.controls['operationId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control">
+                                <option value="" i18n>-- Select Operation --</option>
+                                <option *ngFor="let x of operations" [value]="x.lookupId">
+                                  {{ x.lookupName }}</option>
+                              </select>
+                            </div>
+                            <label for="" class="control-label col-md-2" i18n>
+                                Control Amount
+                              </label>
+                              <div class="col-md-4">
+                                <div class="row">
+                                  <div *ngIf="!isBoundaryLimit" class="col-md-8">
+                                    <input type="text" name="controlAmount" formatM formControlName="controlAmount"
+                                      id="controlAmount" class="numeric form-control"
+                                      [ngClass]="racDefinitionForm.controls['controlAmount'].valid ? 'valid-input' : 'required-input'">
+                                  </div>
+      
+                                  <div *ngIf="isBoundaryLimit" class="col-md-8">
+                                    <input type="text" name="controlAmount" formatM formControlName="controlAmount" i18n-placeholder placeholder="Min."
+                                      id="controlAmount" class="numeric form-control" class="col-md-4"
+                                      [ngClass]="racDefinitionForm.controls['controlAmount'].valid ? 'valid-input' : 'required-input'"> 
+      
+                                      <input type="text" name="controlAmountMax" formatM formControlName="controlAmountMax"
+                                      id="controlAmountMax" class="numeric form-control" class="col-md-4"
+                                      [ngClass]="racDefinitionForm.controls['controlAmountMax'].valid ? 'valid-input' : 'required-input'" i18n-placeholder placeholder="Max." > 
+                                  </div>
+      
+                                  <div class="col-md-4">
+                                      <input formControlName="isRacTierControlKey" id="isRacTierControlKey" type="checkbox"> Is Control key
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                  
+                          <!-- <div class="form-group">
+                            <label for="" class="control-label col-md-2">
+                              Role
+                            </label>
+                            <div class="col-md-4">
+                              <select name="roleId" id="roleId" formControlName="roleId"
+                                [ngClass]="racDefinitionForm.controls['roleId'].valid ? 'valid-input' : 'required-input'"
+                                class="form-control">
+                                <option value="" i18n>-- Select Option --</option>
+                                <option *ngFor="let x of staffRoles" [value]="x.staffRoleId">
+                                  {{ x.staffRoleName }}</option>
+                              </select>
+                            </div>
+                            <label for="" class="control-label col-md-2">
+                                Approval Level
+                              </label>
+                              <div class="col-md-4">
+                                <select name="approvalLevelId" id="approvalLevelId" formControlName="approvalLevelId"
+                                  [ngClass]="racDefinitionForm.controls['approvalLevelId'].valid ? 'valid-input' : 'required-input'"
+                                  class="form-control">
+                                  <option value="" i18n>-- Select Approval Level --</option>
+                                  <option *ngFor="let x of approvalLevels" [value]="x.approvalLevelId">
+                                    {{ x.levelName }}</option>
+                                </select>
+                              </div>
+                          
+                          </div> -->
+                  
+                        
+                          <div  class="form-group" *ngIf="showCurrency == true">
+                              <label for="" class="control-label col-md-2" i18n>
+                                  Currency Base
+                              </label>
+                              <div class="col-md-4">
+                                  <select id="currencyBase" formControlName="currencyBase" name="currencyBase" 
+                                      [ngClass]="!racDefinitionForm.controls['currencyBase'].valid ? 'required-input' : 'valid-input'"
+                                      class="form-control" (change)="onCurrencyBaseChange($event.target.value)">
+                                      <option value="0" i18n> Select Currency Base</option>
+                                      <option value="LCY" i18n> Local </option>
+                                      <option value="FCY" i18n> Foreign </option>
+                                      <option value="CUSTOM"  i18n> Custom </option>
+                                  </select>
+                              </div>
+      
+                              <label for="" class="control-label col-md-2" i18n>
+                                  Currency
+                              </label>
+                              <div class="col-md-4">
+                                  <select id="currencyId" [attr.disabled]="currencyCustomBaseSelected ? null : true" formControlName="currencyId" name="currencyId" 
+                                      [ngClass]="!racDefinitionForm.controls['currencyId'].valid ? 'required-input' : 'valid-input'"
+                                      class="form-control" >
+                                      <option value="" i18n> Select Currency</option>
+                                      <option *ngFor="let curr of currencies" value="{{curr.lookupId}}"> {{curr.lookupName}}</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div  class="form-group" >
+                            <label for="employmentType" class="control-label col-md-2">
+                                Employment Type
+                            </label>
+                            <div class="col-md-4">
+                                <select id="employmentType" formControlName="employmentType" name="employmentType" 
+                                    [ngClass]="!racDefinitionForm.controls['employmentType'].valid ? 'required-input' : 'valid-input'"
+                                    class="form-control">
+                                    <option value="" i18n>-- Select Employment Type --</option>
+                                    <option value="EMPLOYEE"  i18n> Employee </option>
+                                    <option value="SELFEMPLOYED"  i18n> Self Employed </option>
+                                </select>
+                            </div>
+      
+                            <label for="customerTypeId" class="control-label col-md-2"  i18n>
+                                Customer Type
+                            </label>
+                            <div class="col-md-4">
+                                <select id="customerTypeId" formControlName="customerTypeId" name="customerTypeId" 
+                                    [ngClass]="!racDefinitionForm.controls['customerTypeId'].valid ? 'required-input' : 'valid-input'"
+                                    class="form-control" >
+                                    <option value="" i18n>--- Select Customer Type ---</option>
+                                    <option *ngFor="let customer of customers" value="{{customer.customerTypeId}}"> {{customer.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <label for="" class="control-label col-md-2"  i18n>
+                              Show At Draw Down
+                            </label>
+                            <div class="col-md-4">
+                            <div class="checkbox-container">
+                              <input formControlName="showAtDrawDown" id="showAtDrawDown" type="checkbox">
+                            </div>
+                            </div>
+                            <label for="" class="control-label col-md-2"  i18n>
+                                Require Upload
+                              </label>
+                              <div class="col-md-4">
+                                <div class="checkbox-container">
+                                  <input formControlName="requireUpload" id="requireUpload" type="checkbox" >
+                                </div>
+                              </div>
+                            
+                          </div>
+                          <div class="form-group">
+                              <label for="" class="control-label col-md-2"  i18n>
+                                Is Active
+                              </label>
+                              <div class="col-md-4">
+                                <div class="checkbox-container">
+                                  <input formControlName="isActive" id="isActive" type="checkbox">
+                                </div>
+                              </div>
+                              <label for="" class="control-label col-md-2"  i18n>
+                                  Require Comment
+                                </label>
+                                <div class="col-md-4">
+                                  <div class="checkbox-container">
+                                    <input formControlName="requireComment" id="requireComment" type="checkbox">
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="" class="control-label col-md-2"  i18n>
+                                Is Required
+                              </label>
+                              <div class="col-md-4">
+                                <div class="checkbox-container">
+                                  <input formControlName="isRequired" id="isRequired" type="checkbox">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                  
+                    <div class="panel-footer">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button type="button" (click)="saveRacDefinition(racDefinitionForm)" [disabled]="racDefinitionForm.invalid"
+                            class="btn btn-success pull-right"  i18n>Save and Close</button>
+                          <button type="button" (click)="activeTabindex=0" style="margin-right:5px"
+                            class="btn btn-danger pull-right" i18n>Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  
+                  
+                  </div>
+                </p-tabPanel>
+              </p-tabView>
+      
+            </p-accordionTab>
+      <p-accordionTab header="Category" [selected]="true">
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="panel-title pull-left" i18n>
+                  Rac Category
+                </h2>
+                <div class="pull-right">
+                  <button (click)="showRacCategoryForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+
+            <p-dataTable [value]="racCategorys" [responsive]="true"  [paginator]="true" [rows]="7">
+
+              <p-column i18n-header field="categoryName" header="Category Name" sortable="true" filterMatchMode="contains">
+              </p-column>
+              <!-- <p-column i18n-header field="racCategory" header="Additional Comment" sortable="true" filterMatchMode="contains">
+              </p-column> -->
+
+              <p-column [style]="{'width':'100px'}" header="View">
+                <ng-template pTemplate="header"> </ng-template>
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                  <div style="text-align:center">
+                    <a (click)="deleteRacCategory(d)" href="javascript:void(0)" i18n>Remove</a>
+                    <span style="padding:3px;">|</span>
+                    <a (click)="editRacCategory(d)" href="javascript:void(0)" i18n>Edit</a>
+                  </div>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+
+          </div>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Category Type">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="panel-title pull-left" i18n>
+                  Rac Category Type
+                </h2>
+                <div class="pull-right">
+                  <button (click)="showRacCategoryTypeForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <!-- <form novalidate [formGroup]="racCategoryTypeForm" (ngSubmit)="addRacCategoryType(racCategoryTypeForm)">
+              <div class="panel-body">
+                  <div class="form-horizontal">
+                    <div class="form-group">
+                        <label style="padding-top: 5px" for="racCategoryTypeId"
+                            class="control-label col-md-3">Category Type</label>
+                        <div class="col-md-5">
+                          <select name="racCategoryTypeId" id="racCategoryTypeId" formControlName="racCategoryTypeId"
+                            class="form-control" [ngClass]="racCategoryTypeForm.controls['racCategoryTypeId'].valid ? 'valid-input' : 'required-input'">
+                            <option value="" i18n>-- Select Rac Category Type --</option>
+                            <option *ngFor="let x of racCategorysForType" [value]="x.racCategoryId">
+                              {{ x.categoryName }}</option>
+                          </select>
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label style="padding-top: 5px" for="subCategoryType"
+                          class="control-label col-md-3">Sub Category Type</label>
+                      <div class="col-md-5">
+                          <input type="text" formControlName="subCategoryType" name="subCategoryType" class="form-control"
+                          [ngClass]="racCategoryTypeForm.controls['subCategoryType'].valid ? 'valid-input' : 'required-input'">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <button pButton type="button" (click)="addRacCategoryType(racCategoryTypeForm)"
+                             label="Save" class="btn btn-success pull-right" [disabled]="racCategoryTypeForm.invalid"></button>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </form> -->
+          <div class="panel-body">
+            <p-dataTable [value]="racCategoryTypes" [responsive]="true" [paginator]="true" [rows]="7">
+      
+              <p-column i18n-header field="racCategoryName" header="Category" [filter]="true" sortable="true" filterMatchMode="contains">
+              </p-column>
+              <p-column i18n-header field="racCategoryType" header="Category Type" [filter]="true" sortable="true" filterMatchMode="contains">
+              </p-column>
+              <p-column [style]="{'width':'100px'}" header="View">
+                <ng-template pTemplate="header"> </ng-template>
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                  <div style="text-align:center">
+                    <a (click)="deleteRacCategoryType(d)" href="javascript:void(0)" i18n>Remove</a>
+                    <span style="padding:3px;">|</span>
+                    <a (click)="editRacCategoryType(d)" href="javascript:void(0)" i18n>Edit</a>
+                  </div>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+      </p-accordionTab>
+     
+      <p-accordionTab header="Option">
+
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="panel-title pull-left" i18n>
+                  Rac Option
+                </h2>
+                <div class="pull-right">
+                  <button (click)="showRacOptionForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body">
+
+            <p-dataTable [value]="racOptions" [responsive]="true" [paginator]="true" [rows]="7">
+
+              <p-column i18n-header field="optionName" header="Option Name" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+              <!-- <p-column i18n-header field="racOption" header="Additional Comment" sortable="true" filterMatchMode="contains">
+              </p-column> -->
+
+              <p-column [style]="{'width':'100px'}" header="View">
+                <ng-template pTemplate="header"> </ng-template>
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                  <div style="text-align:center">
+                    <a (click)="deleteRacOption(d)" href="javascript:void(0)" i18n>Remove</a>
+                    <span style="padding:3px;">|</span>
+                    <a (click)="editRacOption(d)" href="javascript:void(0)" i18n>Edit</a>
+                  </div>
+                </ng-template>
+              </p-column>
+
+            </p-dataTable>
+
+          </div>
+
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Option-Item">
+
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="panel-title pull-left" i18n>
+                  Rac Option Item
+                </h2>
+                <div class="pull-right">
+                  <button (click)="showRacOptionItemForm()" pButton type="button" i18n-label label="Add New"
+                    icon="fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body">
+
+            <p-dataTable [value]="racOptionItems" [responsive]="true" [paginator]="true" [rows]="7">
+              <p-column i18n-header field="optionName" header="Option Name" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header field="label" header="Label" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header field="key" header="Key" [filter]="true" sortable="true" filterMatchMode="contains"></p-column>
+              <p-column i18n-header field="isSystemDefined" [filter]="true" header="Is System Defined" sortable="true" filterMatchMode="contains">
+              </p-column>
+              <p-column i18n-header field="racOptionItem" [filter]="true" header="Additional Comment" sortable="true" filterMatchMode="contains">
+              </p-column>
+
+              <p-column [style]="{'width':'100px'}" header="View">
+                <ng-template pTemplate="header"> </ng-template>
+                <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                  <div style="text-align:center">
+                    <a (click)="deleteRacOptionItem(d)" href="javascript:void(0)" i18n>Remove</a>
+                    <span style="padding:3px;">|</span>
+                    <a (click)="editRacOptionItem(d)" href="javascript:void(0)" i18n>Edit</a>
+                  </div>
+                </ng-template>
+              </p-column>
+
+            </p-dataTable>
+      
+          </div>
+      
+        </div>
+      </p-accordionTab>
+   
+    </p-accordion>
+
+  </div>
+</div>
+
+<p-dialog [responsive]=true [(visible)]="displayRacCategoryTypeForm" id="ct-modal" modal="modal" showEffect="fade"
+  width="400">
+  <div style="margin-bottom:0" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        {{ formState }} <ng-container i18n>Rac Category Tier</ng-container>
+      </h2>
+    </div>
+
+    <div class="panel-body">
+        <form novalidate [formGroup]="racCategoryTypeForm" (ngSubmit)="addRacCategoryType(racCategoryTypeForm)" autocomplete="off">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="criteria" class="control-label col-md-12" i18n>Category Tier</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="racCategoryTypeId" formControlName="racCategoryTypeId"
+                            [ngClass]="racCategoryTypeForm.controls['racCategoryTypeId'].valid ? 'valid-input' : 'required-input'">
+                                <option value="" i18n>--- Select Category ---</option>
+                                <option *ngFor="let x of racCategorysForType" [value]="x.racCategoryId"
+                                   >{{x.categoryName}}</option>
+                            </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="criteria" class="control-label col-md-12" i18n>Sub Category Type</label>
+                          <div class="col-md-12">
+                              <input type="text" formControlName="subCategoryType" name="subCategoryType" class="form-control"
+                              [ngClass]="racCategoryTypeForm.controls['subCategoryType'].valid ? 'valid-input' : 'required-input'">
+                          </div>
+                        </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" (click)="addRacCategoryType(racCategoryTypeForm)" [disabled]="racCategoryTypeForm.invalid"
+            class="btn btn-success pull-right" i18n>Save and Close</button>
+          <button type="button" (click)="cancelRacCategoryTypeForm()" style="margin-right:5px"
+            class="btn btn-danger pull-right" i18n>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayRacCategoryForm" id="ct-modal" modal="modal" showEffect="fade"
+  width="600">
+
+  <div style="margin-bottom:0" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        {{ formState }} <ng-container i18n>Rac Category</ng-container>
+      </h2>
+    </div>
+
+    <form novalidate [formGroup]="racCategoryForm" (ngSubmit)="saveRacCategory(racCategoryForm)" autocomplete="off">
+      <div class="panel-body">
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label for="categoryName" class="control-label col-md-12" i18n>Category Name</label>
+            <div class="col-md-12">
+              <input type="text" name="categoryName" formControlName="categoryName" id="categoryName"
+                class="form-control"
+                [ngClass]="racCategoryForm.controls['categoryName'].valid ? 'valid-input' : 'required-input'">
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" (click)="saveRacCategory(racCategoryForm)" [disabled]="racCategoryForm.invalid"
+            class="btn btn-success pull-right" i18n>Save and Close</button>
+          <button type="button" (click)="displayRacCategoryForm=false" style="margin-right:5px"
+            class="btn btn-danger pull-right" i18n>Cancel</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayRacItemForm" id="ct-modal" modal="modal" showEffect="fade" width="600">
+
+  <div style="margin-bottom:0" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        {{ formState }} <ng-container i18n>Rac Item</ng-container>
+      </h2>
+    </div>
+
+    <form novalidate [formGroup]="racItemForm" (ngSubmit)="saveRacItem(racItemForm)" autocomplete="off">
+      <div class="panel-body">
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label for="criteria" class="control-label col-md-12" i18n>Criteria</label>
+            <div class="col-md-12">
+              <textarea name="criteria" formControlName="criteria" id="criteria" class="form-control"
+                [ngClass]="racItemForm.controls['criteria'].valid ? 'valid-input' : 'required-input'"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="control-label col-md-12" i18n>Description</label>
+            <div class="col-md-12">
+              <textarea name="description" formControlName="description" id="description" class="form-control"
+                [ngClass]="racItemForm.controls['description'].valid ? 'valid-input' : 'required-input'"></textarea>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" (click)="saveRacItem(racItemForm)" [disabled]="racItemForm.invalid"
+            class="btn btn-success pull-right" i18n>Save and Close</button>
+          <button type="button" (click)="displayRacItemForm=false" style="margin-right:5px"
+            class="btn btn-danger pull-right" i18n>Cancel</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayRacOptionForm" id="ct-modal" modal="modal" showEffect="fade"
+  width="600">
+
+  <div style="margin-bottom:0" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        {{ formState }} <ng-container i18n>Rac Option</ng-container>
+      </h2>
+    </div>
+
+    <form novalidate [formGroup]="racOptionForm" (ngSubmit)="saveRacOption(racOptionForm)" autocomplete="off">
+      <div class="panel-body">
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label for="optionName" class="control-label col-md-12" i18n>Option Name</label>
+            <div class="col-md-12">
+              <input type="text" name="optionName" formControlName="optionName" id="optionName" class="form-control"
+                [ngClass]="racOptionForm.controls['optionName'].valid ? 'valid-input' : 'required-input'">
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" (click)="saveRacOption(racOptionForm)" [disabled]="racOptionForm.invalid"
+            class="btn btn-success pull-right" i18n>Save and Close</button>
+          <button type="button" (click)="displayRacOptionForm=false" style="margin-right:5px"
+            class="btn btn-danger pull-right" i18n>Cancel</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displayRacOptionItemForm" id="ct-modal" modal="modal" showEffect="fade"
+  width="600">
+
+  <div style="margin-bottom:0" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        {{ formState }} <ng-container i18n>Rac Option Item</ng-container>
+      </h2>
+    </div>
+
+    <form novalidate [formGroup]="racOptionItemForm" (ngSubmit)="saveRacOptionItem(racOptionItemForm)" autocomplete="off">
+      <div class="panel-body">
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label for="label" class="control-label col-md-12" i18n>Option</label>
+            <div class="col-md-12">
+              <select name="racOptionId" id="racOptionId" formControlName="racOptionId"
+                [ngClass]="racOptionItemForm.controls['racOptionId'].valid ? 'valid-input' : 'required-input'"
+                class="form-control">
+                <option value="" i18n>-- Select Option --</option>
+                <option *ngFor="let x of racOptions" [value]="x.racOptionId">
+                  {{ x.optionName }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="label" class="control-label col-md-12" i18n>Label</label>
+            <div class="col-md-12">
+              <input type="text" name="label" formControlName="label" id="label" class="form-control"
+                [ngClass]="racOptionItemForm.controls['label'].valid ? 'valid-input' : 'required-input'">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="key" class="control-label col-md-12" i18n>Key</label>
+            <div class="col-md-12">
+              <input type="text" name="key" formControlName="key" id="key" class="form-control"
+                [ngClass]="racOptionItemForm.controls['key'].valid ? 'valid-input' : 'required-input'">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <div class="checkbox-container">
+                <input formControlName="isSystemDefined" id="isSystemDefined" type="checkbox">
+              </div><label class="checkbox" i18n>Is System Defined</label>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" (click)="saveRacOptionItem(racOptionItemForm)" [disabled]="racOptionItemForm.invalid"
+            class="btn btn-success pull-right" i18n>Save and Close</button>
+          <button type="button" (click)="displayRacOptionItemForm=false" style="margin-right:5px"
+            class="btn btn-danger pull-right" i18n>Cancel</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+
+<p-dialog [responsive]=true [(visible)]="displaySearchModal" modal="modal" id="searchModal" showEffect="fade"
+  width="650" [contentStyle]="{'overflow':'auto','max-height':'300px'}">
+  <div style="margin-bottom:0" class="panel panel-default">
+    <div class="panel-heading">
+      <div style="margin-left:0" class="row">
+        <h2 class="panel-title pull-left" i18n>
+          Search For RAC Item
+        </h2>
+        <a href="" (click)="displaySearchModal=false" class="pull-right remove-btn">
+          <i class="glyphicon glyphicon-remove-sign">
+          </i>
+        </a>
+
+      </div>
+    </div>
+    <div style="padding:3px" class="panel-body">
+      <div class="form-group">
+        <div class="col-md-12">
+          <input type="text" id="search" (keyup)="searchRac($event.target.value)" class="form-control"
+            i18n-placeholder placeholder="Type in your search parameter">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <p>
+            <!--{{mfacilityType}}-->
+          </p>
+          <table *ngIf= "searchResults" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th i18n>Criteria</th>
+                <th i18n>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr (click)="pickSearchedData(res)" style="cursor: pointer"
+                *ngFor="let res of searchResults; let i = index">
+                <td>
+                  {{res.criteria}}
+                </td>
+                <td>
+                  {{res.description}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

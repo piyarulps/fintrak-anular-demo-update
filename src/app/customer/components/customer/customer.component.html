@@ -1,0 +1,374 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 i18n class="panel-title pull-left">
+                                Customer Search
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <!--<div class="row">-->
+
+                    <form novalidate [formGroup]="customerSearchForm" (keyup.enter)="submitForm(customerSearchForm)" autocomplete="off">
+
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label i18n for="customerName" class="control-label col-md-2">Customer Name / Code</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="customerName" formControlName="customerName" id="customerName" class="form-control" [ngClass]="!customerSearchForm.controls['customerName'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+                                    <label i18n for="phoneNumber" class="control-label col-md-2">Phone Number</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber" class="form-control" [ngClass]="!customerSearchForm.controls['phoneNumber'].valid ? 'required-input' : 'valid-input'">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label i18n for="customerTypeId" class="control-label col-md-2">Customer Type</label>
+                                    <div class="col-md-4">
+                                        <select type="text" name="customerTypeId" formControlName="customerTypeId" id="customerTypeId" class="form-control" [ngClass]="!customerSearchForm.controls['customerTypeId'].valid ? 'required-input' : 'valid-input'">
+                                <option i18n value="">-- Select Customer Type --</option>
+                                <option *ngFor="let type of customerTypes" [value]="type.customerTypeId">
+                                    {{ type.name }}
+                                </option>
+                            </select>
+                                    </div>
+                                    <label i18n for="branchId" class="control-label col-md-2">Branch</label>
+                                    <div class="col-md-4">
+                                        <select type="text" name="branchId" formControlName="branchId" id="branchId" class="form-control" [ngClass]="!customerSearchForm.controls['branchId'].valid ? 'required-input' : 'valid-input'">
+                                <option i18n value="">-- Select Branch --</option>
+                                <option *ngFor="let branch of branches" [value]="branch.branchId">
+                                    {{ branch.branchName }}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <!--</div>-->
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button   type="button" (click)="submitForm(customerSearchForm)" [disabled]="customerSearchForm.invalid" class="btn btn-success pull-right"><span class="glyphicon glyphicon-search"></span>
+                                <ng-container i18n> Search</ng-container>
+                            </button>
+                            <button i18n type="button" (click)="clearSearchForm()" style="margin-right:5px" class="btn btn-default pull-right">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end of panel-->
+
+        </div>
+        <!--end of card-->
+
+        <div *ngIf="displayCustomerList" class="card no-padding">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 i18n class="panel-title pull-left">
+                                Search Result
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <p-dataTable [value]="customers" [paginator]="true" [rows]="20">
+
+                        <p-column i18n-header field="customerCode" header="Customer Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="customerName" header="Customer Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="phoneNumber" header="Phone Number" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+
+                        <p-column i18n-header field="customerTypeId" header="Customer Type" sortable="true" [filter]="true" filterMatchMode="contains">
+                            <ng-template let-i="rowIndex" let-model="rowData" pTemplate type="body">
+                                {{ getCustomerType(model.customerTypeId) }}
+                            </ng-template>
+                        </p-column>
+
+                        <p-column  [style]="{'width':'100px'}">
+                            <ng-template pTemplate="header"></ng-template>
+                            <ng-template let-user="rowData" let-i="rowIndex" pTemplate="body">
+                                <a i18n (click)="viewCustomerDetails(i)" href="javascript:void(0)">View Details</a>
+                            </ng-template>
+                        </p-column>
+
+                    </p-dataTable>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--end of panel2-->
+
+        </div>
+        <!--end of card2-->
+    </div>
+</div>
+
+<!--modal starts-->
+<p-dialog [responsive]=true [(visible)]="displayCustomerDetails" modal="modal" showEffect="fade" width="900">
+    <div *ngIf="displayCustomerDetails" style="margin-bottom:0" class="panel panel-default">
+
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                Customer Details: <strong>{{ model.customerName }}</strong>
+                <!--{{ model | json }}-->
+            </h2>
+            <div class="pull-right"><a class="close" (click)="displayCustomerDetails=false">&times;</a></div>
+        </div>
+
+        <div class="panel-body">
+
+            <p-tabView>
+
+                <p-tabPanel i18n-header header="General">
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td><strong i18n>Customer Code:</strong></td>
+                                <td>{{ model.customerCode }}</td>
+                                <td><strong i18n>Customer Type:</strong></td>
+                                <td>{{ getCustomerType(model.customerTypeId) }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Branch:</strong></td>
+                                <td>{{ getBranch(model.branchId) }}</td>
+                                <td><strong i18n>Company:</strong></td>
+                                <td>{{ getCompany(model.companyId) }}</td>
+                                <!--<td><strong i18n>Relationship Officer:</strong></td> <td>{{ model.relationshipOfficerId }}</td>-->
+                            </tr>
+                            <tr>
+                                <td><strong i18n>MIS Code:</strong></td>
+                                <td>{{ model.misCode }}</td>
+                                <td><strong i18n>MIS Staff:</strong></td>
+                                <td>{{ model.misStaff }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Approval Status:</strong></td>
+                                <td>{{ getApprovalStatus(model.approvalStatus) }}</td>
+                                <td><strong i18n>Date Acted On:</strong></td>
+                                <td>{{ model.dateActedOn | date:"dd-MM-yyyy" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Acted On By:</strong></td>
+                                <td>{{ model.actedOnBy }}</td>
+                                <td><strong i18n>Tax Number:</strong></td>
+                                <td>{{ model.taxNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Customer Sensitivity Level:</strong></td>
+                                <td>{{ getCustomerSensitivityLevel(model.customerSensitivityLevelId) }}</td>
+                                <td><strong i18n>Active:</strong></td>
+                                <td>{{ model.active ? "Yes" : "No" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Customer BVN:</strong></td>
+                                <td>{{ model.customerBvn }}</td>
+                                <td><strong i18n>Customer Identification:</strong></td>
+                                <td>{{ model.customerIdentification }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+
+                <p-tabPanel i18n-header header="Personal">
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td><strong i18n>Title:</strong></td>
+                                <td>{{ model.title }}</td>
+                                <td><strong i18n>Gender:</strong></td>
+                                <td>{{ model.gender }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>First Name:</strong></td>
+                                <td>{{ model.firstName }}</td>
+                                <td><strong i18n>Date of Birth:</strong></td>
+                                <td>{{ model.dateOfBirth | date:"dd-MM-yyyy" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Middle Name:</strong></td>
+                                <td>{{ model.middleName }}</td>
+                                <td><strong i18n>Place of Birth:</strong></td>
+                                <td>{{ model.placeOfBirth }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Occupation:</strong></td>
+                                <td>{{ model.occupation }}</td>
+                                <td><strong i18n>Politically Exposed:</strong></td>
+                                <td>{{ model.politicallyExposedPerson ? "Yes" : "No" }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Last Name:</strong></td>
+                                <td>{{ model.lastName }}</td>
+                                <td><strong i18n>Nationality:</strong></td>
+                                <td>{{ model.nationality }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Marital Status:</strong></td>
+                                <td>{{ getMaritalStatus(model.maritalStatus) }}</td>
+                                <td><strong i18n>Spouse:</strong></td>
+                                <td>{{ model.spouse }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Maiden Name:</strong></td>
+                                <td>{{ model.maidenName }}</td>
+                                <td><strong></strong></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>First Child Name:</strong></td>
+                                <td>{{ model.firstChildName }}</td>
+                                <td><strong i18n>Child Date of Birth:</strong></td>
+                                <td>{{ model.childDateOfBirth | date:"dd-MM-yyyy" }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </p-tabPanel>
+
+                <p-tabPanel i18n-header header="Corporate">
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td><strong i18n>Registration Number</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.registrationNumber }}</td>
+                                <td><strong i18n>Company Name</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.companyName }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Company Website</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.companyWebsite }}</td>
+                                <td><strong i18n>Company Email</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.companyEmail }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Registered Office</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.registeredOffice }}</td>
+                                <td><strong i18n>Annual Turn Over</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.annualTurnOver }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Corporate Business Category</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.corporateBusinessCategory }}</td>
+                                <td><strong i18n>Credit Rating</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.creditRating }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Previous Credit Rating</strong></td>
+                                <td>{{ model.customerCompanyInfomation[0]?.previousCreditRating }}</td>
+                                <td><strong></strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </p-tabPanel>
+
+                <p-tabPanel i18n-header header="Contact Information">
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td><strong i18n>Email Address:</strong></td>
+                                <td>{{ model.emailAddress }}</td>
+                                <td><strong i18n>Phone Contact:</strong></td>
+                                <td>{{ model.phoneContactId }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Phone:</strong></td>
+                                <td>{{ model.phone }}</td>
+                                <td><strong i18n>Phone Number:</strong></td>
+                                <td>{{ model.phoneNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Customer Addresses:</strong></td>
+                                <td>{{ model.customerAddresses }}</td>
+                                <!--<td><strong i18n>Customer Phone Contact:</strong></td> <td>{{ model.customerPhoneContact }}</td>-->
+                            </tr>
+                            <tr>
+                                <td><strong i18n>User IP Address:</strong></td>
+                                <td>{{ model.userIPAddress }}</td>
+                                <td><strong i18n>Application Url:</strong></td>
+                                <td>{{ model.applicationUrl }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+                <!--
+				<p-tabPanel i18n-header header="Account Status">
+                    <table class="table table-customer-information">
+                        <tbody>
+                            <tr>
+                            <td><strong i18n>Created By:</strong></td> <td>{{ model.createdBy }}</td>
+                            <td><strong i18n>Last Updated By:</strong></td> <td>{{ model.lastUpdatedBy }}</td>
+                            </tr><tr>
+                            <td><strong i18n>Date Time Created:</strong></td> <td>{{ model.dateTimeCreated | date:"dd-MM-yyyy" }}</td>
+                            <td><strong i18n>Date Time Updated:</strong></td> <td>{{ model.dateTimeUpdated | date:"dd-MM-yyyy" }}</td>
+                            </tr><tr>
+                            <td><strong i18n>Deleted:</strong></td> <td>{{ model.deleted }}</td>
+                            <td><strong i18n>Deleted By:</strong></td> <td>{{ model.deletedBy }}</td>
+                            </tr><tr>
+                            <td><strong i18n>Date Time Deleted:</strong></td> <td>{{ model.dateTimeDeleted | date:"dd-MM-yyyy" }}</td>
+                            <td><strong i18n>User Branch:</strong></td> <td>{{ model.userBranchId }}</td>
+                            </tr><tr>
+                            <td><strong i18n>User IP Address:</strong></td> <td>{{ model.userIPAddress }}</td>
+                            <td><strong i18n>Application Url:</strong></td> <td>{{ model.applicationUrl }}</td>
+                            </tr><tr>
+                            <td><strong i18n>Account Creation Complete:</strong></td> <td>{{ model.accountCreationComplete }}</td>
+                            <td><strong i18n>Creation Mail Sent:</strong></td> <td>{{ model.creationMailSent }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</p-tabPanel>-->
+
+            </p-tabView>
+        </div>
+
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+
+<!--modal ends-->
+
+<fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>
+
+<!--
+{{ dateObj | date }}               // output is 'Jun 15, 2015'
+{{ dateObj | date:'medium' }}      // output is 'Jun 15, 2015, 9:43:11 PM'
+{{ dateObj | date:'shortTime' }}   // output is '9:43 PM'
+{{ dateObj | date:'mmss' }}        // output is '43:11'
+-->

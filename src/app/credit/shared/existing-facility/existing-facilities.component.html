@@ -1,0 +1,70 @@
+<div>
+
+        <p-dataTable [scrollable]="true" [responsive]="true" [paginator]="true" [rows]="10" [value]="customerExposure">
+
+                <p-column i18n-header field="customerName" header="Related Obligor" [style]="{'width':'200px','font-size':'12px'}"></p-column>
+                <p-column i18n-header field="facilityType" header="Facility Type" [style]="{'width':'100px','font-size':'12px'}"></p-column>
+                <p-column i18n-header field="referenceNumber" header="Reference Number" [style]="{'width':'150px','font-size':'12px'}" [filter]="true" filterMatchMode="contains"></p-column>
+                <p-column i18n-header field="approvedAmount" header="Approved Amount" [style]="{'width':'135px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.approvedAmount | number : '1.2' }}
+                        </ng-template>
+                </p-column>
+                <p-column i18n-header field="currency" header="Currency" [style]="{'width':'50px','font-size':'12px'}" [filter]="true" filterMatchMode="contains"></p-column>
+                <!-- <p-column i18n-header field="proposedLimit" header="Proposed Limit">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.proposedLimit | number : '1.2' }}
+                        </ng-template>
+                </p-column>
+                <p-column i18n-header field="recommendedLimit" header="Recommended Limit">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.recommendedLimit | number : '1.2' }}
+                        </ng-template>
+                </p-column> -->
+                <p-column i18n-header field="bookingDate" header="Start Date" [style]="{'width':'120px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.bookingDate | date: 'dd-MM-yyyy' }}
+                        </ng-template>
+                </p-column>
+                <p-column i18n-header field="maturityDate" header="End Date" [style]="{'width':'120px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.maturityDate | date: 'dd-MM-yyyy' }}
+                        </ng-template>
+                </p-column>
+                <!-- <p-column i18n-header field="change" header="Change">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.change | number : '1.2' }}
+                        </ng-template>
+                </p-column> -->
+                <p-column i18n-header field="outstandings" header="Exposure" [style]="{'width':'135px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.outstandings | number : '1.2' }}
+                        </ng-template>
+                </p-column>
+                <p-column i18n-header field="pastDueObligationsPrincipal" header="Past Due Obligations Principal" [style]="{'width':'135px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.pastDueObligationsPrincipal | number : '1.2' }}
+                        </ng-template>
+                </p-column>
+                <!-- <p-column i18n-header field="pastDueObligationsInterest" header="Past Due Obligations Interest">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.pastDueObligationsInterest | number : '1.2' }}
+                        </ng-template>
+                </p-column> -->
+                <p-column i18n-header field="reviewDate" header="Review Date" [style]="{'width':'120px','font-size':'12px'}">
+                        <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                {{ d.reviewDate | date: 'dd-MM-yyyy' }}
+                        </ng-template>
+                </p-column>
+                <!-- <p-column i18n-header field="prudentialGuideline" header="Status"></p-column> -->
+                <p-column i18n-header field="loanStatus" [style]="{'width':'120px','font-size':'12px'}" header="Loan Status" [filter]="true"></p-column>
+                <!-- <p-column i18n-header [style]="{'width':'120px'}">
+                        <ng-template pTemplate="header">Loan Status</ng-template>                                    
+                    <ng-template let-row="rowData" let-i="rowIndex" pTemplate="body">
+                        <div class="btn-group" [innerHtml]="getLoanApplicationStatus(row.applicationStatusId)"></div>
+                    </ng-template>
+                </p-column> -->
+
+        </p-dataTable>
+        
+</div>

@@ -1,0 +1,136 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                {{smallerSubRegionName}}
+                            </h2>
+                            <div class="pull-right">
+                                <button (click)="showCityForm()" pButton type="button" i18n-label label="Add New" icon="fa-plus"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="cities" [responsive]=true selectionMode="single">
+                        <p-column i18n-header field="stateName" header={{regionName}} sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="localGovt" header={{subRegionName}} sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="cityName" header={{smallerSubRegionName}} sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="cityClassName" header="{{smallerSubRegionName}} Class" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="allowedForCollateral" header="Allowed For Collateral" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column [style]="{'width':'50px'}">
+                            <ng-template pTemplate="header"> </ng-template>
+                            <ng-template pTemplate="body" let-col="rowData" let-i="rowIndex">
+                                <a (click)="editState(col)" href="javascript:void(0)" i18n>Edit</a>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+
+            </div>
+            <!--end of panel-->
+
+            <!--add modal-->
+            <p-dialog [responsive]=true [(visible)]="display" id="add-modal" modal="modal" showEffect="fade" width="650">
+                <div style="margin-bottom:0" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            {{panelHeader}} {{smallerSubRegionName}}
+                        </h2>
+                    </div>
+
+                    <form novalidate [formGroup]="cityForm" autocomplete="off">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="state" class="control-label col-md-2" i18n>
+                                        {{regionName}}
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select name="stateId" formControlName="stateId" (change)="getLocalGovtById($event.target.value)"
+                                         [ngClass]="!cityForm.controls['stateId'].valid ? 'required-input' : 'valid-input'"
+                                            id="stateId" class="form-control">
+                                        <option value="" i18n>--- Select {{regionName}} ---</option>
+                                        <option *ngFor="let state of states" value="{{state.stateId}}">
+                                            {{state.stateName}}
+                                        </option>   
+			                            </select>
+                                    </div>
+                                    <label for="localGovernmentId" class="control-label col-md-2" i18n>
+                                        {{subRegionName}}
+                                        </label>
+                                        <div class="col-md-4">
+                                            <select name="localGovernmentId" formControlName="localGovernmentId" [ngClass]="!cityForm.controls['localGovernmentId'].valid ? 'required-input' : 'valid-input'"
+                                                id="localGovernmentId" class="form-control">
+                                            <option value="" i18n>--- Select {{subRegionName}} ---</option>
+                                            <option *ngFor="let item of localGovt" value="{{item.localGovernmentId}}">
+                                                {{item.localGovtName}}
+                                            </option>   
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <!--<div class="form-group">
+                                    
+                                </div>-->
+
+                                <div class="form-group">
+                                    <label for="cityClass" class="control-label col-md-2" *ngIf="showCityClass" i18n>
+                                        {{smallerSubRegionName}} Class
+                                    </label>
+                                    <div class="col-md-4" *ngIf="showCityClass">
+                                        <select name="cityClass" formControlName="cityClassId" [ngClass]="!cityForm.controls['cityClassId'].valid ? 'required-input' : 'valid-input'"
+                                            id="cityClass" class="form-control">
+                                        <option value="" i18n>--- Select {{smallerSubRegionName}} Class ---</option>
+                                        <option *ngFor="let item of cityClasses" value="{{item.lookupId}}">
+                                            {{item.lookupName}}
+                                        </option>   
+			                            </select>
+                                    </div>
+
+                                    <label for="city" class="control-label col-md-2" i18n>
+                                        {{smallerSubRegionName}}
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="CityName" formControlName="cityName" [ngClass]="!cityForm.controls['cityName'].valid ? 'required-input' : 'valid-input'"
+                                            id="CityName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                       
+                                        <label for="allowCollateral" class="control-label col-md-2" i18n>
+                                            Allow For Collateral
+                                        </label>
+                                        <div class="col-md-4">
+                                            <input type="checkbox" name="allowCollateral" (change)="ShowCityClass($event)"  formControlName="allowedForCollateral" [ngClass]="!cityForm.controls['allowedForCollateral'].valid ? 'required-input' : 'valid-input'"
+                                                id="allowCollateral">
+                                        </div>
+                                    </div>
+                            </div>
+                            <!--buttons-->
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" (click)="submitForm(cityForm)" [disabled]="cityForm.invalid" class="btn btn-success pull-right"  i18n>Save</button>
+                                    <button type="button" (click)="display=false"  style="margin-right:5px"class="btn btn-danger pull-right" i18n>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </p-dialog>
+            <!--end of add modal-->
+
+            <fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>
+
+        </div>
+    </div>
+</div>

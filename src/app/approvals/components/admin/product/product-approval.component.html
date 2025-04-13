@@ -1,0 +1,327 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left" i18n>
+                                Products
+                            </h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <p-dataTable [paginator]="true" [rows]="15" [value]="productApprovalData" [responsive]=true selectionMode="single">
+                        <p-column i18n-header [style]="{'width':'110px'}" field="productCode" header="Code" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="productName" header="Product Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="productCategoryName" header="Product Category" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="productTypeName" header="Product Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="productGroupName" header="Product Group" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+
+                        <p-column [style]="{'width':'60px'}">
+
+                            <ng-template pTemplate="header" i18n>
+                                View
+                            </ng-template>
+                            <ng-template let-prod="rowData" let-i="rowIndex" pTemplate="body">
+                                <a (click)="viewProductDetails(prod, $event)" style="display: block" href="#">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </a>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [responsive]=true [(visible)]="displayProductModal" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Product Approval
+            </h2>
+        </div>
+
+        <div class="panel-body">
+
+            <p-tabView (onChange)="handleChange($event)" [activeIndex]="activeIndex">
+                <p-tabPanel i18n-header header="Product Info">
+                    <table class="table-customer-information">
+                        <tbody>
+                            <tr>
+                                <td><strong i18n>Name</strong></td>
+                                <td>{{selectedProductData.productName}}</td>
+                                <td><strong i18n>Product Code</strong></td>
+                                <td>{{selectedProductData.productCode}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Product Type</strong></td>
+                                <td>{{selectedProductData.productTypeName}}</td>
+                                <td><strong i18n>Product Group</strong></td>
+                                <td>{{selectedProductData.productGroupName}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Product Category</strong></td>
+                                <td>{{selectedProductData.productCategoryName}}</td>
+                                <td><strong i18n>Product Class</strong></td>
+                                <td>{{selectedProductData.productClassName}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Price Index</strong></td>
+                                <td>{{selectedProductData.productPriceIndexName}}</td>
+                                <td><strong i18n>Price Index Spread</strong></td>
+                                <td>{{selectedProductData.productPriceIndexSpread}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Deal Type</strong></td>
+                                <td>{{selectedProductData.dealTypeName}}</td>
+                                <td><strong i18n>Deal Classification</strong></td>
+                                <td>{{selectedProductData.dealClassificationName}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.principalBalanceGlCode || selectedProductData.interestIncomeExpenseGlCode">
+                                <td><strong i18n>Principal Balance GL</strong></td>
+                                <td>{{selectedProductData.principalBalanceGlCode}}</td>
+                                <td><strong i18n>Interest Income/Expense GL</strong></td>
+                                <td>{{selectedProductData.interestIncomeExpenseGlCode}}</td>
+                            </tr>
+                            <!-- <tr *ngIf="selectedProductData.principalBalanceGl2Code || selectedProductData.productBehaviorId">
+                                <td><strong i18n>Principal Balance GL 2 </strong></td>
+                                <td>{{selectedProductData.principalBalanceGl2Code}}</td>
+                                <td><strong i18n>Allow Fund Usage</strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.ProductBehaviour.allowFundUsage"></span>
+                                    <span *ngIf="!selectedProductData.ProductBehaviour.allowFundUsage"></span>
+                                </td>
+                            </tr> -->
+                            <tr *ngIf="selectedProductData.interestReceivablePayableGlCode || selectedProductData.dormantGlCode">
+                                <td><strong i18n>Interest Recievable/Payable GL</strong></td>
+                                <td>{{selectedProductData.interestReceivablePayableGlCode}}</td>
+                                <td><strong i18n>Dormant GL</strong></td>
+                                <td>{{selectedProductData.dormantGlCode}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.premiumDiscountGlCode || selectedProductData.dayCountName">
+                                <td><strong i18n>Premium Discount GL</strong></td>
+                                <td>{{selectedProductData.premiumDiscountGlCode}}</td>
+                                <td><strong i18n>Day Count</strong></td>
+                                <td>{{selectedProductData.dayCountName}}</td>
+                            </tr>
+                            <tr >
+                                <td><strong i18n>Collateral LCY Limit </strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.collateralLCYLimit != null"> {{selectedProductData.collateralLCYLimit }}</span>
+                                    <span *ngIf="selectedProductData.collateralLCYLimit == null"> n/a</span>
+                                </td>
+                                <td><strong i18n>Collateral FCY Limit </strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.collateralFCYLimit != null"> {{selectedProductData.collateralFCYLimit }}</span>
+                                    <span *ngIf="selectedProductData.collateralFCYLimit == null"> n/a</span>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td><strong i18n>Customer Limit </strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.customerLimit != null"> {{selectedProductData.customerLimit }}</span>
+                                    <span *ngIf="selectedProductData.customerLimit == null"> n/a</span>
+                                </td>
+                                <td><strong i18n>Product Limit</strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.productLimit != null"> {{selectedProductData.productLimit }}</span>
+                                    <span *ngIf="selectedProductData.productLimit == null"> n/a</span>
+                                </td>
+                            </tr>
+
+                            <tr >
+                                <td><strong i18n>Invoice Limit </strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.invoiceLimit != null"> {{selectedProductData.invoiceLimit }}</span>
+                                    <span *ngIf="selectedProductData.invoiceLimit == null" i18n> n/a</span>
+                                </td>
+                                <td><strong></strong></td>
+                                <td>
+                                    <span ></span>
+                                    <span > </span>
+                                </td>
+                            </tr>
+
+                            <tr >
+                                <td><strong i18n>Is Invoice Based? </strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.invoiceBased" i18n>Yes</span>
+                                    <span *ngIf="!selectedProductData.invoiceBased || selectedProductData.invoiceBased == null" i18n>No</span>
+                                </td>
+                                <td><strong i18n>Allow Fund Usage</strong></td>
+                                <td>
+                                    <span *ngIf="selectedProductData.allowFundUsage" i18n>Yes</span>
+                                    <span *ngIf="!selectedProductData.allowFundUsage || selectedProductData.allowFundUsage == null" i18n>No</span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.productBehaviorId || selectedProductData.allowCustomerAccountForceDebit ">
+                                <td><strong i18n>Product Behaviour Type</strong></td>
+                                <td>{{selectedProductData.productBehaviorName}}</td>
+                                <td><strong i18n>Allow Account Force Debit</strong></td>
+                                <td>{{selectedProductData.allowCustomerAccountForceDebit}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.allowMoratorium || selectedProductData.allowScheduleTypeOverride">
+                                <td><strong i18n>Allow Moratorium</strong></td>
+                                <td>{{selectedProductData.allowMoratorium}}</td>
+                                <td><strong i18n>Allow Schedule Type Override</strong></td>
+                                <td>{{selectedProductData.allowScheduleTypeOverride}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.allowTenor || selectedProductData.allowRate">
+                                <td><strong i18n>Allow Tenor Override</strong></td>
+                                <td>{{selectedProductData.allowTenor}}</td>
+                                <td><strong i18n>Allow Rate Override</strong></td>
+                                <td>{{selectedProductData.allowRate}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.cleanupPeriod || selectedProductData.defaultGracePeriod">
+                                <td><strong i18n>Clean Up Period</strong></td>
+                                <td>{{selectedProductData.cleanupPeriod}}</td>
+                                <td><strong i18n>Default Grace Period</strong></td>
+                                <td>{{selectedProductData.defaultGracePeriod}}</td>
+                            </tr>
+                            <tr *ngIf="selectedProductData.equityContribution || selectedProductData.expiryPeriod">
+                                <td><strong i18n>Equity Contribution</strong></td>
+                                <td>{{selectedProductData.equityContribution}}</td>
+                                <td><strong i18n>Expiry Period</strong></td>
+                                <td>{{selectedProductData.expiryPeriod}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Currencies</strong></td>
+                                <td>{{selectedProductCurrencies}}</td>
+                                <td><strong i18n>Risk Rating</strong></td>
+                                <td>{{ selectedProductData.riskRatingName }}</td>
+
+                            </tr>
+                            <tr>
+                                <td><strong i18n>Comment</strong></td>
+                                <td><textarea [ngClass]="!selectedProductData.comment ? 'required-input' : 'valid-input'" class="form-control" [(ngModel)]="selectedProductData.comment" name="comment" cols="30" rows="3"></textarea></td>
+                                <td><strong i18n>Status</strong></td>
+                                <td>
+                                    <select name="approvalStatus" id="approvalStatus" class="form-control" [(ngModel)]="selectedProductData.approvalStatusId" [ngClass]="!selectedProductData.approvalStatusId ? 'required-input' : 'valid-input'">
+                                                        <option value="" i18n>--- Select Approval Status ---</option>
+                                                        <option *ngFor="let item of approvalStatusData" [value]="item.approvalStatusId">{{item.approvalStatusName}}</option>
+                                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </p-tabPanel>
+                <p-tabPanel i18n-header header="Product Fees">
+                    <table class="table table-responsive table-customer-information">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <strong i18n>Fee Name</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Fee Interval</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Fee Type</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Fee Target</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Gl Account</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Gl Account Code</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Rate Value</strong>
+                                </td>
+                                <td>
+                                    <strong i18n>Dependent Amount</strong>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of selectedProductData.fees">
+                                <td>
+                                    {{item.feeName}}
+                                </td>
+                                <td>
+                                    {{item.feeIntervalName}}
+                                </td>
+                                <td>
+                                    {{item.feeTypeName}}
+                                </td>
+                                <td>
+                                    {{item.feeTargetName}}
+                                </td>
+                                <td>
+                                    {{item.glAccountName}}
+                                </td>
+                                <td>
+                                    {{item.glAccountCode}}
+                                </td>
+                                <td>
+                                    {{item.rateValue}}
+                                </td>
+                                <td>
+                                    {{item.dependentAmount}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+                <p-tabPanel i18n-header header="Product Collateral">
+                    <table class="table table-customer-information">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <strong i18n>Collateral Type</strong>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of selectedProductData.collaterals">
+                                <td>{{item.collateralTypeName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p-tabPanel>
+                <p-tabPanel i18n-header header="View Approval Workflow">
+                    <p-dataTable [value]="approvalWorkflowData" [paginator]="true" [rows]="5" [responsive]="true">
+                        <p-column i18n-header field="requestStaffName" header="Intiated From"></p-column>
+                        <p-column i18n-header field="requestApproval Level" header="Initiator Approval Level"></p-column>
+                        <p-column i18n-header field="responseStaffName" header="Directed To"></p-column>
+                        <p-column i18n-header field="responseApproval Level" header="Response Approval Level"></p-column>
+                        <p-column i18n-header field="approvalStatus" header="Approval Status"></p-column>
+                        <p-column i18n-header field="comment" header="Comment"></p-column>
+                        <p-column i18n-header field="systemArrivalDate" header="Date of Arrival">
+                            <ng-template let-col let-apr="rowData" pTemplate="body">
+                                {{apr[col.field] | date: 'medium'}}
+                            </ng-template>
+                        </p-column>
+                        <p-column i18n-header field="systemResponseDate" header="Date of Response">
+                            <ng-template let-col let-apr="rowData" pTemplate="body">
+                                {{apr[col.field] | date: 'medium' }}
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group pull-right">
+                        <button (click)="hideModal()" type="button" class="btn btn-danger" style="margin-right:5px" i18n>Close</button>
+                        <button [disabled]="!selectedProductData.comment || !selectedProductData.approvalStatusId" type="button" (click)="goForApproval(selectedProductData)" class="btn btn-success" i18n>Submit For Approval</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</p-dialog>
+
+<app-fintrakbanking-dialog [title]="title" [show]="displayConfirmDialog" [width]="width" [message]="message" (approveEvent)="goForApproval(selectedProductData)" (closeEvent)="cancelApproval()"></app-fintrakbanking-dialog>

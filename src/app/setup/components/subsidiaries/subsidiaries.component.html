@@ -1,0 +1,129 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="card no-padding">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="panel-title pull-left">
+                                Subsidiaries
+                            </h2>
+                            <div class="pull-right">
+                                <button (click)="showAddModal()" pButton type="button" label="Add New" icon="fa-plus"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <p-dataTable [value]="subsidiaries">
+                        <p-column i18n-header field="subsidiaryName" header="Subsidiary Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="countryName" header="Country" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="location" header="Location" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                        <p-column i18n-header field="urlLink" header="URL" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'30%'}"></p-column>
+                        <p-column i18n-header field="isActive" header="Is Active" [filter]="true" filterMatchMode="contains" [style]="{'width':'70px'}"> 
+                            <ng-template let-i="rowIndex" let-d="rowData" pTemplate type="body">
+                                <span *ngIf="d.isActive">Yes</span>
+                                <span *ngIf="!d.isActive">No</span>
+                                </ng-template>
+                        </p-column>
+                       <!-- <p-column field="urlLink" header ="URL" [sortable]="true" [filter]="true"  filterMatchMode="contains">
+                            <ng-template let-row="rowData" pTemplate type="body">
+                              <a [routerLink]="['https://www.accessbankplc.com/',row.name]">{{row.urlLink}}</a>
+                            </ng-template>
+                         </p-column> -->
+                        <p-column [style]="{'width':'100px'}">
+                            <ng-template pTemplate="header"></ng-template>
+                            <ng-template let-d="rowData" let-i="rowIndex" pTemplate="body">
+                                <a (click)="editSubsidiary(d)" href="javascript:void(0)">
+                                    Edit
+                                </a>
+                            </ng-template>
+                        </p-column>
+
+                    </p-dataTable>
+                </div>
+
+            </div>
+            <!--end of panel-->
+
+
+        </div>
+    </div>
+</div>
+
+<!--form modal-->
+<p-dialog [responsive]=true [(visible)]="displayAddModal" id="add-modal" modal="modal" showEffect="fade" width="900">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                {{ entityName }}
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="addForm" autocomplete="off">
+
+            <div class="panel-body">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="branchName" class="control-label col-md-2">Subsidiary Name</label>
+                        <div class="col-md-4">
+                            <input type="text" name="subsidiaryName" formControlName="subsidiaryName" id="subsidiaryName" class="form-control" [ngClass]="!addForm.controls['subsidiaryName'].valid ? 'required-input' : 'valid-input'">
+                        </div>
+                        <label for="countryId" class="control-label col-md-2">Country</label>
+                        <div class="col-md-4">
+                            <select name="countryId" id="countryId" formControlName="countryId" class="form-control"
+                                [ngClass]="!addForm.controls['countryId'].valid ? 'required-input' : 'valid-input'">
+                                <option value="">-- Select Country --</option>
+                                <option *ngFor="let x of countries" [value]="x.countryId">
+                                    {{x.countryName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="control-label col-md-2">Location</label>
+                        <div class="col-md-4">
+                            <textarea type="text" id="location" rows=3 cols="15" formControlName="location" name="location"
+                            [ngClass]="!addForm.controls['location'].valid ? 'required-input' : 'valid-input'"
+                            class="form-control"></textarea>
+                        </div>
+                        <label for="urlLink" class="control-label col-md-2">URL</label>
+                        <div class="col-md-4">
+                            <textarea type="text" id="urlLink" rows=3 cols="15" formControlName="urlLink" name="urlLink"
+                            [ngClass]="!addForm.controls['urlLink'].valid ? 'required-input' : 'valid-input'"
+                            class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <div class="checkbox-container">
+                                <input formControlName="isActive" id="isActive" type="checkbox">
+                            </div>
+                            <label for="isActive" class="checkbox">Is Active</label>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" (click)="submitForm(addForm)" [disabled]="addForm.invalid" class="btn btn-success pull-right">Save</button>
+                        <button type="button" (click)="displayAddModal=false" style="margin-right:5px" class="btn btn-danger pull-right">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</p-dialog>
+<!--end of form modal-->
+
+
+<fintrakbanking-message [title]="title" [message]="message" [show]="show" [cssClass]="cssClass" (closeEvent)="hideMessage($event)"></fintrakbanking-message>

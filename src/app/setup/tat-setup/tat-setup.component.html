@@ -1,0 +1,114 @@
+<div class="ui-g">
+    <div class="ui-g-12 no-padding">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="panel-title pull-left" i18n>
+                            TURN AROUND TIME SETUP
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pull-right">
+                                    <button (click)="showModalForm()" pButton type="button" label="Add New"
+                                        icon="fa-plus"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p-dataTable [value]="tatData">
+                        <p-column i18n-header field="productClassProcessName" header="Product Class Process"
+                            [filter]="true" [sortable]="true"></p-column>
+                        <p-column i18n-header field="turnAroundTime" header="Turn Around Time (Days)"
+                            [filter]="true" [sortable]="true"></p-column>
+                        <p-column i18n-header field="excludePublicHolidays" header="Exclude Non-Working Days"
+                            [filter]="true" [sortable]="true"></p-column>
+
+                        <p-column [style]="{'width':'100px'}">
+                            <ng-template pTemplate="header"> </ng-template>
+                            <ng-template pTemplate="body" let-col let-i="rowIndex">
+                                <a (click)="editTATSetup(i)" href="javascript:void(0)" i18n>Edit</a>
+                            </ng-template>
+                        </p-column>
+                        <p-column [style]="{'width':'100px'}">
+                            <ng-template pTemplate="header"> </ng-template>
+                            <ng-template pTemplate="body" let-col let-i="rowIndex">
+                                <a (click)="deleteTATSetup(i)" href="javascript:void(0)" i18n>Delete</a>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [responsive]=true [(visible)]="displayCreateEditModal" id="create-edit-modal" modal="modal" showEffect="fade"
+    width="800">
+    <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" i18n>
+                Turn Around Time Setup
+            </h2>
+        </div>
+
+        <form novalidate [formGroup]="createEditFormGroup" (ngSubmit)="submitTATSetupForm(createEditFormGroup)"
+            autocomplete="off">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="minGrossMonthlyIncome" class="control-label col-md-2" i18n>Product Class
+                            Processs</label>
+                        <div class="col-md-4">
+                            <select name="productClassProcessId" class="form-control" 
+                                formControlName="productClassProcessId" id="productClassProcessId"
+                                [ngClass]="createEditFormGroup.controls['productClassProcessId'].valid ? 'valid-input' : 'required-input'">
+                                <option value="" i18n>--- Select Product Process ---</option>
+                                <option *ngFor="let x of productProcess" value="{{x.productClassProcessId}}">
+                                    {{x.productClassProcessName}}
+                                </option>
+                            </select>
+                        </div>
+                        <label for="turnAroundTime" class="control-label col-md-2" i18n>Turn Around Time (Days)</label>
+                        <div class="col-md-4">
+                            <input type="number" min="1" id="turnAroundTime" name="turnAroundTime"
+                                class="form-control" formControlName="turnAroundTime"
+                                [ngClass]="createEditFormGroup.controls['turnAroundTime'].valid ? 'valid-input' : 'required-input'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="col-md-4">
+                            <div class="checkbox-container">
+                                <input formControlName="excludePublicHolidays" id="excludePublicHolidays" type="checkbox">
+                            </div><label class="checkbox" i18n>Exclude Non-Working Days</label>
+                        </div>
+                       
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]="createEditFormGroup.invalid"
+                            class="btn btn-success pull-right" i18n>Save</button>
+                        <button type="button" (click)="displayCreateEditModal=false" style="margin-right:5px"
+                            class="btn btn-danger pull-right" i18n>Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>

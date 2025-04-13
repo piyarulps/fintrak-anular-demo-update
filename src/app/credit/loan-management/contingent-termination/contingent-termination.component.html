@@ -1,0 +1,877 @@
+<div class="ui-g">
+  
+    <div class="ui-g-12 no-padding">
+      <div class="card no-padding">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 i18n  class="panel-title pull-left">
+                    Expired B&G
+                </h2>
+                <div *ngIf="displayCustomerLoanDetails" class="pull-right">
+                  <button i18n  pButton type="button" (click)="showReviewForm()" label="Perform Operation" icon="fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="panel-body">
+            <div *ngIf="displayLoanSearch">
+              <div class="form-horizontal">
+                <!-- <div class="form-group">
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <input (focus)="openSearchBox()" type="text" class="form-control" placeholder="Search for OD" name="loanReferenceNo" [ngClass]="'valid-input'">
+                      <div class="input-group-btn">
+                        <button i18n  (click)="openSearchBox()" style="padding-top:4px;padding-bottom: 4px" class="btn btn-default" type="button">
+                          <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div> -->
+              </div>
+              <div class="card no-padding">
+                <p-dataTable [paginator]="true" [value]="overDraftLoanData" [rows]="15" (onRowSelect)="onSelectedLoanChange($event)">
+                  <p-column i18n-header  [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                  <p-column i18n-header  [style]="{'width':'150px'}" field="loanTypeName" header="Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                  <p-column i18n-header  [style]="{'width':'150px'}" field="loanReferenceNumber" header="Loan Ref No" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                  <p-column i18n-header  field="applicationReferenceNumber" header="Application Ref No" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+
+                  <p-column i18n-header  field="customerName" header="Obligor Name" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                  <!-- <p-column i18n-header  [style]="{'width':'150px'}" field="operationName" header="Operation Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>   -->
+                  <p-column i18n-header  [style]="{'width':'100px','text-align':'right'}" field="principalAmount" header="Amount" sortable="true" [filter]="true"
+                    filterMatchMode="contains"></p-column>
+                  <p-column i18n-header   field="effectiveDate" header="Effective Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                    <ng-template let-col let-con="rowData" pTemplate="body">
+                      {{con.effectiveDate | date: 'dd/MM/yyyy'}}
+                    </ng-template>
+                  </p-column>
+                  <p-column i18n-header    field="maturityDate" header="Maturity Date" sortable="true" [filter]="true" filterMatchMode="contains">
+                    <ng-template let-col let-con="rowData" pTemplate="body">
+                      {{con.maturityDate | date: 'dd/MM/yyyy'}}
+                    </ng-template>
+                  </p-column>
+                </p-dataTable>
+              </div>
+            </div>
+  
+            <!-- <app-disbursed-loan-details [selectedloanReviewApplicationId]="selectedloanReviewApplicationId" [displayFacilityDetails]="false"  [loanSystemTypeId]="loanSystemTypeId" [displayDetails]="displayCustomerLoanDetails" [LoadLoanDetails]="termLoanId" [selectedApplicationRefNumber]="selectedApplicationRefNumber"></app-disbursed-loan-details> -->
+  <div *ngIf="displatBackToSearch">
+
+    <div class="form-horizontal">
+      <div class="form-group">
+        <p-tabView>
+          <p-tabPanel i18n-header  header="Contingent Liability Details" *ngIf="!displayFacilityDetails">
+            <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                  Contingent Liability Details
+                  <!-- {{ loanSelection }} -->
+                </h2>
+    
+              </div>
+              <div class="panel-body">
+                <table *ngIf="loanSelection != null" class="table table-customer-information">
+                  <tbody>
+    
+                    <tr>
+                      <td>
+                        <strong i18n>Facility Reference No:</strong>
+                      </td>
+                      <td>{{ loanSelection.loanReferenceNumber ? loanSelection.loanReferenceNumber : '<span i18n>N/A</span>'}}</td>
+                      <td>
+                        <strong i18n>Application Reference No:</strong>
+                      </td>
+                      <td>{{ loanSelection.applicationReferenceNumber ? loanSelection.applicationReferenceNumber : '<span i18n>N/A</span>'}}</td>
+                      <td>
+                        <strong i18n> CASA Account Number</strong>
+                      </td>
+                      <td>{{ loanSelection.casaAccountNumber  }}<div style="text-align:right">
+                          <button i18n  (click)="showBalance()" pButton type="button" label="Get Balance"></button>
+                      </div></td>
+            
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Customer Code</strong>
+                      </td>
+                      <td>{{ loanSelection.customerCode }}</td>
+                      <td>
+                        <strong i18n>Customer Name</strong>
+                      </td>
+                      <td>{{ loanSelection.customerName ? loanSelection.customerName : '<span i18n>N/A</span>'}}</td>
+                      <td>
+                        <strong i18n> Product Account Name</strong>
+                      </td>
+                      <td>{{ loanSelection.productAccountName }}</td>
+    
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Last Operation</strong>
+                      </td>
+                      <td>{{ loanSelection.operationName }}</td>
+                      <td>
+                        <strong i18n>Product Type</strong>
+                      </td>
+                      <td>{{ loanSelection.productTypeName }}</td>
+                      <td>
+                        <strong i18n> product Name</strong>
+                      </td>
+                      <td>{{ loanSelection.productName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Branch Name</strong>
+                      </td>
+                      <td>{{ loanSelection.branchName }}</td>
+                      <td>
+                        <strong i18n>Customer Type</strong>
+                      </td>
+                      <td>{{ loanSelection.customerType }}</td>
+                      <td>
+                        <strong i18n> Sector Name</strong>
+                      </td>
+                      <td>{{ loanSelection.sectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n>Initiating Officer</strong>
+                      </td>
+                      <td>{{ loanSelection.relationshipOfficerName ? loanSelection.relationshipOfficerName : '<span i18n>N/A</span>' }}</td>
+                      <!-- <td>
+                        <strong i18n>Business Manager</strong>
+                      </td>
+                      <td>{{ loanSelection.relationshipManagerName }}</td> -->
+                      <td>
+                        <strong i18n> Sub-Sector Name</strong>
+                      </td>
+                      <td>{{ loanSelection.subSectorName }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong i18n> Booking Date</strong>
+                      </td>
+                      <td>{{ loanSelection.bookingDate | date }}</td>
+                      <td>
+                        <strong i18n>Effective Date</strong>
+                      </td>
+                      <td>{{ loanSelection.effectiveDate | date }}</td>
+                      <td>
+                        <strong i18n> Maturity Date</strong>
+                      </td>
+                      <td>{{ loanSelection.maturityDate | date }}</td>
+                    </tr>
+    
+                    <tr>
+                      <td>
+                        <strong i18n> Contingent Amount</strong>
+                      </td>
+                      <td>{{ loanSelection.principalAmount | number:'1.2' }}</td>
+                     
+                      <td>
+                        <strong i18n>Is Tenored</strong>
+                      </td>
+                      <td>{{ loanSelection.istenored }}</td>
+                      <td>
+                          <strong i18n> Currency</strong>
+                        </td>
+                        <td>{{ loanSelection.currency}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <strong i18n> Is Bank Format</strong>
+                          </td>
+                          <td>{{ loanSelection.isbankFormat }}</td>
+                      <td>
+                        <strong i18n> Exchange Rate</strong>
+                      </td>
+                      <td>{{ loanSelection.exchangeRate }}</td>
+                      <td>
+                          <strong i18n> Loan Status</strong>
+                        </td>
+                        <td>{{ loanSelection.loanStatus   }}</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>
+                            <strong i18n> Is Disbursed</strong>
+                          </td>
+                          <td>{{ loanSelection.isDisbursedState   }}</td>
+                          <td>
+                            <strong i18n> Approval Status</strong>
+                          </td>
+                          <td>{{ loanSelection.approvalStatusName   }}</td>
+                       <td>
+                        <strong i18n> Date Approved</strong>
+                      </td>
+                      <td>{{ loanSelection.dateApproved  | date  }}</td>
+    
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong i18n>Facility Purpose</strong>
+                          </td>
+                          <td>{{ loanSelection.loanPurpose   }}</td>                   
+                          <td>
+                              <strong i18n>Contingent Code</strong>
+                            </td>
+                            <td>{{ loanSelection.legalContingentCode   }}</td>      
+                    </tr>                
+                  </tbody>
+                </table>
+              </div>
+    
+            </div>
+          </p-tabPanel>
+    
+    
+          <p-tabPanel i18n-header  header="Covenant Details">
+            <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                  Covenant Details
+                </h2>
+              </div>
+              <div class="panel-body">
+                <p-dataTable [value]="convenatDetails" [responsive]="true">
+                  <p-header i18n>Covenant Details</p-header>
+                  <p-column i18n-header  field="covenantDetail" header="Covenant"></p-column>
+                  <p-column i18n-header  field="covenantAmount" header="Amount"></p-column>
+                  <p-column i18n-header  field="covenantDate" header="Date"></p-column>
+                  <p-column i18n-header  field="frequencyTypeName" header="Frequency"></p-column>
+                </p-dataTable>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-12">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel i18n-header  header="Fees Details">
+            <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                  Fees Details
+                </h2>
+              </div>
+              <div class="panel-body">
+                <p-dataTable [value]="chargeFeeDetails" [responsive]="true">
+                  <p-header i18n>Fees Details</p-header>
+                  <p-column i18n-header  field="chargeFeeName" header="Charge Fee Name"></p-column>
+                  <p-column i18n-header  field="feeAmount" header="Fee Amount"></p-column>
+                  <p-column i18n-header  field="feeIntervalName" header="Fee Interval"></p-column>
+                  <p-column i18n-header  field="feeRateValue" header="Rate(%)"></p-column>
+                </p-dataTable>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-12">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel *ngIf="guarantor" header="Guarantors Details" i18n-header >
+            <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                  Guarantors Details
+                </h2>
+              </div>
+              <div class="panel-body">
+                <p-dataTable [value]="guarantorDetails" [responsive]="true">
+                  <p-header i18n>Guarantors Details</p-header>
+                  <p-column i18n-header  field="fullName" header="Guarantor Name"></p-column>
+                  <p-column i18n-header  field="emailAddress" header="Email Address"></p-column>
+                  <p-column i18n-header  field="address" header="Contact Address"></p-column>
+                  <p-column i18n-header  field="phoneNumber1" header="Phone Number"></p-column>
+                  <p-column i18n-header  field="relationship" header="Relationship"></p-column>
+                </p-dataTable>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-12">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel i18n-header  header="Collateral Details">
+            <div style="margin-bottom:0" class="panel panel-default">
+              <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                  Collateral Details
+                </h2>
+              </div>
+              <div class="panel-body">
+                <p-dataTable [value]="collateralDetails" [responsive]="true">
+                  <p-header i18n>Collateral Details</p-header>
+                  <p-column i18n-header  field="collateralCode" header="Code"></p-column>
+                  <p-column i18n-header  field="collateralType" header="Collateral Type"></p-column>
+                  <p-column i18n-header  field="collateralValue" header="Value"></p-column>
+                  <p-column i18n-header  field="haircut" header="Haircut"></p-column>
+                  <!-- <p-column i18n-header  field="securityValue" header="Security Value"></p-column> -->
+                </p-dataTable>
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-12">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+
+          <p-tabPanel i18n-header  header="Supporting Documents">
+            {{loanSelection?.customerName}} | {{loanSelection?.applicationReferenceNumber}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h2 i18n  class="panel-title">
+                   Supporting Documents
+                      <!-- {{ supportingDocuments.length }} -->
+                  </h2>
+              </div>
+              <div class="panel-body">
+      
+                  <p-dataTable [value]="supportingDocuments" [paginator]="true" [rows]="5">
+                      <p-column i18n-header  field="documentTitle" header="Document Title" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+                      <p-column i18n-header  field="fileExtension" header="Type" [filter]="true" filterMatchMode="contains" [style]="{'width':'60px'}"></p-column>
+          
+                      <p-column i18n-header  [style]="{'width':'150px'}">
+                          <ng-template pTemplate="header"> </ng-template>
+                          <ng-template pTemplate="body" let-d="rowData" let-i="rowIndex">
+                               <a i18n *ngIf="['jpg','jpeg', 'png'].indexOf(d.fileExtension.toLowerCase()) > -1" (click)="viewDocument(d)" href="javascript:void(0)">View</a>
+                              <a i18n *ngIf="['doc','docx', 'pdf','xls', 'xlsx'].indexOf(d.fileExtension.toLowerCase()) > -1" (click)="DownloadDocument(d.documentId)" href="javascript:void(0)">Download</a>
+                          </ng-template>
+                      </p-column>
+          
+                  </p-dataTable>
+          
+          
+    
+          
+          
+              </div>
+          </div>
+            </p-tabPanel>     
+        </p-tabView>
+      </div>
+    </div>
+
+  </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-md-12">
+                <button i18n  type="button" (click)="backToLoanSearch()" *ngIf="displatBackToSearch" class="btn btn-primary pull-right">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <p-dialog [responsive]="true" [(visible)]="displayReviewModal" id="limit-def-modal" modal="modal" showEffect="fade" width="900">
+      <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <h2  class="panel-title pull-left">
+                {{entityName}}
+              </h2>
+            </div>
+          </div>
+        </div>
+        <form novalidate [formGroup]="LoanReviewForm" (ngSubmit)="submitLoanReviewForm(LoanReviewForm)" autocomplete="off">
+            <p-tabView>
+                <p-tabPanel i18n-header  header="Operation">
+          <div class="panel-body">
+            <div class="form-horizontal">
+
+
+              <div class="form-group"  *ngIf="ContingentFlagRenewal || ContingentFlagTermination" >
+                <label i18n  for="remark" class="control-label col-md-2">Upload Document</label>
+                <div class="col-md-4">
+                    <div class="checkbox-container">
+
+                    </div><label class="checkbox" ng-style="isPrimaryLabel === 'Required'}" style="color:red">{{isPrimaryLabel}}</label>
+                    <button i18n  type="button" (click)="GetPrimaryDocument()" style="margin-left:60" class="btn btn-success pull-right">Upload</button>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label i18n  for="reviewDetails" class="control-label col-md-2"> Operation Details </label>
+                <div class="col-md-10">
+                  <textarea type="text" name="reviewDetails" [(ngModel)]="reviewDetails" formControlName="reviewDetails" [ngClass]="!LoanReviewForm.controls['reviewDetails'].valid ? 'required-input' : 'valid-input'"
+                    class="form-control" rows="5"></textarea>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+                </p-tabPanel>
+                <!-- <p-tabPanel i18n-header  header="Take Fee">
+                    <take-fee-shared [loanSystemTypeId]="loanSystemTypeId" [selectedLoanId]="termLoanId" [customerId]="customerId" [currencyId]="currencyId" (takeFees)="takeFees($event)"></take-fee-shared>
+                </p-tabPanel> -->
+                <p-tabPanel i18n-header  *ngIf="displayRefered"  header="Comments">
+                    <div class="panel-body">
+                            <p-dataTable [value]="approvalWorkflowData" [paginator]="true" [rows]="5" [responsive]="true">
+                                    <p-column i18n-header  field="requestStaffName" header="Intiated By"></p-column>
+                                    <p-column i18n-header  field="requestApproval Level" header="Initiator Approval Level"></p-column>
+                                    <!-- <p-column i18n-header  field="responseStaffName" header="Directed To"></p-column> -->
+                                    <p-column i18n-header  field="responseApproval Level" header="Response Approval Level"></p-column>
+                                    <p-column i18n-header  field="approvalStatus" header="Approval Status"></p-column>
+                                    <p-column i18n-header  field="comment" header="Comment"></p-column>
+                                    <p-column i18n-header  field="systemArrivalDate" header="Date of Arrival">
+                                        <ng-template let-col let-apr="rowData" pTemplate="body">
+                                            {{apr[col.field] | date: 'medium'}}
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column i18n-header  field="systemResponseDate" header="Date of Response">
+                                        <ng-template let-col let-apr="rowData" pTemplate="body">
+                                            {{apr[col.field] | date: 'medium' }}
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+    
+                    </div>
+             </p-tabPanel>
+            </p-tabView>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-md-12">
+                <button i18n  type="submit" [disabled]="!reviewDetails" class="btn btn-success pull-right">Save Review</button>
+                <button i18n  type="button" (click)="displayReviewModal=false" style="margin-right:5px" class="btn btn-danger pull-right">Close</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </p-dialog>
+  
+    <p-dialog [responsive]=true [(visible)]="displaySearchModal" modal="modal" id="searchModal" showEffect="fade" width="650">
+      <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+          <div style="margin-left:0" class="row">
+            <h2 i18n  class="panel-title pull-left">
+              Search For OD
+            </h2>
+            <a href="" (click)="displaySearchModal=false" class="pull-right remove-btn">
+              <i class="glyphicon glyphicon-remove-sign">
+              </i>
+            </a>
+  
+          </div>
+        </div>
+        <div style="padding:3px" class="panel-body">
+          <div class="form-group">
+            <div class="col-md-12">
+              <input type="text" id="search" (keyup)="searchDB($event.target.value)" class="form-control" i18n-placeholder="Type in your search parameter">
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="col-md-12">
+              <p>
+              </p>
+              <table *ngIf="searchResults" class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th i18n>Loan Reference No</th>
+                    <th i18n>Customer Name</th>
+                    <th i18n>Loan Principal Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="pickSearchedData(res)" style="cursor: pointer" *ngFor="let res of searchResults; let i = index">
+                    <td>
+                      {{res.loanReferenceNumber}}
+                    </td>
+                    <td>
+                      {{res.customerName}}
+                    </td>
+                    <td>
+                      {{res.principalAmount}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  
+    <p-dialog [responsive]=true [(visible)]="displayCASASearchModal" modal="modal" id="searchModal" showEffect="fade" width="650">
+      <div style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+          <div style="margin-left:0" class="row">
+            <h2 i18n  class="panel-title pull-left">
+              Search For Account
+            </h2>
+            <a href="" (click)="displayCASASearchModal=false" class="pull-right remove-btn">
+              <i class="glyphicon glyphicon-remove-sign">
+              </i>
+            </a>
+          </div>
+        </div>
+        <div style="padding:3px" class="panel-body">
+          <div class="form-group">
+            <div class="col-md-12 input-group" style="margin-top: 20px">
+              <input type="text" id="search" [(ngModel)]="accountSearch" class="form-control" i18n-placeholder="Enter Account Number ...">
+              <span (click)="searchForGroupAccount(accountSearch)" class="input-group-addon btn btn-info">
+                <span class="glyphicon glyphicon-search"></span> <ng-container i18n>Search</ng-container>
+              </span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="col-md-12">
+              <p>
+              </p>
+              <table *ngIf="casaSearchResults" class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th i18n>Customer Name</th>
+                    <th i18n>Account Number</th>
+                    <th i18n>Account Name</th>
+                    <th i18n>Currency</th>
+                    <th i18n></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="pickCASASearchedData(res)" style="cursor: pointer" *ngFor="let res of casaSearchResults; let i = index">
+                    <td>
+                      {{res.customerName}}
+                    </td>
+                    <td>
+                      {{res.productAccountNumber}}
+                    </td>
+                    <td>
+                      {{res.productAccountName}}
+                    </td>
+                    <td>
+                      {{res.currency}}
+                    </td>
+                    <td>
+                      <a i18n (click)="viewCasaDetails(i)" href="javascript:void(0)">View Details</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  
+    <p-dialog [responsive]=true [(visible)]="displayCasaDetails" modal="modal" showEffect="fade" width="900">
+      <div *ngIf="displayCasaDetails" style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <ng-container i18n>Details For:</ng-container> <ng-container i18n>Details For:</ng-container>
+            
+            <strong>{{ model.customerName }}</strong>
+          </h2>
+          <div class="pull-right">
+            <a class="close" (click)="displayCasaDetails=false">&times;</a>
+          </div>
+        </div>
+  
+        <div class="panel-body">
+  
+          <p-tabView>
+  
+            <p-tabPanel i18n-header  header="Account Information">
+              <table class="table table-casa-information">
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong i18n>Product Account Number:</strong>
+                    </td>
+                    <td>{{ model.productAccountNumber }}</td>
+                    <td>
+                      <strong i18n>Product Account Name:</strong>
+                    </td>
+                    <td colspan="3" style="text-align:left">{{ model.productAccountName }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Customer Sensitivity Level:</strong>
+                    </td>
+                    <td>{{ getCustomerSensitivityLevel(0) }}</td>
+                    <td>
+                      <strong i18n>Ledger Balance:</strong>
+                    </td>
+                    <td>{{ model.ledgerBalance | number:'1.2' }}</td>
+                    <td>
+                      <strong i18n>Available Balance:</strong>
+                    </td>
+                    <td>{{ model.availableBalance | number:'1.2' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Product Code:</strong>
+                    </td>
+                    <td>{{ model.productCode }}</td>
+                    <td>
+                      <strong i18n>Tenor:</strong>
+                    </td>
+                    <td>{{ model.tenor }}</td>
+                    <td>
+                      <strong i18n>Has Lien:</strong>
+                    </td>
+                    <td>{{ model.hasLien ? '<span i18n>Yes : No </span>' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Product Name:</strong>
+                    </td>
+                    <td>{{ model.productName }}</td>
+                    <td>
+                      <strong i18n>Interest Rate:</strong>
+                    </td>
+                    <td>{{ model.interestRate | percent:'1.2-2' }}</td>
+                    <td>
+                      <strong i18n>Lien Amount:</strong>
+                    </td>
+                    <td>{{ model.lienAmount | number:'1.2' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Branch Code:</strong>
+                    </td>
+                    <td>{{ model.branchCode }}</td>
+                    <td>
+                      <strong i18n>Effective Date:</strong>
+                    </td>
+                    <td>{{ model.effectiveDate | date:"dd-MM-yyyy" }}</td>
+                    <td>
+                      <strong i18n>Has Overdraft:</strong>
+                    </td>
+                    <td>{{ model.hasOverdraft ? '<span i18n>Yes : No </span>' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Branch Name:</strong>
+                    </td>
+                    <td>{{ model.branchName }}</td>
+                    <td>
+                      <strong i18n>Terminal Date:</strong>
+                    </td>
+                    <td>{{ model.terminalDate | date:"dd-MM-yyyy" }}</td>
+                    <td>
+                      <strong i18n>Overdraft Amount:</strong>
+                    </td>
+                    <td>{{ model.overdraftAmount | number:'1.2' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Is Current Account:</strong>
+                    </td>
+                    <td>{{ model.isCurrentAccount ? '<span i18n>Yes : No </span>' }}</td>
+                    <td>
+                      <strong i18n>Action By:</strong>
+                    </td>
+                    <td>{{ model.actionBy }}</td>
+                    <td>
+                      <strong i18n>Overdraft Interest Rate:</strong>
+                    </td>
+                    <td>{{ model.overdraftInterestRate | percent:'1.2-2' }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Account Status:</strong>
+                    </td>
+                    <td>{{ getAccountStatus(model.accountStatusId) }}</td>
+                    <td>
+                      <strong i18n>Action Date:</strong>
+                    </td>
+                    <td>{{ model.actionDate | date:"dd-MM-yyyy" }}</td>
+                    <td>
+                      <strong i18n>Overdraft Expiry Date:</strong>
+                    </td>
+                    <td>{{ model.overdraftExpiryDate | date:"dd-MM-yyyy" }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>MIS Code:</strong>
+                    </td>
+                    <td>{{ model.misCode }}</td>
+                    <td>
+                      <strong i18n>Operation:</strong>
+                    </td>
+                    <td>{{ getOperation(model.operationId) }}</td>
+                    <td>
+                      <strong i18n>Post No Status:</strong>
+                    </td>
+                    <td>{{ getPostNoStatus(model.postNoStatusId) }}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong i18n>Old Product Account Number:</strong>
+                    </td>
+                    <td>{{ model.oldProductAccountNumber1 }}</td>
+                    <td>
+                      <strong></strong>
+                    </td>
+                    <td></td>
+                    <td>
+                      <strong></strong>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </p-tabPanel>
+  
+          </p-tabView>
+        </div>
+  
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-12">
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </p-dialog>
+  
+    <p-dialog [responsive]=true [(visible)]="displayPaymentPlan" modal="modal" showEffect="fade" width="850">
+      <div *ngIf="displayPaymentPlan" style="margin-bottom:0" class="panel panel-default">
+        <div class="panel-heading">
+          <h2 i18n  class="panel-title">
+            Payment Plans
+          </h2>
+          <div class="pull-right">
+            <a class="close" (click)="displayPaymentPlan=false">&times;</a>
+          </div>
+        </div>
+        <div class="panel-body" style="min-height:120px;">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label i18n  for="" class="control-label col-md-1">
+                Date
+              </label>
+              <div class="col-md-4">
+                <p-calendar id="scateredDate" dateFormat="dd/mm/yy" [(ngModel)]="data.scateredDate" [monthNavigator]="true" [inputStyle]="{'width': '270px' }"
+                  [yearNavigator]="true" yearRange="1955:2030" [showIcon]="true"></p-calendar>
+              </div>
+              <label i18n  for="" class="control-label col-md-1">
+                Amount
+              </label>
+              <div class="col-md-4">
+                <input type="text" [(ngModel)]="data.amount" class="form-control">
+              </div>
+              <div class="col-md-2">
+  
+                <button i18n  [disabled]="!data.amount" (click)="addToList()" pButton type="button" label="Add To List" icon="fa-plus"></button>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <div class="col-md-10">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th i18n>S/No</th>
+                      <th i18n>Date</th>
+                      <th i18n style="text-align: right">Amount</th>
+                      <th></th>
+                    </tr>
+  
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let p of scatterdPayments;let indx=index">
+                      <td>
+                        {{indx + 1}}
+                      </td>
+                      <td>
+                        {{p.paymentDate | date}}
+                      </td>
+                      <td style="text-align: right;width:120px">{{p.paymentAmount | number:'1.2'}}</td>
+                      <td style="padding: 0;width:50px">
+                        <a (click)="removeItem($event,indx)" style="color:#ff0000" href="#">
+                          <i class="fa fa-times" aria-hidden="true"></i>X</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="text-align: left" class="col-md-2">
+                <ng-container i18n>Balance:</ng-container>
+                <span style="margin:0;text-align: right">
+                  {{principalValanceString | number:'1.2'}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-12">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    </p-dialog>
+
+
+    <p-dialog [responsive]=true [(visible)]="displayFileUpload" id="add-modal" modal="modal" showEffect="fade" width="450">
+        <div style="margin-bottom:0" class="panel panel-default">
+            <div class="panel-heading">
+                <h2 i18n  class="panel-title">
+                    Upload Document
+                </h2>
+            </div>
+    
+    
+            <form novalidate [formGroup]="PrimaryDocumentForm" autocomplete="off">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label i18n  class="control-label col-md-4">Title</label>
+                            <div class="col-md-8">
+                                <input type="text" formControlName="primaryDocumentTitle" name="primaryDocumentTitle"
+                                    id="primaryDocumentTitle" maxlength="100" required class="form-control"
+                                    [ngClass]="!PrimaryDocumentForm.controls['primaryDocumentTitle'].valid ? 'required-input' : 'valid-input'"></div>
+                        </div>
+                        <div class="form-group">
+                            <label i18n  class="control-label col-md-4">Select Document</label>
+                            <div class="col-md-8">
+                                <input type="file" id="primaryDocument" (change)="onFileChange($event)"
+                                    formControlName="primaryDocument" name="primaryDocument"
+                                    i18n-placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg" #fileInput name="fileInput"
+                                    style="padding-top:2px;" class="form-control" [ngClass]="!PrimaryDocumentForm.controls['primaryDocument'].valid ? 'required-input' : 'valid-input'">
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- {{ casaForm.value | json }} -->
+                            <button i18n  type="button" (click)="AcceptImage()" [disabled]="(PrimaryDocumentForm.invalid || PrimaryDocumentForm.invalid || (PrimaryDocumentForm.invalid || file==undefined))"
+                                class="btn btn-success pull-right">Add</button>
+                            <button i18n  type="button" (click)="closePrimaryDocUpload()" style="margin-right:5px" class="btn btn-danger pull-right">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+    
+            </form>
+        </div>
+    
+    
+    </p-dialog>

@@ -1,0 +1,155 @@
+<p-tabView>
+    <p-tabPanel i18n-header header="Batch Posting Details">
+        <div class="panel-body">
+            <div class="ui-g ui-fluid">
+
+                <div class="form-group" style="margin-right:30px">
+                    <label for="searchItem" class="control-label col=md-3" i18n>
+
+                        Start Date
+                    </label>
+
+                    <div class="col=md-9">
+                        <!-- <p-calendar [(ngModel)]="startDate" dateFormat="dd-MM-yy" [showIcon]="true"></p-calendar> <span
+                            style="margin-left:35px"></span> -->
+                            <input type="date" [(ngModel)]="startDate" dateFormat="dd-MM-yy" /> <span
+                            style="margin-left:35px"></span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-right:30px">
+                    <label for="searchItem" class="control-label col=md-3 " i18n>
+                        End Date
+                    </label>
+
+                    <div class="col=md-9">
+                        <!-- <p-calendar [(ngModel)]="endDate" dateFormat="dd-MM-yy" [showIcon]="true"></p-calendar> <span
+                            style="margin-left:35px"></span> -->
+                            <input type="date" [(ngModel)]="endDate" dateFormat="dd-MM-yy" /> <span
+                            style="margin-left:35px"></span>
+
+                    </div>
+                </div>
+                <div class="form-group" style="margin-right:30px">
+                    <label for="searchItem" class="control-label col=md-3 " i18n>
+                        Search Parameter
+                    </label>
+
+                    <div class="col=md-9">
+                        <input type="text" name="searchInfo" maxlength="50" [(ngModel)]="searchInfo" id="crmsCode" placeholder="Any Parameter"
+                            class="form-control" i18n-placeholder>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-right:30px" *ngIf="!isLms">
+                    <label for="searchItem" class="control-label col=md-3" i18n>
+                        Any Parameter
+                    </label>
+                    <div class="col=md-9">
+                        <button pButton type="button" (click)="getBatchPostingDetails()" label="Get Posting"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll">
+                <div class="hack1">
+                    <div class="hack2">
+                        <p-dataTable #dt [value]="batchPostingList" [paginator]="true" [rows]="5">
+                            <p-header>
+                                <div class="ui-helper-clearfix">
+                                    <button type="button" pButton icon="fa-file-o" iconPos="left" label="Export to CSV"
+                                        (click)="dt.exportCSV()" style="float:left"></button>
+                                </div>
+                            </p-header>
+                            <p-column i18n-header field="sid" header="SID" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="batchId" header="BATCH ID" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="batchRefId" header="BATCH REF ID" sortable="true" [filter]="true"
+                                filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="trancType" header="TRAN_TYPE" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="amt" header="AMT" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="drAccount" header="DR_ACCT" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="crAccount" header="CR_ACCT" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="currencyCode" header="REF_CRNCY_CODE" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+
+                            <p-column i18n-header field="rateCode" header="RATE_CODE" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="rate" header="RATE" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="naration" header="NARRATION" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="status" header="STATUS" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="tranactionId" header="TRAN_ID" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="postedFlag" header="PSTD_FLG" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains" [style]="{'width':'100px'}">
+                               
+                            </p-column>
+                            <p-column i18n-header field="postedDate" header="PSTD_DATE" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="rcreDate" header="RCRE_DATE" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="postedUserId" header="PSTD_USR_ID" sortable="true" [filter]="true" [style]="{'width':'300px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="failedFlag" header="FAIL_FLG" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="failureReasonCode" header="FAILURE_REASON_CODE" sortable="true" [filter]="true" [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="failureReason" header="FAILURE_REASON" sortable="true" [filter]="true" [style]="{'width':'100px'}"
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="amountCollected" header="AMT_COLLECTED" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="lienAmount" header="LIEN_AMT" sortable="true" [filter]="true" filterMatchMode="contains"  [style]="{'width':'100px'}" >
+                            </p-column>
+                            <p-column i18n-header field="lienFlg" header="LIEN_FLG" sortable="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px'}">
+                            </p-column>
+                            <p-column i18n-header field="TodFlg" header="TOD_FLG" sortable="true" [filter]="true"  [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="valueDateNumber" header="VALUE_DATE_NUM" sortable="true" [filter]="true"  [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="loanAccount" header="LOAN_ACCT" sortable="true" [filter]="true"  [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="fintrakFlag" header="FINTRAK_FLG" sortable="true" [filter]="true"  [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column i18n-header field="bankId" header="BANK_ID" sortable="true" [filter]="true"  [style]="{'width':'100px'}" 
+                                filterMatchMode="contains">
+                            </p-column>
+                            <p-column [style]="{'width':'100px'}">
+                                <ng-template pTemplate="header"> </ng-template>
+                                <ng-template pTemplate="body" let-d="rowData" let-i="rowIndex">
+                                    <a  (click)="ExportToExcel(d)" href="javascript:void(0)" i18n>Daily Accrual Detail</a>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </p-tabPanel>
+</p-tabView>
